@@ -5,6 +5,19 @@
     <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Rapports - Check Easy</title>
+
+    <!-- Weglot Translation -->
+    <script type="text/javascript" src="https://cdn.weglot.com/weglot.min.js"></script>
+    <script>
+      // Récupérer la langue depuis l'URL (?lang=es, ?lang=en, etc.)
+      const urlParams = new URLSearchParams(window.location.search);
+      const lang = urlParams.get('lang') || 'fr'; // français par défaut
+
+      Weglot.initialize({
+        api_key: 'wg_59477fa5b0a8318b805497f9f42ce2c87',
+        language: lang
+      });
+    </script>
   </head>
   <body>
     <div id="root"></div>
