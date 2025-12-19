@@ -1,0 +1,470 @@
+{
+  "reportMetadata": {
+    "id": "1763648083297x273667045148660930",
+    "logement": "Adresse non renseignée",
+    "dateDebut": "",
+    "dateFin": "",
+    "statut": "Terminé",
+    "parcours": "État des lieux ménage",
+    "typeParcours": "ménage",
+    "etatLieuxMoment": "sortie",
+    "operateur": "Non renseigné",
+    "etat": 4.8,
+    "dateGeneration": "20/11/2025",
+    "heureGeneration": "14:18"
+  },
+  "syntheseSection": {
+    "logement": "Adresse non renseignée",
+    "voyageur": "Non renseigné",
+    "email": "",
+    "telephone": "",
+    "dateDebut": "",
+    "dateFin": "",
+    "heureCheckin": "",
+    "heureCheckout": "",
+    "heureCheckinFin": "",
+    "heureCheckoutFin": "",
+    "noteGenerale": 4.8,
+    "sousNotes": {
+      "presenceObjets": 5,
+      "etatObjets": 5,
+      "proprete": 5,
+      "agencement": 5
+    },
+    "statut": "Terminé",
+    "remarquesGenerales": {
+      "objetsManquants": [],
+      "degradations": [],
+      "propreteAgencement": [],
+      "signalements": []
+    }
+  },
+  "remarquesGeneralesSection": {
+    "scope": "logement",
+    "meta": {
+      "logementId": "1740998121111x897193418115252200",
+      "rapportId": "1763648083297x273667045148660930",
+      "dateGeneration": "20/11/2025",
+      "heureGeneration": "14:18",
+      "photosCheckin": 5,
+      "photosCheckout": 9
+    },
+    "counts": {
+      "missing_item": 0,
+      "added_item": 0,
+      "positioning": 0,
+      "cleanliness": {
+        "high": 0,
+        "medium": 0,
+        "low": 0
+      },
+      "damage": {
+        "high": 0,
+        "medium": 0,
+        "low": 0
+      },
+      "image_quality": 3,
+      "wrong_room": 0
+    },
+    "alerts": {
+      "wrong_room": false,
+      "image_quality": true,
+      "wrong_room_rooms": [],
+      "image_quality_rooms": [
+        "Salon",
+        "Cuisine",
+        "Salle d'eau"
+      ]
+    },
+    "highlights": [
+      "Qualité image : plusieurs photos de sortie montrent un clavier d’ordinateur au lieu du salon, rendant impossible la vérification complète de la pièce — Salon",
+      "Qualité image : Les photos de sortie ne montrent pas la cuisine mais un clavier d'ordinateur, rendant toute comparaison impossible. — Cuisine",
+      "Qualité image : Les photos de sortie ne montrent pas la salle d'eau mais un clavier d'ordinateur, rendant toute comparaison impossible. — Salle d'eau"
+    ],
+    "user_reports": [],
+    "rooms": [
+      {
+        "name": "Salon",
+        "icon": "🛋️",
+        "status": "attention",
+        "issues_summary": {
+          "missing_item": 0,
+          "added_item": 0,
+          "positioning": 0,
+          "cleanliness": {
+            "high": 0,
+            "medium": 0,
+            "low": 0
+          },
+          "damage": {
+            "high": 0,
+            "medium": 0,
+            "low": 0
+          },
+          "image_quality": 1,
+          "wrong_room": 0
+        },
+        "flags": [
+          "qualité"
+        ],
+        "link": "/rapport/1763648083297x273667045148660930/piece/1740998125691x575776145709276300"
+      },
+      {
+        "name": "Cuisine",
+        "icon": "🍳",
+        "status": "attention",
+        "issues_summary": {
+          "missing_item": 0,
+          "added_item": 0,
+          "positioning": 0,
+          "cleanliness": {
+            "high": 0,
+            "medium": 0,
+            "low": 0
+          },
+          "damage": {
+            "high": 0,
+            "medium": 0,
+            "low": 0
+          },
+          "image_quality": 1,
+          "wrong_room": 0
+        },
+        "flags": [
+          "qualité"
+        ],
+        "link": "/rapport/1763648083297x273667045148660930/piece/1740998125737x152916372195919900"
+      },
+      {
+        "name": "Salle d'eau",
+        "icon": "🚿",
+        "status": "attention",
+        "issues_summary": {
+          "missing_item": 0,
+          "added_item": 0,
+          "positioning": 0,
+          "cleanliness": {
+            "high": 0,
+            "medium": 0,
+            "low": 0
+          },
+          "damage": {
+            "high": 0,
+            "medium": 0,
+            "low": 0
+          },
+          "image_quality": 1,
+          "wrong_room": 0
+        },
+        "flags": [
+          "qualité"
+        ],
+        "link": "/rapport/1763648083297x273667045148660930/piece/1740998125770x574973147578026000"
+      }
+    ]
+  },
+  "detailParPieceSection": [
+    {
+      "id": "1740998125691x575776145709276300",
+      "nom": "Salon",
+      "pieceIcon": "🛋️",
+      "note": 2.5,
+      "resume": "Le salon présente un problème majeur : plusieurs photos de sortie ne montrent pas la pièce mais un clavier d’ordinateur, empêchant toute vérification complète. Sur les vues exploitables, la pièce semble propre et bien rangée, mais l’absence de photos de sortie du salon sous plusieurs angles empêche de valider l’état général et la présence de tous les objets essentiels.",
+      "photosReference": [
+        "https://eb0bcaf95c312d7fe9372017cb5f1835.cdn.bubble.io/f1740998145657x237066360879192960/IMG_9626.jpeg",
+        "https://eb0bcaf95c312d7fe9372017cb5f1835.cdn.bubble.io/f1740998162237x747000392197867000/IMG_9631.jpeg",
+        "https://eb0bcaf95c312d7fe9372017cb5f1835.cdn.bubble.io/f1740998173934x117514893791868640/IMG_9621.jpeg"
+      ],
+      "checkEntree": {
+        "estConforme": true,
+        "dateHeureValidation": "",
+        "photosReprises": []
+      },
+      "checkSortie": {
+        "estValide": true,
+        "dateHeureValidation": "",
+        "photosSortie": [
+          "https://eb0bcaf95c312d7fe9372017cb5f1835.cdn.bubble.io/f1763648147393x112264768294171310/File.jpeg",
+          "https://eb0bcaf95c312d7fe9372017cb5f1835.cdn.bubble.io/f1763648147522x431833542834869800/File.jpeg",
+          "https://eb0bcaf95c312d7fe9372017cb5f1835.cdn.bubble.io/f1763648147856x408576814647316800/File.jpeg",
+          "https://eb0bcaf95c312d7fe9372017cb5f1835.cdn.bubble.io/f1763648102725x508694816680954400/File.jpg",
+          "https://eb0bcaf95c312d7fe9372017cb5f1835.cdn.bubble.io/f1763648104664x992643562553120000/File.jpg"
+        ],
+        "photosNonConformes": []
+      },
+      "tachesValidees": [
+        {
+          "etapeId": "1740998126042x160627809384818370",
+          "nom": "🛏️ Ne pas faire le lit, préparer les draps et serviettes dans l’armoire ",
+          "estApprouve": true,
+          "dateHeureValidation": "",
+          "commentaire": null
+        },
+        {
+          "etapeId": "1740998126052x787834113449438800",
+          "nom": "🔹 Vérifications supplémentaires :",
+          "estApprouve": true,
+          "dateHeureValidation": "",
+          "commentaire": null
+        }
+      ],
+      "problemes": [
+        {
+          "id": "p1",
+          "titre": "Qualité image : plusieurs photos de sortie montrent un clavier d’o...",
+          "description": "plusieurs photos de sortie montrent un clavier d’ordinateur au lieu du salon, rendant impossible la vérification complète de la pièce",
+          "severite": "elevee",
+          "detectionIA": true,
+          "consignesIA": [],
+          "estFaux": false
+        }
+      ],
+      "consignesIA": []
+    },
+    {
+      "id": "1740998125737x152916372195919900",
+      "nom": "Cuisine",
+      "pieceIcon": "🍳",
+      "note": 1,
+      "resume": "Impossible d'évaluer l'état de la cuisine car les photos de sortie ne montrent pas la pièce mais un clavier d'ordinateur. Une nouvelle série de photos de sortie est nécessaire pour inspection.",
+      "photosReference": [
+        "https://eb0bcaf95c312d7fe9372017cb5f1835.cdn.bubble.io/f1747656597677x457236786419615170/17476565825178877842282493179943.jpg"
+      ],
+      "checkEntree": {
+        "estConforme": true,
+        "dateHeureValidation": "",
+        "photosReprises": []
+      },
+      "checkSortie": {
+        "estValide": true,
+        "dateHeureValidation": "",
+        "photosSortie": [
+          "https://eb0bcaf95c312d7fe9372017cb5f1835.cdn.bubble.io/f1763648150230x112027295587394430/File.jpeg",
+          "https://eb0bcaf95c312d7fe9372017cb5f1835.cdn.bubble.io/f1763648105632x347500351163003720/File.jpg"
+        ],
+        "photosNonConformes": []
+      },
+      "tachesValidees": [
+        {
+          "etapeId": "1740998126067x311068466921318160",
+          "nom": "🧼 Vérifier la vaisselle",
+          "estApprouve": true,
+          "dateHeureValidation": "",
+          "commentaire": null
+        },
+        {
+          "etapeId": "1740998126082x898608686876966900",
+          "nom": "☕ Nettoyer la machine à café et laisser 3 capsules",
+          "estApprouve": true,
+          "dateHeureValidation": "",
+          "commentaire": null
+        },
+        {
+          "etapeId": "1740998126106x702526835015223400",
+          "nom": "🗑️ Vider la poubelle et ajouter un nouveau sac poubelle",
+          "estApprouve": true,
+          "dateHeureValidation": "",
+          "commentaire": null
+        },
+        {
+          "etapeId": "1740998126119x655366400975889700",
+          "nom": "🥶 Vider et nettoyer le frigo ",
+          "estApprouve": true,
+          "dateHeureValidation": "",
+          "commentaire": null
+        },
+        {
+          "etapeId": "1740998126135x366309931013613100",
+          "nom": "🚰 Nettoyer l'évier & le siphon ",
+          "estApprouve": true,
+          "dateHeureValidation": "",
+          "commentaire": null
+        },
+        {
+          "etapeId": "1740998126144x376668717069458500",
+          "nom": "🧽 Vérifier les produits ménagers ",
+          "estApprouve": true,
+          "dateHeureValidation": "",
+          "commentaire": null
+        }
+      ],
+      "problemes": [
+        {
+          "id": "p1",
+          "titre": "Qualité image : Les photos de sortie ne montrent pas la cuisine ma...",
+          "description": "Les photos de sortie ne montrent pas la cuisine mais un clavier d'ordinateur, rendant toute comparaison impossible.",
+          "severite": "elevee",
+          "detectionIA": true,
+          "consignesIA": [],
+          "estFaux": false
+        }
+      ],
+      "consignesIA": []
+    },
+    {
+      "id": "1740998125770x574973147578026000",
+      "nom": "Salle d'eau",
+      "pieceIcon": "🚿",
+      "note": 1,
+      "resume": "Impossible d'évaluer l'état de la salle d'eau à la sortie car les photos de sortie ne montrent pas la pièce mais un clavier d'ordinateur. Aucun contrôle de propreté, d'agencement ou de présence des objets n'est possible dans ces conditions.",
+      "photosReference": [
+        "https://eb0bcaf95c312d7fe9372017cb5f1835.cdn.bubble.io/f1740998273419x771710887956252700/IMG_9654.jpeg"
+      ],
+      "checkEntree": {
+        "estConforme": true,
+        "dateHeureValidation": "",
+        "photosReprises": []
+      },
+      "checkSortie": {
+        "estValide": true,
+        "dateHeureValidation": "",
+        "photosSortie": [
+          "https://eb0bcaf95c312d7fe9372017cb5f1835.cdn.bubble.io/f1763648147343x372853100807773300/File.jpeg",
+          "https://eb0bcaf95c312d7fe9372017cb5f1835.cdn.bubble.io/f1763648110987x981456671111300600/File.jpg"
+        ],
+        "photosNonConformes": []
+      },
+      "tachesValidees": [
+        {
+          "etapeId": "1740998126157x238310100663147840",
+          "nom": "🚽 Toilettes :",
+          "estApprouve": true,
+          "dateHeureValidation": "",
+          "commentaire": null
+        },
+        {
+          "etapeId": "1740998126187x542749955078802600",
+          "nom": "🗑️ Poubelle :",
+          "estApprouve": true,
+          "dateHeureValidation": "",
+          "commentaire": null
+        }
+      ],
+      "problemes": [
+        {
+          "id": "p1",
+          "titre": "Qualité image : Les photos de sortie ne montrent pas la salle d'ea...",
+          "description": "Les photos de sortie ne montrent pas la salle d'eau mais un clavier d'ordinateur, rendant toute comparaison impossible.",
+          "severite": "elevee",
+          "detectionIA": true,
+          "consignesIA": [],
+          "estFaux": false
+        }
+      ],
+      "consignesIA": []
+    }
+  ],
+  "checkFinalSection": [],
+  "suggestionsIASection": [
+    {
+      "titre": "Demander immédiatement une nouvelle série de photos de sortie pour le salon, la ",
+      "description": "Demander immédiatement une nouvelle série de photos de sortie pour le salon, la cuisine et la salle d'eau afin de permettre une vérification fiable de l'état du logement.",
+      "priorite": "haute"
+    },
+    {
+      "titre": "Vérifier le protocole de prise de photos lors des états des lieux pour éviter to",
+      "description": "Vérifier le protocole de prise de photos lors des états des lieux pour éviter toute erreur de documentation à l'avenir.",
+      "priorite": "moyenne"
+    },
+    {
+      "titre": "Informer le locataire ou l'intervenant responsable de l'état des lieux de la non",
+      "description": "Informer le locataire ou l'intervenant responsable de l'état des lieux de la non-conformité des photos transmises.",
+      "priorite": "moyenne"
+    },
+    {
+      "titre": "Suspendre toute validation ou restitution de dépôt de garantie tant que l'état r",
+      "description": "Suspendre toute validation ou restitution de dépôt de garantie tant que l'état réel des pièces n'a pas pu être vérifié.",
+      "priorite": "basse"
+    },
+    {
+      "titre": "Mettre à jour les procédures internes pour inclure un contrôle qualité immédiat ",
+      "description": "Mettre à jour les procédures internes pour inclure un contrôle qualité immédiat des photos d'état des lieux avant clôture du dossier.",
+      "priorite": "basse"
+    }
+  ],
+  "uiLabels": {
+    "header": {
+      "title": "Rapport Check Easy",
+      "closeButton": "Fermer"
+    },
+    "syntheseSection": {
+      "title": "Synthèse",
+      "voyageurTitle": "Voyageur",
+      "checkEntreeTitle": "Check d'entrée",
+      "checkSortieTitle": "Check de sortie",
+      "noteGeneraleTitle": "Note Générale",
+      "presenceObjetsLabel": "Présence des objets",
+      "etatObjetsLabel": "État des objets",
+      "propreteLabel": "Propreté",
+      "agencementLabel": "Agencement",
+      "debutLabel": "Début",
+      "finLabel": "Fin"
+    },
+    "remarquesGeneralesSection": {
+      "title": "Remarques Générales",
+      "alerteTitle": "Problèmes d'analyse photos",
+      "photosNonConformesLabel": "Photos non conformes",
+      "qualiteInsuffisanteLabel": "Qualité insuffisante",
+      "faitsSaillantsTitle": "Faits important analysés par l'IA",
+      "signalementsUtilisateursTitle": "Signalements utilisateurs",
+      "aTraiterLabel": "À traiter",
+      "resoluLabel": "Résolu"
+    },
+    "detailParPieceSection": {
+      "title": "Détail par Pièce",
+      "photosReferenceLabel": "Voir les {count} photo(s) de référence",
+      "etatLieuxEntreeLabel": "État des lieux d'entrée",
+      "etatLieuxSortieLabel": "État des lieux de sortie",
+      "conformeLabel": "Conforme aux photos de référence",
+      "nonConformeLabel": "Non conforme aux photos de référence",
+      "valideLabel": "Validé",
+      "nonValideLabel": "Non validé",
+      "tachesRealisees": "Tâches réalisées",
+      "commentaireGlobalLabel": "Commentaire global",
+      "faitsSignalesIATitle": "Faits signalés par l'IA",
+      "consignesIATitle": "Consignes pour l'IA",
+      "aIgnorerLabel": "À ignorer",
+      "aSurveillerLabel": "À surveiller en priorité",
+      "ajouterButton": "Ajouter",
+      "modifierButton": "Modifier",
+      "supprimerButton": "Supprimer",
+      "creerSignalementButton": "Créer un signalement",
+      "ajouterConsigneIAButton": "Ajouter aux consignes IA",
+      "marquerCommeFauxButton": "Marquer comme faux"
+    },
+    "checkFinalSection": {
+      "title": "Check final"
+    },
+    "suggestionsIASection": {
+      "title": "Suggestions de l'IA"
+    },
+    "badges": {
+      "tacheNonRealisee": "{count} tâche(s) non réalisée(s)",
+      "faitSignale": "{count} fait(s) signalé(s) par l'IA",
+      "signalementCree": "Signalement créé",
+      "consigneIAAjoutee": "Consigne IA ajoutée",
+      "marqueCommeFaux": "Marqué comme faux"
+    },
+    "severite": {
+      "faible": "Faible",
+      "moyenne": "Moyenne",
+      "elevee": "Élevée"
+    },
+    "status": {
+      "ok": "OK",
+      "attention": "Attention",
+      "probleme": "Problème",
+      "termine": "Terminé",
+      "expire": "Expiré",
+      "enCours": "En cours"
+    },
+    "typeParcours": {
+      "voyageur": "Voyageur",
+      "menage": "Ménage"
+    },
+    "etatLieuxMoment": {
+      "sortie": "Sortie uniquement",
+      "arriveeSortie": "Arrivée + Sortie"
+    }
+  }
+}

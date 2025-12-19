@@ -1,0 +1,35 @@
+{
+  "rapportId": "1763649940640x234834439216168540",
+  "version": "test",
+  "timestamp": "2025-11-21T10:30:00.000Z",
+  "userId": "user_antoine_123",
+  "actions": [
+    {
+      "actionType": "CREATE_SIGNALEMENT",
+      "data": {
+        "piece": "Salon",
+        "probleme": "Tache sur le canapé",
+        "commentaire": "Grande tache marron sur le coussin gauche - Test depuis l'application",
+        "photoUrl": "https://eb0bcaf95c312d7fe9372017cb5f1835.cdn.bubble.io/f1763650088185x167971974653885470/File.jpg",
+        "photoBase64": null
+      }
+    },
+    {
+      "actionType": "CREATE_CONSIGNE_IA",
+      "data": {
+        "piece": "Cuisine",
+        "probleme": "Évier sale",
+        "consigne": "Toujours vérifier la propreté de l'évier avant de valider le rapport",
+        "type": "surveiller"
+      }
+    },
+    {
+      "actionType": "MARK_FALSE_POSITIVE",
+      "data": {
+        "piece": "Salon",
+        "probleme": "Coussin déplacé"
+      }
+    }
+  ]
+}
+

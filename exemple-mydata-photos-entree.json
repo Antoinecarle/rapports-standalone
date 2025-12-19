@@ -1,0 +1,239 @@
+{
+    "webhook_version": "1.0",
+    "checkID": "1759313126688x380289228559613950",
+    "parcours_id": "1759313126688x380289228559613950",
+    "agent": {
+        "id": "agent-123",
+        "firstname": "Jean",
+        "lastname": "Dupont",
+        "phone": "+33612345678",
+        "type": "voyageur",
+        "type_label": "Voyageur",
+        "verification_status": "verified"
+    },
+    "parcours": {
+        "id": "parcours-456",
+        "name": "Check-in Appartement Paris",
+        "type": "checkin",
+        "start_time": "2025-11-25T10:00:00Z",
+        "current_time": "2025-11-25T11:30:00Z",
+        "duration_minutes": 90,
+        "completion_percentage": 100,
+        "total_pieces": 3,
+        "completed_pieces": 3,
+        "pieces_with_issues": 0
+    },
+    "checkin": {
+        "pieces": [
+            {
+                "piece_id": "1759313126688x111111111111111111",
+                "nom": "Salon",
+                "status": "completed",
+                "etapes": [
+                    {
+                        "etape_id": "etape-salon-1",
+                        "type": "photo_taken",
+                        "etape_type": "checkin",
+                        "status": "completed",
+                        "timestamp": "2025-11-25T10:15:00Z",
+                        "is_todo": false,
+                        "todo_title": "",
+                        "comment": "Photo d'état d'entrée du salon",
+                        "photo_id": "photo-salon-1",
+                        "photo_url": "https://example.com/photos/salon-checkin-1.jpg",
+                        "photo_base64": null,
+                        "validated": true,
+                        "retake_count": 0
+                    },
+                    {
+                        "etape_id": "etape-salon-2",
+                        "type": "photo_taken",
+                        "etape_type": "checkin",
+                        "status": "completed",
+                        "timestamp": "2025-11-25T10:16:00Z",
+                        "is_todo": false,
+                        "todo_title": "",
+                        "comment": "Photo d'état d'entrée du salon - angle 2",
+                        "photo_id": "photo-salon-2",
+                        "photo_url": "https://example.com/photos/salon-checkin-2.jpg",
+                        "photo_base64": null,
+                        "validated": true,
+                        "retake_count": 0
+                    },
+                    {
+                        "etape_id": "etape-salon-todo-1",
+                        "type": "button_click",
+                        "etape_type": "checkin",
+                        "status": "completed",
+                        "timestamp": "2025-11-25T10:20:00Z",
+                        "is_todo": true,
+                        "todo_title": "Vérifier l'état du canapé",
+                        "action": "validate_task",
+                        "comment": "Canapé en bon état",
+                        "photo_id": "photo-canape-1",
+                        "photo_url": "https://example.com/photos/canape-checkin.jpg",
+                        "photo_base64": null,
+                        "validated": true,
+                        "retake_count": 0
+                    }
+                ]
+            },
+            {
+                "piece_id": "1759313126688x222222222222222222",
+                "nom": "Cuisine",
+                "status": "completed",
+                "etapes": [
+                    {
+                        "etape_id": "etape-cuisine-1",
+                        "type": "photo_taken",
+                        "etape_type": "checkin",
+                        "status": "completed",
+                        "timestamp": "2025-11-25T10:45:00Z",
+                        "is_todo": false,
+                        "todo_title": "",
+                        "comment": "Photo d'état d'entrée de la cuisine",
+                        "photo_id": "photo-cuisine-1",
+                        "photo_url": null,
+                        "photo_base64": "data:image/jpeg;base64,/9j/4AAQSkZJRg...",
+                        "validated": true,
+                        "retake_count": 1
+                    },
+                    {
+                        "etape_id": "etape-cuisine-todo-1",
+                        "type": "button_click",
+                        "etape_type": "checkin",
+                        "status": "completed",
+                        "timestamp": "2025-11-25T10:50:00Z",
+                        "is_todo": true,
+                        "todo_title": "Vérifier les équipements",
+                        "action": "validate_task",
+                        "comment": "Tous les équipements présents",
+                        "photo_id": null,
+                        "photo_url": null,
+                        "photo_base64": null,
+                        "validated": true,
+                        "retake_count": 0
+                    }
+                ]
+            },
+            {
+                "piece_id": "1759313126688x333333333333333333",
+                "nom": "Chambre",
+                "status": "completed",
+                "etapes": [
+                    {
+                        "etape_id": "etape-chambre-1",
+                        "type": "photo_taken",
+                        "etape_type": "checkin",
+                        "status": "completed",
+                        "timestamp": "2025-11-25T11:10:00Z",
+                        "is_todo": false,
+                        "todo_title": "",
+                        "comment": "Photo d'état d'entrée de la chambre",
+                        "photo_id": "photo-chambre-1",
+                        "photo_url": "https://example.com/photos/chambre-checkin-1.jpg",
+                        "photo_base64": null,
+                        "validated": true,
+                        "retake_count": 0
+                    },
+                    {
+                        "etape_id": "etape-chambre-2",
+                        "type": "photo_taken",
+                        "etape_type": "checkin",
+                        "status": "completed",
+                        "timestamp": "2025-11-25T11:12:00Z",
+                        "is_todo": false,
+                        "todo_title": "",
+                        "comment": "Photo d'état d'entrée de la chambre - placard",
+                        "photo_id": "photo-chambre-2",
+                        "photo_url": "https://example.com/photos/chambre-checkin-2.jpg",
+                        "photo_base64": null,
+                        "validated": true,
+                        "retake_count": 0
+                    }
+                ]
+            }
+        ],
+        "stats": {
+            "total_pieces": 3,
+            "total_photos": 6,
+            "total_tasks": 2,
+            "completed_tasks": 2,
+            "completion_rate": 100
+        },
+        "timestamp": "2025-11-25T11:30:00Z",
+        "timestamps": {
+            "session_start": "2025-11-25T10:00:00Z",
+            "snapshot_created": "2025-11-25T11:30:00Z",
+            "checkin_completed": "2025-11-25T11:30:00Z",
+            "exit_questions_completed": null,
+            "checkinStartHour": "10:00:00",
+            "checkinEndHour": "11:30:00",
+            "checkoutStartHour": null,
+            "checkoutEndHour": null
+        }
+    },
+    "checkout": null,
+    "signalements": [],
+    "timestamps": {
+        "session_start": "2025-11-25T10:00:00Z",
+        "snapshot_created": "2025-11-25T11:30:00Z",
+        "checkin_completed": "2025-11-25T11:30:00Z",
+        "exit_questions_completed": null,
+        "checkinStartHour": "10:00:00",
+        "checkinEndHour": "11:30:00",
+        "checkoutStartHour": null,
+        "checkoutEndHour": null
+    },
+    "_ANALYSE": {
+        "PHOTOS_ETAT_ENTREE": {
+            "description": "Les photos d'état d'entrée sont identifiées par :",
+            "criteres": [
+                "etape_type === 'checkin'",
+                "type === 'photo_taken' OU (type === 'button_click' ET (photo_url OU photo_base64))",
+                "photo_url !== null OU photo_base64 !== null"
+            ],
+            "exemples_dans_ce_fichier": [
+                {
+                    "piece": "Salon",
+                    "etape_id": "etape-salon-1",
+                    "type": "photo_taken",
+                    "photo_url": "https://example.com/photos/salon-checkin-1.jpg",
+                    "commentaire": "Photo classique d'état d'entrée"
+                },
+                {
+                    "piece": "Salon",
+                    "etape_id": "etape-salon-todo-1",
+                    "type": "button_click",
+                    "photo_url": "https://example.com/photos/canape-checkin.jpg",
+                    "commentaire": "Photo prise lors d'une validation de tâche (TODO)"
+                },
+                {
+                    "piece": "Cuisine",
+                    "etape_id": "etape-cuisine-1",
+                    "type": "photo_taken",
+                    "photo_base64": "data:image/jpeg;base64,/9j/4AAQSkZJRg...",
+                    "commentaire": "Photo en base64 (pas d'URL)"
+                }
+            ],
+            "total_photos_entree": 6,
+            "repartition": {
+                "Salon": 3,
+                "Cuisine": 1,
+                "Chambre": 2
+            }
+        },
+        "ETAPES_SANS_PHOTO": {
+            "description": "Certaines étapes n'ont pas de photo",
+            "exemples": [
+                {
+                    "piece": "Cuisine",
+                    "etape_id": "etape-cuisine-todo-1",
+                    "type": "button_click",
+                    "todo_title": "Vérifier les équipements",
+                    "commentaire": "Tâche validée sans photo"
+                }
+            ]
+        }
+    }
+}

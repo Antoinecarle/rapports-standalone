@@ -1,0 +1,232 @@
+{
+  "rapportID": "1764665161653x590196170994716200",
+  "rapportType": "Voyageur",
+  "rapportStep": "checkOutOnly",
+  "userfirstname": "Admin",
+  "userlastname": "Checkeasy",
+  "checkinstarttime": "Dec 2, 2025 8:46 am",
+  "checkinendtime": "Dec 2, 2025 8:49 am",
+  "checkoutstarttime": "Dec 2, 2025 8:49 am",
+  "checkoutendtime": "Dec 2, 2025 8:49 am",
+  "photoPieceinitiales": [
+    {
+      "pieceid": "1764664984092x899574074620439400",
+      "nom": "🍽️ Cuisine",
+      "photourl": [
+        "//eb0bcaf95c312d7fe9372017cb5f1835.cdn.bubble.io/f1764602288131x382135842722272300/IMG_0430.avif",
+        "//eb0bcaf95c312d7fe9372017cb5f1835.cdn.bubble.io/f1764602288884x886501592233081200/IMG_0431.avif",
+        "//eb0bcaf95c312d7fe9372017cb5f1835.cdn.bubble.io/f1764602290683x617934623522104200/IMG_0433.avif"
+      ]
+    },
+    {
+      "pieceid": "1764664984092x236342324511846340",
+      "nom": "🚿 Salle de Bain",
+      "photourl": [
+        "//eb0bcaf95c312d7fe9372017cb5f1835.cdn.bubble.io/f1764603611107x806457059301914800/IMG_0434.avif"
+      ]
+    },
+    {
+      "pieceid": "",
+      "nom": "",
+      "photourl": []
+    },
+    {
+      "pieceid": "1764664984092x526752908782516030",
+      "nom": "🛏️ Chambre",
+      "photourl": [
+        "//eb0bcaf95c312d7fe9372017cb5f1835.cdn.bubble.io/f1764602597660x717691950798131600/IMG_5775.webp",
+        "//eb0bcaf95c312d7fe9372017cb5f1835.cdn.bubble.io/f1764602636043x403761330286381200/IMG_0438.avif"
+      ]
+    },
+    {
+      "pieceid": "1764664984092x121973817055764930",
+      "nom": "🛋️ Salon & Espaces Communs",
+      "photourl": [
+        "//eb0bcaf95c312d7fe9372017cb5f1835.cdn.bubble.io/f1764602384428x186733765600238140/IMG_0444.avif",
+        "//eb0bcaf95c312d7fe9372017cb5f1835.cdn.bubble.io/f1764602385483x233490888251986600/IMG_0445.avif",
+        "//eb0bcaf95c312d7fe9372017cb5f1835.cdn.bubble.io/f1764602386440x136627807500971250/IMG_0446.avif",
+        "//eb0bcaf95c312d7fe9372017cb5f1835.cdn.bubble.io/f1764602388667x930550443378792800/IMG_0448.avif"
+      ]
+    },
+    {
+      "pieceid": "",
+      "nom": "",
+      "photourl": []
+    }
+  ],
+  "photoPiececheckout": [
+    {
+      "pieceid": "1764664984092x899574074620439400",
+      "imagecheckout": "https://eb0bcaf95c312d7fe9372017cb5f1835.cdn.bubble.io/f1764665203030x572112322986270340/File.jpg"
+    },
+    {
+      "pieceid": "1764664984092x899574074620439400",
+      "imagecheckout": "https://eb0bcaf95c312d7fe9372017cb5f1835.cdn.bubble.io/f1764665216353x862854327593406000/File.jpg"
+    }
+  ],
+  "etaperesponse": [
+    {
+      "pieceid": "1764664984092x899574074620439400",
+      "etapeid": "1764665632125x359663000438537700",
+      "referencephoto": "//eb0bcaf95c312d7fe9372017cb5f1835.cdn.bubble.io/f1764602290683x617934623522104200/IMG_0433.avif",
+      "checkphoto": "",
+      "isdone": "oui",
+      "title": "",
+      "consigne": ""
+    },
+    {
+      "pieceid": "1764664984092x236342324511846340",
+      "etapeid": "1764665632911x809354896905125400",
+      "referencephoto": "",
+      "checkphoto": "",
+      "isdone": "oui",
+      "title": "🚿  Déposer les serviettes utilisées sur la machine à laver",
+      "consigne": ""
+    },
+    {
+      "pieceid": "1764664984092x236342324511846340",
+      "etapeid": "1764665634884x144310907116078400",
+      "referencephoto": "//eb0bcaf95c312d7fe9372017cb5f1835.cdn.bubble.io/f1764603611107x806457059301914800/IMG_0434.avif",
+      "checkphoto": "",
+      "isdone": "oui",
+      "title": "",
+      "consigne": ""
+    },
+    {
+      "pieceid": "1764664984092x526752908782516030",
+      "etapeid": "1764665635930x919811027926370700",
+      "referencephoto": "//eb0bcaf95c312d7fe9372017cb5f1835.cdn.bubble.io/f1764602597660x717691950798131600/IMG_5775.webp",
+      "checkphoto": "",
+      "isdone": "oui",
+      "title": "",
+      "consigne": ""
+    },
+    {
+      "pieceid": "1764664984092x526752908782516030",
+      "etapeid": "1764665637159x485847586024389400",
+      "referencephoto": "//eb0bcaf95c312d7fe9372017cb5f1835.cdn.bubble.io/f1764602636043x403761330286381200/IMG_0438.avif",
+      "checkphoto": "",
+      "isdone": "oui",
+      "title": "",
+      "consigne": ""
+    },
+    {
+      "pieceid": "1764664984092x121973817055764930",
+      "etapeid": "1764665638028x908341948132542700",
+      "referencephoto": "//eb0bcaf95c312d7fe9372017cb5f1835.cdn.bubble.io/f1763540344333x121473081801348300/IMG_5527.avif",
+      "checkphoto": "",
+      "isdone": "oui",
+      "title": "🛋️ Remettre les objets et coussins à leur place",
+      "consigne": "Le salon doit être bien rangé pour l’état des lieux de sortie."
+    },
+    {
+      "pieceid": "1764664984092x121973817055764930",
+      "etapeid": "1764665640087x775720610920982700",
+      "referencephoto": "//eb0bcaf95c312d7fe9372017cb5f1835.cdn.bubble.io/f1764602384428x186733765600238140/IMG_0444.avif",
+      "checkphoto": "",
+      "isdone": "oui",
+      "title": "",
+      "consigne": ""
+    },
+    {
+      "pieceid": "1764664984092x121973817055764930",
+      "etapeid": "1764665641062x115998448914968580",
+      "referencephoto": "//eb0bcaf95c312d7fe9372017cb5f1835.cdn.bubble.io/f1764602385483x233490888251986600/IMG_0445.avif",
+      "checkphoto": "",
+      "isdone": "oui",
+      "title": "",
+      "consigne": ""
+    },
+    {
+      "pieceid": "1764664984092x121973817055764930",
+      "etapeid": "1764665642099x393486674574963900",
+      "referencephoto": "//eb0bcaf95c312d7fe9372017cb5f1835.cdn.bubble.io/f1764602386440x136627807500971250/IMG_0446.avif",
+      "checkphoto": "",
+      "isdone": "oui",
+      "title": "",
+      "consigne": ""
+    },
+    {
+      "pieceid": "1764664984092x121973817055764930",
+      "etapeid": "1764665642904x621699241947402100",
+      "referencephoto": "//eb0bcaf95c312d7fe9372017cb5f1835.cdn.bubble.io/f1764602388667x930550443378792800/IMG_0448.avif",
+      "checkphoto": "",
+      "isdone": "oui",
+      "title": "",
+      "consigne": ""
+    },
+    {
+      "pieceid": "1764664984092x899574074620439400",
+      "etapeid": "1764665644892x281863723217152580",
+      "referencephoto": "",
+      "checkphoto": "",
+      "isdone": "oui",
+      "title": "🍽️ Faire la vaisselle (et la ranger) ou lancer le lave-vaisselle",
+      "consigne": ""
+    },
+    {
+      "pieceid": "1764664984092x899574074620439400",
+      "etapeid": "1764665645954x741438476313243100",
+      "referencephoto": "",
+      "checkphoto": "",
+      "isdone": "oui",
+      "title": "🗑️ Vider la poubelle de la cuisine",
+      "consigne": " 📍 Jetez le sac dans la poubelle noire extérieure se trouvant dans la rue à gauche en sortant de la maison. "
+    },
+    {
+      "pieceid": "1764664984092x899574074620439400",
+      "etapeid": "1764665646929x363490040714975940",
+      "referencephoto": "",
+      "checkphoto": "",
+      "isdone": "oui",
+      "title": "🧹 Laissez la cuisine propre et rangée, comme à votre arrivée.",
+      "consigne": ""
+    },
+    {
+      "pieceid": "1764664984092x236342324511846340",
+      "etapeid": "1764665650887x907343759568608500",
+      "referencephoto": "",
+      "checkphoto": "",
+      "isdone": "oui",
+      "title": "🧴 Ne pas emporter les produits mis à disposition",
+      "consigne": "Savon, shampoing et papier toilette doivent rester sur place."
+    },
+    {
+      "pieceid": "1764664984092x236342324511846340",
+      "etapeid": "1764665651767x586936743879987100",
+      "referencephoto": "",
+      "checkphoto": "",
+      "isdone": "oui",
+      "title": "🗑️ Vider la poubelle de la salle de bain",
+      "consigne": ""
+    },
+    {
+      "pieceid": "1764664984092x526752908782516030",
+      "etapeid": "1764665653695x540321071849450000",
+      "referencephoto": "",
+      "checkphoto": "",
+      "isdone": "oui",
+      "title": "Literie",
+      "consigne": "📸  Retirez les draps, les taies d’oreiller.  📍 Déposer les sur le lit."
+    }
+  ],
+  "exitQuestion": [],
+  "piece": [
+    {
+      "pieceid": "1764664984092x899574074620439400",
+      "nom": "🍽️ Cuisine"
+    },
+    {
+      "pieceid": "1764664984092x236342324511846340",
+      "nom": "🚿 Salle de Bain"
+    },
+    {
+      "pieceid": "1764664984092x526752908782516030",
+      "nom": "🛏️ Chambre"
+    },
+    {
+      "pieceid": "1764664984092x121973817055764930",
+      "nom": "🛋️ Salon & Espaces Communs"
+    }
+  ]
+}

@@ -1,0 +1,61 @@
+﻿{
+    "status":  "success",
+    "response":  {
+                     "signalement":  [
+                                         {
+                                             "Piece_ref":  "1763563428946x849625088538311400",
+                                             "OS_signalementStatut":  "TraitÃ©",
+                                             "Nom signaleur":  "Vounier",
+                                             "Created Date":  1763630531745,
+                                             "rapport_ref":  "1763630457730x621041221232503200",
+                                             "description":  "Vase cassÃ©",
+                                             "Created By":  "non_authenticated_user_checkeasy-57905_live",
+                                             "logement_ref":  "1746548810037x386469807784722400",
+                                             "Prenom signaleur":  "Patrick",
+                                             "typeText":  "Check in mÃ©nage",
+                                             "Conciergerie":  "1730741276842x778024514623373300",
+                                             "photo":  "https://eb0bcaf95c312d7fe9372017cb5f1835.cdn.bubble.io/f1763630529987x507892917038188500/File.jpg",
+                                             "Modified Date":  1763644798117,
+                                             "commentaireTraitement":  "problÃ¨le rÃ©solu",
+                                             "phone signaleur":  "+33687451235",
+                                             "_id":  "1763630531738x239078217123237950",
+                                             "parcours_ref":  "1763563429660x336086930275468350"
+                                         },
+                                         {
+                                             "Created Date":  1763630531864,
+                                             "Nom signaleur":  "Vounier",
+                                             "Piece_ref":  "1763563428946x731845328089935700",
+                                             "_id":  "1763630531856x542281557671549400",
+                                             "Created By":  "non_authenticated_user_checkeasy-57905_live",
+                                             "rapport_ref":  "1763630457730x621041221232503200",
+                                             "description":  "Coussin tachÃ©",
+                                             "Conciergerie":  "1730741276842x778024514623373300",
+                                             "Prenom signaleur":  "Patrick",
+                                             "photo":  "https://eb0bcaf95c312d7fe9372017cb5f1835.cdn.bubble.io/f1763630530612x677867753651085600/File.jpg",
+                                             "typeText":  "Check in mÃ©nage",
+                                             "phone signaleur":  "+33687451235",
+                                             "logement_ref":  "1746548810037x386469807784722400",
+                                             "Modified Date":  1763630531865,
+                                             "parcours_ref":  "1763563429660x336086930275468350",
+                                             "OS_signalementStatut":  "Ã traiter"
+                                         },
+                                         {
+                                             "Modified Date":  1763630736360,
+                                             "rapport_ref":  "1763630457730x621041221232503200",
+                                             "Conciergerie":  "1730741276842x778024514623373300",
+                                             "phone signaleur":  "+33687451235",
+                                             "typeText":  "Technique",
+                                             "Nom signaleur":  "Vounier",
+                                             "_id":  "1763630736336x509496507325800900",
+                                             "Prenom signaleur":  "Patrick",
+                                             "OS_signalementStatut":  "Ã traiter",
+                                             "logement_ref":  "1746548810037x386469807784722400",
+                                             "Piece_ref":  "1763563428946x777964311629450600",
+                                             "Created By":  "non_authenticated_user_checkeasy-57905_live",
+                                             "parcours_ref":  "1763563429660x336086930275468350",
+                                             "description":  "Drap tache ",
+                                             "Created Date":  1763630736359
+                                         }
+                                     ]
+                 }
+}

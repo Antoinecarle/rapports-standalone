@@ -1,0 +1,333 @@
+{
+    "webhook_version": "2.0", "schema": "unified_all_in_checkin", "checkID": "persistent_7coid3", "parcours_id": "1741001424553x263472334289764350", "logement_id": null, "logement_name": null, "agent": {
+    "id": "+33788312962", "firstname": "antoine", "lastname": "Carle", "phone": "+33788312962", "type": "CLIENT", "type_label": "Voyageur", "verification_status": "verifie_session"
+    }, "parcours": {
+    "id": "1741001424553x263472334289764350", "name": "Parcours ménage", "type": "🏠 Contrôle logement", "start_time": "2025-11-19T09:58:41.863Z", "current_time": "2025-11-19T09:58:41.863Z", "duration_minutes": 0, "completion_percentage": 100, "total_pieces": 4, "completed_pieces": 0, "pieces_with_issues": 25
+    }, "checkin": {
+    "pieces": [
+    {
+    "piece_id": "1741001425783x310296444441631900", "nom": "1741001425783x310296444441631900", "status": "non_defini", "etapes": [
+    {
+    "etape_id": "1741001426145x403923520529430000", "type": "button_click", "etape_type": "checkout", "status": "completed", "timestamp": "2025-11-19T09:05:20.685Z", "is_todo": false, "todo_title": "", "action": null, "comment": "", "photos_attached": []
+    }, {
+    "etape_id": "1741001426153x133064516919884080", "type": "button_click", "etape_type": "checkout", "status": "completed", "timestamp": "2025-11-19T09:05:21.447Z", "is_todo": false, "todo_title": "", "action": null, "comment": "", "photos_attached": []
+    }, {
+    "etape_id": "1741001470386x351300441490587650", "type": "button_click", "etape_type": "checkout", "status": "completed", "timestamp": "2025-11-19T09:05:25.206Z", "is_todo": false, "todo_title": "", "action": "complete", "comment": "", "photos_attached": []
+    }, {
+    "etape_id": "1741001477341x677906872437309400", "type": "button_click", "etape_type": "checkout", "status": "completed", "timestamp": "2025-11-19T09:05:25.237Z", "is_todo": false, "todo_title": "", "action": "complete", "comment": "", "photos_attached": []
+    }, {
+    "etape_id": "1741001457690x419826360162713600", "type": "button_click", "etape_type": "checkout", "status": "completed", "timestamp": "2025-11-19T09:05:27.088Z", "is_todo": false, "todo_title": "", "action": null, "comment": "", "photos_attached": []
+    }, {
+    "etape_id": "1741001470386x351300441490587650", "type": "photo_taken", "etape_type": "checkout", "status": "completed", "timestamp": "2025-11-19T09:05:30.825Z", "is_todo": false, "todo_title": "", "photo_id": "1741001470386x351300441490587650", "photo_url": "https://eb0bcaf95c312d7fe9372017cb5f1835.cdn.bubble.io/f1763543128920x704660959271316200/File.jpg", "photo_base64": null, "validated": false, "retake_count": 0
+    }, {
+    "etape_id": "1741001477341x677906872437309400", "type": "photo_taken", "etape_type": "checkout", "status": "completed", "timestamp": "2025-11-19T09:05:30.893Z", "is_todo": false, "todo_title": "", "photo_id": "1741001477341x677906872437309400", "photo_url": "https://eb0bcaf95c312d7fe9372017cb5f1835.cdn.bubble.io/f1763543128416x170975732246695580/File.jpg", "photo_base64": null, "validated": false, "retake_count": 0
+    }, {
+    "etape_id": "1741001457690x419826360162713600", "type": "photo_taken", "etape_type": "checkout", "status": "completed", "timestamp": "2025-11-19T09:58:41.830Z", "is_todo": false, "todo_title": "", "photo_id": "1741001457690x419826360162713600", "photo_url": "https://eb0bcaf95c312d7fe9372017cb5f1835.cdn.bubble.io/f1763543128226x950733531352326100/File.jpg", "photo_base64": null, "validated": false, "retake_count": 0
+    }
+    ]
+    }, {
+    "piece_id": "1741001425824x837489455866821800", "nom": "1741001425824x837489455866821800", "status": "non_defini", "etapes": [
+    {
+    "etape_id": "1741001426162x752813167024331600", "type": "button_click", "etape_type": "checkout", "status": "completed", "timestamp": "2025-11-19T09:05:28.698Z", "is_todo": false, "todo_title": "", "action": null, "comment": "", "photos_attached": []
+    }, {
+    "etape_id": "1741001426174x100331884945548130", "type": "button_click", "etape_type": "checkout", "status": "completed", "timestamp": "2025-11-19T09:05:29.193Z", "is_todo": false, "todo_title": "", "action": null, "comment": "", "photos_attached": []
+    }, {
+    "etape_id": "1741001426183x294490564088992960", "type": "button_click", "etape_type": "checkout", "status": "completed", "timestamp": "2025-11-19T09:05:29.664Z", "is_todo": false, "todo_title": "", "action": null, "comment": "", "photos_attached": []
+    }, {
+    "etape_id": "1741001426192x580346926850529900", "type": "button_click", "etape_type": "checkout", "status": "completed", "timestamp": "2025-11-19T09:05:30.147Z", "is_todo": false, "todo_title": "", "action": null, "comment": "", "photos_attached": []
+    }, {
+    "etape_id": "1741001426200x822502635978777500", "type": "button_click", "etape_type": "checkout", "status": "completed", "timestamp": "2025-11-19T09:05:35.564Z", "is_todo": false, "todo_title": "", "action": null, "comment": "", "photos_attached": []
+    }, {
+    "etape_id": "1741001426210x415847688238969660", "type": "button_click", "etape_type": "checkout", "status": "completed", "timestamp": "2025-11-19T09:05:41.123Z", "is_todo": false, "todo_title": "", "action": null, "comment": "", "photos_attached": []
+    }, {
+    "etape_id": "1741001426220x412993049496843000", "type": "button_click", "etape_type": "checkout", "status": "completed", "timestamp": "2025-11-19T09:05:41.993Z", "is_todo": false, "todo_title": "", "action": null, "comment": "", "photos_attached": []
+    }, {
+    "etape_id": "1741001745240x736389941891170300", "type": "button_click", "etape_type": "checkout", "status": "completed", "timestamp": "2025-11-19T09:05:47.754Z", "is_todo": false, "todo_title": "", "action": "complete", "comment": "", "photos_attached": []
+    }, {
+    "etape_id": "1741294330627x821005134042759200", "type": "button_click", "etape_type": "checkout", "status": "completed", "timestamp": "2025-11-19T09:05:47.810Z", "is_todo": false, "todo_title": "", "action": "complete", "comment": "", "photos_attached": []
+    }, {
+    "etape_id": "1741294337525x671000272816832500", "type": "button_click", "etape_type": "checkout", "status": "completed", "timestamp": "2025-11-19T09:05:47.888Z", "is_todo": false, "todo_title": "", "action": "complete", "comment": "", "photos_attached": []
+    }, {
+    "etape_id": "1741294343727x113584392320057340", "type": "button_click", "etape_type": "checkout", "status": "completed", "timestamp": "2025-11-19T09:05:47.952Z", "is_todo": false, "todo_title": "", "action": "complete", "comment": "", "photos_attached": []
+    }, {
+    "etape_id": "1741294358981x510583302659506200", "type": "button_click", "etape_type": "checkout", "status": "completed", "timestamp": "2025-11-19T09:05:48.009Z", "is_todo": false, "todo_title": "", "action": "complete", "comment": "", "photos_attached": []
+    }, {
+    "etape_id": "1741001578012x630071849596747800", "type": "button_click", "etape_type": "checkout", "status": "completed", "timestamp": "2025-11-19T09:05:54.151Z", "is_todo": false, "todo_title": "", "action": null, "comment": "", "photos_attached": []
+    }, {
+    "etape_id": "1741001745240x736389941891170300", "type": "photo_taken", "etape_type": "checkout", "status": "completed", "timestamp": "2025-11-19T09:05:56.138Z", "is_todo": false, "todo_title": "", "photo_id": "1741001745240x736389941891170300", "photo_url": "https://eb0bcaf95c312d7fe9372017cb5f1835.cdn.bubble.io/f1763543154716x214507357084381400/File.jpg", "photo_base64": null, "validated": false, "retake_count": 0
+    }, {
+    "etape_id": "1741294330627x821005134042759200", "type": "photo_taken", "etape_type": "checkout", "status": "completed", "timestamp": "2025-11-19T09:05:57.089Z", "is_todo": false, "todo_title": "", "photo_id": "1741294330627x821005134042759200", "photo_url": "https://eb0bcaf95c312d7fe9372017cb5f1835.cdn.bubble.io/f1763543155261x489097471690237200/File.jpg", "photo_base64": null, "validated": false, "retake_count": 0
+    }, {
+    "etape_id": "1741294337525x671000272816832500", "type": "photo_taken", "etape_type": "checkout", "status": "completed", "timestamp": "2025-11-19T09:05:57.700Z", "is_todo": false, "todo_title": "", "photo_id": "1741294337525x671000272816832500", "photo_url": "https://eb0bcaf95c312d7fe9372017cb5f1835.cdn.bubble.io/f1763543155625x967991858504362500/File.jpg", "photo_base64": null, "validated": false, "retake_count": 0
+    }, {
+    "etape_id": "1741294343727x113584392320057340", "type": "photo_taken", "etape_type": "checkout", "status": "completed", "timestamp": "2025-11-19T09:05:59.732Z", "is_todo": false, "todo_title": "", "photo_id": "1741294343727x113584392320057340", "photo_url": "https://eb0bcaf95c312d7fe9372017cb5f1835.cdn.bubble.io/f1763543157833x304600539843604200/File.jpg", "photo_base64": null, "validated": false, "retake_count": 0
+    }, {
+    "etape_id": "1741294358981x510583302659506200", "type": "photo_taken", "etape_type": "checkout", "status": "completed", "timestamp": "2025-11-19T09:06:00.131Z", "is_todo": false, "todo_title": "", "photo_id": "1741294358981x510583302659506200", "photo_url": "https://eb0bcaf95c312d7fe9372017cb5f1835.cdn.bubble.io/f1763543158321x641142759583168500/File.jpg", "photo_base64": null, "validated": false, "retake_count": 0
+    }, {
+    "etape_id": "1741001426200x822502635978777500", "type": "photo_taken", "etape_type": "checkout", "status": "completed", "timestamp": "2025-11-19T09:58:41.839Z", "is_todo": false, "todo_title": "", "photo_id": "1741001426200x822502635978777500", "photo_url": "https://eb0bcaf95c312d7fe9372017cb5f1835.cdn.bubble.io/f1763543135794x642731720909825300/File.jpg", "photo_base64": null, "validated": false, "retake_count": 0
+    }, {
+    "etape_id": "1741001426210x415847688238969660", "type": "photo_taken", "etape_type": "checkout", "status": "completed", "timestamp": "2025-11-19T09:58:41.839Z", "is_todo": false, "todo_title": "", "photo_id": "1741001426210x415847688238969660", "photo_url": "https://eb0bcaf95c312d7fe9372017cb5f1835.cdn.bubble.io/f1763543141335x562364737469456450/File.jpg", "photo_base64": null, "validated": false, "retake_count": 0
+    }, {
+    "etape_id": "1741001578012x630071849596747800", "type": "photo_taken", "etape_type": "checkout", "status": "completed", "timestamp": "2025-11-19T09:58:41.839Z", "is_todo": false, "todo_title": "", "photo_id": "1741001745240x736389941891170300", "photo_url": "https://eb0bcaf95c312d7fe9372017cb5f1835.cdn.bubble.io/f1763543154716x214507357084381400/File.jpg", "photo_base64": null, "validated": false, "retake_count": 0
+    }
+    ]
+    }, {
+    "piece_id": "1741001425854x887580059148477400", "nom": "1741001425854x887580059148477400", "status": "non_defini", "etapes": [
+    {
+    "etape_id": "1741001426229x291934356576010430", "type": "button_click", "etape_type": "checkout", "status": "completed", "timestamp": "2025-11-19T09:05:55.128Z", "is_todo": false, "todo_title": "", "action": null, "comment": "", "photos_attached": []
+    }, {
+    "etape_id": "1741001426239x432202107477133200", "type": "button_click", "etape_type": "checkout", "status": "completed", "timestamp": "2025-11-19T09:05:55.610Z", "is_todo": false, "todo_title": "", "action": null, "comment": "", "photos_attached": []
+    }, {
+    "etape_id": "1741001426249x283799443711649760", "type": "button_click", "etape_type": "checkout", "status": "completed", "timestamp": "2025-11-19T09:05:56.027Z", "is_todo": false, "todo_title": "", "action": null, "comment": "", "photos_attached": []
+    }, {
+    "etape_id": "1741001663619x969676445437132800", "type": "button_click", "etape_type": "checkout", "status": "completed", "timestamp": "2025-11-19T09:06:03.135Z", "is_todo": false, "todo_title": "", "action": "complete", "comment": "", "photos_attached": []
+    }, {
+    "etape_id": "1741294366975x453020593946361860", "type": "button_click", "etape_type": "checkout", "status": "completed", "timestamp": "2025-11-19T09:06:03.218Z", "is_todo": false, "todo_title": "", "action": "complete", "comment": "", "photos_attached": []
+    }, {
+    "etape_id": "1741294374343x958998812992471000", "type": "button_click", "etape_type": "checkout", "status": "completed", "timestamp": "2025-11-19T09:06:03.307Z", "is_todo": false, "todo_title": "", "action": "complete", "comment": "", "photos_attached": []
+    }, {
+    "etape_id": "1741294378953x225316363206918140", "type": "button_click", "etape_type": "checkout", "status": "completed", "timestamp": "2025-11-19T09:06:03.388Z", "is_todo": false, "todo_title": "", "action": "complete", "comment": "", "photos_attached": []
+    }, {
+    "etape_id": "1741294387352x300400935436812300", "type": "button_click", "etape_type": "checkout", "status": "completed", "timestamp": "2025-11-19T09:06:03.476Z", "is_todo": false, "todo_title": "", "action": "complete", "comment": "", "photos_attached": []
+    }, {
+    "etape_id": "1741294391242x588942727433420800", "type": "button_click", "etape_type": "checkout", "status": "completed", "timestamp": "2025-11-19T09:06:03.556Z", "is_todo": false, "todo_title": "", "action": "complete", "comment": "", "photos_attached": []
+    }, {
+    "etape_id": "1741294366975x453020593946361860", "type": "photo_taken", "etape_type": "checkout", "status": "completed", "timestamp": "2025-11-19T09:06:06.990Z", "is_todo": false, "todo_title": "", "photo_id": "photo_1763543166990_gcic69", "photo_url": "", "photo_base64": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD...[TRONQUÉ 900003 cara...[BASE64 TRUNCATED 7 chars]", "validated": false, "retake_count": 0
+    }, {
+    "etape_id": "1741001656347x738233687896227800", "type": "button_click", "etape_type": "checkout", "status": "completed", "timestamp": "2025-11-19T09:06:08.308Z", "is_todo": false, "todo_title": "", "action": null, "comment": "", "photos_attached": []
+    }, {
+    "etape_id": "1741001663619x969676445437132800", "type": "photo_taken", "etape_type": "checkout", "status": "completed", "timestamp": "2025-11-19T09:06:09.468Z", "is_todo": false, "todo_title": "", "photo_id": "1741001663619x969676445437132800", "photo_url": "https://eb0bcaf95c312d7fe9372017cb5f1835.cdn.bubble.io/f1763543168251x602490433163667000/File.jpg", "photo_base64": null, "validated": false, "retake_count": 0
+    }, {
+    "etape_id": "1741294378953x225316363206918140", "type": "photo_taken", "etape_type": "checkout", "status": "completed", "timestamp": "2025-11-19T09:06:10.664Z", "is_todo": false, "todo_title": "", "photo_id": "1741294378953x225316363206918140", "photo_url": "https://eb0bcaf95c312d7fe9372017cb5f1835.cdn.bubble.io/f1763543168842x454236762332922200/File.jpg", "photo_base64": null, "validated": false, "retake_count": 0
+    }, {
+    "etape_id": "1741294374343x958998812992471000", "type": "photo_taken", "etape_type": "checkout", "status": "completed", "timestamp": "2025-11-19T09:06:11.001Z", "is_todo": false, "todo_title": "", "photo_id": "1741294374343x958998812992471000", "photo_url": "https://eb0bcaf95c312d7fe9372017cb5f1835.cdn.bubble.io/f1763543169170x321090099000609800/File.jpg", "photo_base64": null, "validated": false, "retake_count": 0
+    }, {
+    "etape_id": "1741294391242x588942727433420800", "type": "photo_taken", "etape_type": "checkout", "status": "completed", "timestamp": "2025-11-19T09:06:13.365Z", "is_todo": false, "todo_title": "", "photo_id": "1741294391242x588942727433420800", "photo_url": "https://eb0bcaf95c312d7fe9372017cb5f1835.cdn.bubble.io/f1763543171782x292389495864537660/File.jpg", "photo_base64": null, "validated": false, "retake_count": 0
+    }, {
+    "etape_id": "1741294387352x300400935436812300", "type": "photo_taken", "etape_type": "checkout", "status": "completed", "timestamp": "2025-11-19T09:06:13.973Z", "is_todo": false, "todo_title": "", "photo_id": "1741294387352x300400935436812300", "photo_url": "https://eb0bcaf95c312d7fe9372017cb5f1835.cdn.bubble.io/f1763543171663x780615330126262100/File.jpg", "photo_base64": null, "validated": false, "retake_count": 0
+    }, {
+    "etape_id": "1741001656347x738233687896227800", "type": "photo_taken", "etape_type": "checkout", "status": "completed", "timestamp": "2025-11-19T09:58:41.848Z", "is_todo": false, "todo_title": "", "photo_id": "1741294366975x453020593946361860", "photo_url": "https://eb0bcaf95c312d7fe9372017cb5f1835.cdn.bubble.io/f1763543168340x735998198364379300/File.jpg", "photo_base64": null, "validated": false, "retake_count": 0
+    }
+    ]
+    }, {
+    "piece_id": "1741001425891x904067357111238100", "nom": "1741001425891x904067357111238100", "status": "non_defini", "etapes": [
+    {
+    "etape_id": "1741001426267x889474083008161300", "type": "button_click", "etape_type": "checkout", "status": "completed", "timestamp": "2025-11-19T09:06:09.678Z", "is_todo": false, "todo_title": "", "action": null, "comment": "", "photos_attached": []
+    }, {
+    "etape_id": "1741001695248x447049659768897540", "type": "button_click", "etape_type": "checkout", "status": "completed", "timestamp": "2025-11-19T09:06:14.831Z", "is_todo": false, "todo_title": "", "action": "complete", "comment": "", "photos_attached": []
+    }, {
+    "etape_id": "1741294406295x638187935795773400", "type": "button_click", "etape_type": "checkout", "status": "completed", "timestamp": "2025-11-19T09:06:14.940Z", "is_todo": false, "todo_title": "", "action": "complete", "comment": "", "photos_attached": []
+    }, {
+    "etape_id": "1741001687883x194924697443106800", "type": "button_click", "etape_type": "checkout", "status": "completed", "timestamp": "2025-11-19T09:06:17.401Z", "is_todo": false, "todo_title": "", "action": null, "comment": "", "photos_attached": []
+    }, {
+    "etape_id": "1741001695248x447049659768897540", "type": "photo_taken", "etape_type": "checkout", "status": "completed", "timestamp": "2025-11-19T09:06:19.987Z", "is_todo": false, "todo_title": "", "photo_id": "1741001695248x447049659768897540", "photo_url": "https://eb0bcaf95c312d7fe9372017cb5f1835.cdn.bubble.io/f1763543178337x222749276598252600/File.jpg", "photo_base64": null, "validated": false, "retake_count": 0
+    }, {
+    "etape_id": "1741294406295x638187935795773400", "type": "photo_taken", "etape_type": "checkout", "status": "completed", "timestamp": "2025-11-19T09:06:20.501Z", "is_todo": false, "todo_title": "", "photo_id": "1741294406295x638187935795773400", "photo_url": "https://eb0bcaf95c312d7fe9372017cb5f1835.cdn.bubble.io/f1763543178670x619652704554811600/File.jpg", "photo_base64": null, "validated": false, "retake_count": 0
+    }, {
+    "etape_id": "1741001687883x194924697443106800", "type": "photo_taken", "etape_type": "checkout", "status": "completed", "timestamp": "2025-11-19T09:58:41.856Z", "is_todo": false, "todo_title": "", "photo_id": "1741001687883x194924697443106800", "photo_url": "https://eb0bcaf95c312d7fe9372017cb5f1835.cdn.bubble.io/f1763543177886x412482460028241100/File.jpg", "photo_base64": null, "validated": false, "retake_count": 0
+    }
+    ]
+    }
+    ], "stats": {
+    "total_pieces": 4, "total_photos": 21, "total_tasks": 53, "completed_tasks": 53, "completion_rate": 100
+    }, "timestamp": "2025-11-19T09:58:41.864Z"
+    }, "checkout": null, "signalements": [
+    {
+    "signalement_id": "signalement-1763543119845x0y6h6a1", "etape_id": null, "room_id": "1741001425783x310296444441631900", "titre": "Signalement", "commentaire": "", "img_url": "blob:http://localhost:8082/dcabae4f-a872-437c-afc8-90dc9e03497c", "img_base64": "iVBORw0KGgoAAAANSUhEUgAABAAAAAQACAYAAAB/HSuDAAAABG...[TRONQUÉ 91036 caractères]", "flow_type": "checkin", "origine": "CLIENT", "status": "open", "priorite": false, "created_at": "2025-11-19T09:58:41.861Z", "updated_at": "2025-11-19T09:58:41.861Z", "description": "Signalement", "comment": "", "timestamp": "2025-11-19T09:58:41.861Z", "severity": "normal", "signalement_type": "direct"
+    }, {
+    "signalement_id": "signalement-photo-1741001457690x419826360162713600", "etape_id": "1741001457690x419826360162713600", "room_id": "1741001425783x310296444441631900", "titre": "Photo non validée - 1741001425783x310296444441631900", "commentaire": "", "img_url": "https://eb0bcaf95c312d7fe9372017cb5f1835.cdn.bubble.io/f1763543128226x950733531352326100/File.jpg", "img_base64": "https://eb0bcaf95c312d7fe9372017cb5f1835.cdn.bubble.io/f1763543128226x950733531352326100/File.jpg", "flow_type": "checkin", "origine": "CLIENT", "status": "A_TRAITER", "priorite": false, "created_at": "2025-11-19T09:05:30.059Z", "updated_at": "2025-11-19T09:05:30.059Z", "description": "Photo non validée - 1741001425783x310296444441631900", "comment": "", "timestamp": "2025-11-19T09:05:30.059Z", "severity": "normal", "signalement_type": "photo_issue", "photos": [
+    {
+    "url": "https://eb0bcaf95c312d7fe9372017cb5f1835.cdn.bubble.io/f1763543128226x950733531352326100/File.jpg", "timestamp": "2025-11-19T09:05:30.059Z", "photo_id": "1741001457690x419826360162713600", "etape_id": "1741001457690x419826360162713600", "validated": false, "retake_count": 0, "source": "photo_taken"
+    }, {
+    "url": "photo-photo_1763543126773_cx4abo", "timestamp": "2025-11-19T09:05:26.773Z", "photo_id": "photo_1763543126773_cx4abo", "etape_id": "1741001457690x419826360162713600", "validated": false, "retake_count": 0, "source": "photo_taken"
+    }
+    ]
+    }, {
+    "signalement_id": "signalement-photo-1741001477341x677906872437309400", "etape_id": "1741001477341x677906872437309400", "room_id": "1741001425783x310296444441631900", "titre": "Photo non validée - 1741001425783x310296444441631900", "commentaire": "", "img_url": "https://eb0bcaf95c312d7fe9372017cb5f1835.cdn.bubble.io/f1763543128416x170975732246695580/File.jpg", "img_base64": "https://eb0bcaf95c312d7fe9372017cb5f1835.cdn.bubble.io/f1763543128416x170975732246695580/File.jpg", "flow_type": "checkin", "origine": "CLIENT", "status": "A_TRAITER", "priorite": false, "created_at": "2025-11-19T09:05:30.893Z", "updated_at": "2025-11-19T09:05:30.893Z", "description": "Photo non validée - 1741001425783x310296444441631900", "comment": "", "timestamp": "2025-11-19T09:05:30.893Z", "severity": "normal", "signalement_type": "photo_issue", "photos": [
+    {
+    "url": "https://eb0bcaf95c312d7fe9372017cb5f1835.cdn.bubble.io/f1763543128416x170975732246695580/File.jpg", "timestamp": "2025-11-19T09:05:30.893Z", "photo_id": "1741001477341x677906872437309400", "etape_id": "1741001477341x677906872437309400", "validated": false, "retake_count": 0, "source": "photo_taken"
+    }, {
+    "url": "photo-photo_1763543126984_7a2snc", "timestamp": "2025-11-19T09:05:26.984Z", "photo_id": "photo_1763543126984_7a2snc", "etape_id": "1741001477341x677906872437309400", "validated": false, "retake_count": 0, "source": "photo_taken"
+    }
+    ]
+    }, {
+    "signalement_id": "signalement-photo-1741001470386x351300441490587650", "etape_id": "1741001470386x351300441490587650", "room_id": "1741001425783x310296444441631900", "titre": "Photo non validée - 1741001425783x310296444441631900", "commentaire": "", "img_url": "https://eb0bcaf95c312d7fe9372017cb5f1835.cdn.bubble.io/f1763543128920x704660959271316200/File.jpg", "img_base64": "https://eb0bcaf95c312d7fe9372017cb5f1835.cdn.bubble.io/f1763543128920x704660959271316200/File.jpg", "flow_type": "checkin", "origine": "CLIENT", "status": "A_TRAITER", "priorite": false, "created_at": "2025-11-19T09:05:30.825Z", "updated_at": "2025-11-19T09:05:30.825Z", "description": "Photo non validée - 1741001425783x310296444441631900", "comment": "", "timestamp": "2025-11-19T09:05:30.825Z", "severity": "normal", "signalement_type": "photo_issue", "photos": [
+    {
+    "url": "https://eb0bcaf95c312d7fe9372017cb5f1835.cdn.bubble.io/f1763543128920x704660959271316200/File.jpg", "timestamp": "2025-11-19T09:05:30.825Z", "photo_id": "1741001470386x351300441490587650", "etape_id": "1741001470386x351300441490587650", "validated": false, "retake_count": 0, "source": "photo_taken"
+    }, {
+    "url": "photo-photo_1763543126902_ni0dms", "timestamp": "2025-11-19T09:05:26.902Z", "photo_id": "photo_1763543126902_ni0dms", "etape_id": "1741001470386x351300441490587650", "validated": false, "retake_count": 0, "source": "photo_taken"
+    }
+    ]
+    }, {
+    "signalement_id": "signalement-photo-photo_1763543134314_03az5a", "etape_id": "1741001426200x822502635978777500", "room_id": "1741001425824x837489455866821800", "titre": "Photo non validée - Cuisine", "commentaire": "", "img_url": "photo-photo_1763543134314_03az5a", "img_base64": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD...[TRONQUÉ 894351 cara...[BASE64 TRUNCATED 7 chars]", "flow_type": "checkout", "origine": "CLIENT", "status": "A_TRAITER", "priorite": false, "created_at": "2025-11-19T09:05:34.314Z", "updated_at": "2025-11-19T09:05:34.314Z", "description": "Photo non validée - Cuisine", "comment": "", "timestamp": "2025-11-19T09:05:34.314Z", "severity": "normal", "signalement_type": "photo_issue", "photos": [
+    {
+    "url": "photo-photo_1763543134314_03az5a", "timestamp": "2025-11-19T09:05:34.314Z", "photo_id": "photo_1763543134314_03az5a", "etape_id": "1741001426200x822502635978777500", "validated": false, "retake_count": 0, "source": "photo_taken"
+    }, {
+    "url": "https://eb0bcaf95c312d7fe9372017cb5f1835.cdn.bubble.io/f1763543135794x642731720909825300/File.jpg", "timestamp": "2025-11-19T09:05:37.148Z", "photo_id": "1741001426200x822502635978777500", "etape_id": "1741001426200x822502635978777500", "validated": false, "retake_count": 0, "source": "photo_taken"
+    }
+    ]
+    }, {
+    "signalement_id": "signalement-photo-photo_1763543139814_3lc6ov", "etape_id": "1741001426210x415847688238969660", "room_id": "1741001425824x837489455866821800", "titre": "Photo non validée - Cuisine", "commentaire": "", "img_url": "photo-photo_1763543139814_3lc6ov", "img_base64": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD...[TRONQUÉ 899363 cara...[BASE64 TRUNCATED 7 chars]", "flow_type": "checkout", "origine": "CLIENT", "status": "A_TRAITER", "priorite": false, "created_at": "2025-11-19T09:05:39.814Z", "updated_at": "2025-11-19T09:05:39.814Z", "description": "Photo non validée - Cuisine", "comment": "", "timestamp": "2025-11-19T09:05:39.814Z", "severity": "normal", "signalement_type": "photo_issue", "photos": [
+    {
+    "url": "photo-photo_1763543139814_3lc6ov", "timestamp": "2025-11-19T09:05:39.814Z", "photo_id": "photo_1763543139814_3lc6ov", "etape_id": "1741001426210x415847688238969660", "validated": false, "retake_count": 0, "source": "photo_taken"
+    }, {
+    "url": "https://eb0bcaf95c312d7fe9372017cb5f1835.cdn.bubble.io/f1763543141335x562364737469456450/File.jpg", "timestamp": "2025-11-19T09:05:42.690Z", "photo_id": "1741001426210x415847688238969660", "etape_id": "1741001426210x415847688238969660", "validated": false, "retake_count": 0, "source": "photo_taken"
+    }
+    ]
+    }, {
+    "signalement_id": "signalement-photo-1741001578012x630071849596747800", "etape_id": "1741001578012x630071849596747800", "room_id": "1741001425824x837489455866821800", "titre": "Photo non validée - 1741001425824x837489455866821800", "commentaire": "", "img_url": "https://eb0bcaf95c312d7fe9372017cb5f1835.cdn.bubble.io/f1763543146111x776194767941560600/File.jpg", "img_base64": "https://eb0bcaf95c312d7fe9372017cb5f1835.cdn.bubble.io/f1763543146111x776194767941560600/File.jpg", "flow_type": "checkout", "origine": "CLIENT", "status": "A_TRAITER", "priorite": false, "created_at": "2025-11-19T09:05:48.304Z", "updated_at": "2025-11-19T09:05:48.304Z", "description": "Photo non validée - 1741001425824x837489455866821800", "comment": "", "timestamp": "2025-11-19T09:05:48.304Z", "severity": "normal", "signalement_type": "photo_issue", "photos": [
+    {
+    "url": "https://eb0bcaf95c312d7fe9372017cb5f1835.cdn.bubble.io/f1763543146111x776194767941560600/File.jpg", "timestamp": "2025-11-19T09:05:48.304Z", "photo_id": "1741001578012x630071849596747800", "etape_id": "1741001578012x630071849596747800", "validated": false, "retake_count": 0, "source": "photo_taken"
+    }
+    ]
+    }, {
+    "signalement_id": "signalement-photo-1741294330627x821005134042759200", "etape_id": "1741294330627x821005134042759200", "room_id": "1741001425824x837489455866821800", "titre": "Photo non validée - 1741001425824x837489455866821800", "commentaire": "", "img_url": "https://eb0bcaf95c312d7fe9372017cb5f1835.cdn.bubble.io/f1763543155261x489097471690237200/File.jpg", "img_base64": "https://eb0bcaf95c312d7fe9372017cb5f1835.cdn.bubble.io/f1763543155261x489097471690237200/File.jpg", "flow_type": "checkin", "origine": "CLIENT", "status": "A_TRAITER", "priorite": false, "created_at": "2025-11-19T09:05:57.089Z", "updated_at": "2025-11-19T09:05:57.089Z", "description": "Photo non validée - 1741001425824x837489455866821800", "comment": "", "timestamp": "2025-11-19T09:05:57.089Z", "severity": "normal", "signalement_type": "photo_issue", "photos": [
+    {
+    "url": "https://eb0bcaf95c312d7fe9372017cb5f1835.cdn.bubble.io/f1763543155261x489097471690237200/File.jpg", "timestamp": "2025-11-19T09:05:57.089Z", "photo_id": "1741294330627x821005134042759200", "etape_id": "1741294330627x821005134042759200", "validated": false, "retake_count": 0, "source": "photo_taken"
+    }, {
+    "url": "photo-photo_1763543153573_u52dok", "timestamp": "2025-11-19T09:05:53.573Z", "photo_id": "photo_1763543153573_u52dok", "etape_id": "1741294330627x821005134042759200", "validated": false, "retake_count": 0, "source": "photo_taken"
+    }
+    ]
+    }, {
+    "signalement_id": "signalement-photo-1741001745240x736389941891170300", "etape_id": "1741001745240x736389941891170300", "room_id": "1741001425824x837489455866821800", "titre": "Photo non validée - 1741001425824x837489455866821800", "commentaire": "", "img_url": "https://eb0bcaf95c312d7fe9372017cb5f1835.cdn.bubble.io/f1763543154716x214507357084381400/File.jpg", "img_base64": "https://eb0bcaf95c312d7fe9372017cb5f1835.cdn.bubble.io/f1763543154716x214507357084381400/File.jpg", "flow_type": "checkin", "origine": "CLIENT", "status": "A_TRAITER", "priorite": false, "created_at": "2025-11-19T09:05:56.138Z", "updated_at": "2025-11-19T09:05:56.138Z", "description": "Photo non validée - 1741001425824x837489455866821800", "comment": "", "timestamp": "2025-11-19T09:05:56.138Z", "severity": "normal", "signalement_type": "photo_issue", "photos": [
+    {
+    "url": "https://eb0bcaf95c312d7fe9372017cb5f1835.cdn.bubble.io/f1763543154716x214507357084381400/File.jpg", "timestamp": "2025-11-19T09:05:56.138Z", "photo_id": "1741001745240x736389941891170300", "etape_id": "1741001745240x736389941891170300", "validated": false, "retake_count": 0, "source": "photo_taken"
+    }, {
+    "url": "photo-photo_1763543153445_ube3gw", "timestamp": "2025-11-19T09:05:53.445Z", "photo_id": "photo_1763543153445_ube3gw", "etape_id": "1741001745240x736389941891170300", "validated": false, "retake_count": 0, "source": "photo_taken"
+    }
+    ]
+    }, {
+    "signalement_id": "signalement-photo-photo_1763543153706_338676", "etape_id": "1741294337525x671000272816832500", "room_id": "1741001425824x837489455866821800", "titre": "Photo non validée - Cuisine", "commentaire": "", "img_url": "photo-photo_1763543153706_338676", "img_base64": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD...[TRONQUÉ 898451 cara...[BASE64 TRUNCATED 7 chars]", "flow_type": "checkout", "origine": "CLIENT", "status": "A_TRAITER", "priorite": false, "created_at": "2025-11-19T09:05:53.706Z", "updated_at": "2025-11-19T09:05:53.706Z", "description": "Photo non validée - Cuisine", "comment": "", "timestamp": "2025-11-19T09:05:53.706Z", "severity": "normal", "signalement_type": "photo_issue", "photos": [
+    {
+    "url": "photo-photo_1763543153706_338676", "timestamp": "2025-11-19T09:05:53.706Z", "photo_id": "photo_1763543153706_338676", "etape_id": "1741294337525x671000272816832500", "validated": false, "retake_count": 0, "source": "photo_taken"
+    }, {
+    "url": "https://eb0bcaf95c312d7fe9372017cb5f1835.cdn.bubble.io/f1763543155625x967991858504362500/File.jpg", "timestamp": "2025-11-19T09:05:57.700Z", "photo_id": "1741294337525x671000272816832500", "etape_id": "1741294337525x671000272816832500", "validated": false, "retake_count": 0, "source": "photo_taken"
+    }
+    ]
+    }, {
+    "signalement_id": "signalement-photo-photo_1763543153847_vur4v9", "etape_id": "1741294343727x113584392320057340", "room_id": "1741001425824x837489455866821800", "titre": "Photo non validée - Cuisine", "commentaire": "", "img_url": "photo-photo_1763543153847_vur4v9", "img_base64": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD...[TRONQUÉ 899639 cara...[BASE64 TRUNCATED 7 chars]", "flow_type": "checkout", "origine": "CLIENT", "status": "A_TRAITER", "priorite": false, "created_at": "2025-11-19T09:05:53.847Z", "updated_at": "2025-11-19T09:05:53.847Z", "description": "Photo non validée - Cuisine", "comment": "", "timestamp": "2025-11-19T09:05:53.847Z", "severity": "normal", "signalement_type": "photo_issue", "photos": [
+    {
+    "url": "photo-photo_1763543153847_vur4v9", "timestamp": "2025-11-19T09:05:53.847Z", "photo_id": "photo_1763543153847_vur4v9", "etape_id": "1741294343727x113584392320057340", "validated": false, "retake_count": 0, "source": "photo_taken"
+    }, {
+    "url": "https://eb0bcaf95c312d7fe9372017cb5f1835.cdn.bubble.io/f1763543157833x304600539843604200/File.jpg", "timestamp": "2025-11-19T09:05:59.732Z", "photo_id": "1741294343727x113584392320057340", "etape_id": "1741294343727x113584392320057340", "validated": false, "retake_count": 0, "source": "photo_taken"
+    }
+    ]
+    }, {
+    "signalement_id": "signalement-photo-photo_1763543153996_2ur6dk", "etape_id": "1741294358981x510583302659506200", "room_id": "1741001425824x837489455866821800", "titre": "Photo non validée - Cuisine", "commentaire": "", "img_url": "photo-photo_1763543153996_2ur6dk", "img_base64": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD...[TRONQUÉ 899255 cara...[BASE64 TRUNCATED 7 chars]", "flow_type": "checkout", "origine": "CLIENT", "status": "A_TRAITER", "priorite": false, "created_at": "2025-11-19T09:05:53.996Z", "updated_at": "2025-11-19T09:05:53.996Z", "description": "Photo non validée - Cuisine", "comment": "", "timestamp": "2025-11-19T09:05:53.996Z", "severity": "normal", "signalement_type": "photo_issue", "photos": [
+    {
+    "url": "photo-photo_1763543153996_2ur6dk", "timestamp": "2025-11-19T09:05:53.996Z", "photo_id": "photo_1763543153996_2ur6dk", "etape_id": "1741294358981x510583302659506200", "validated": false, "retake_count": 0, "source": "photo_taken"
+    }, {
+    "url": "https://eb0bcaf95c312d7fe9372017cb5f1835.cdn.bubble.io/f1763543158321x641142759583168500/File.jpg", "timestamp": "2025-11-19T09:06:00.131Z", "photo_id": "1741294358981x510583302659506200", "etape_id": "1741294358981x510583302659506200", "validated": false, "retake_count": 0, "source": "photo_taken"
+    }
+    ]
+    }, {
+    "signalement_id": "signalement-photo-1741001663619x969676445437132800", "etape_id": "1741001663619x969676445437132800", "room_id": "1741001425854x887580059148477400", "titre": "Photo non validée - 1741001425854x887580059148477400", "commentaire": "", "img_url": "https://eb0bcaf95c312d7fe9372017cb5f1835.cdn.bubble.io/f1763543168251x602490433163667000/File.jpg", "img_base64": "https://eb0bcaf95c312d7fe9372017cb5f1835.cdn.bubble.io/f1763543168251x602490433163667000/File.jpg", "flow_type": "checkin", "origine": "CLIENT", "status": "A_TRAITER", "priorite": false, "created_at": "2025-11-19T09:06:09.468Z", "updated_at": "2025-11-19T09:06:09.468Z", "description": "Photo non validée - 1741001425854x887580059148477400", "comment": "", "timestamp": "2025-11-19T09:06:09.468Z", "severity": "normal", "signalement_type": "photo_issue", "photos": [
+    {
+    "url": "https://eb0bcaf95c312d7fe9372017cb5f1835.cdn.bubble.io/f1763543168251x602490433163667000/File.jpg", "timestamp": "2025-11-19T09:06:09.468Z", "photo_id": "1741001663619x969676445437132800", "etape_id": "1741001663619x969676445437132800", "validated": false, "retake_count": 0, "source": "photo_taken"
+    }, {
+    "url": "photo-photo_1763543166608_o444b5", "timestamp": "2025-11-19T09:06:06.608Z", "photo_id": "photo_1763543166608_o444b5", "etape_id": "1741001663619x969676445437132800", "validated": false, "retake_count": 0, "source": "photo_taken"
+    }, {
+    "url": "photo-photo_1763543166816_ggbeqr", "timestamp": "2025-11-19T09:06:06.816Z", "photo_id": "photo_1763543166816_ggbeqr", "etape_id": "1741001663619x969676445437132800", "validated": false, "retake_count": 0, "source": "photo_taken"
+    }
+    ]
+    }, {
+    "signalement_id": "signalement-photo-1741001656347x738233687896227800", "etape_id": "1741001656347x738233687896227800", "room_id": "1741001425854x887580059148477400", "titre": "Photo non validée - 1741001425854x887580059148477400", "commentaire": "", "img_url": "https://eb0bcaf95c312d7fe9372017cb5f1835.cdn.bubble.io/f1763543166505x540229542508220200/File.jpg", "img_base64": "https://eb0bcaf95c312d7fe9372017cb5f1835.cdn.bubble.io/f1763543166505x540229542508220200/File.jpg", "flow_type": "checkin", "origine": "CLIENT", "status": "A_TRAITER", "priorite": false, "created_at": "2025-11-19T09:06:08.652Z", "updated_at": "2025-11-19T09:06:08.652Z", "description": "Photo non validée - 1741001425854x887580059148477400", "comment": "", "timestamp": "2025-11-19T09:06:08.652Z", "severity": "normal", "signalement_type": "photo_issue", "photos": [
+    {
+    "url": "https://eb0bcaf95c312d7fe9372017cb5f1835.cdn.bubble.io/f1763543166505x540229542508220200/File.jpg", "timestamp": "2025-11-19T09:06:08.652Z", "photo_id": "1741001656347x738233687896227800", "etape_id": "1741001656347x738233687896227800", "validated": false, "retake_count": 0, "source": "photo_taken"
+    }, {
+    "url": "photo-photo_1763543165147_fubk5q", "timestamp": "2025-11-19T09:06:05.147Z", "photo_id": "photo_1763543165147_fubk5q", "etape_id": "1741001656347x738233687896227800", "validated": false, "retake_count": 0, "source": "photo_taken"
+    }
+    ]
+    }, {
+    "signalement_id": "signalement-photo-1741294366975x453020593946361860", "etape_id": "1741294366975x453020593946361860", "room_id": "1741001425854x887580059148477400", "titre": "Photo non validée - 1741001425854x887580059148477400", "commentaire": "", "img_url": "https://eb0bcaf95c312d7fe9372017cb5f1835.cdn.bubble.io/f1763543162099x846377803594350600/File.jpg", "img_base64": "https://eb0bcaf95c312d7fe9372017cb5f1835.cdn.bubble.io/f1763543162099x846377803594350600/File.jpg", "flow_type": "checkout", "origine": "CLIENT", "status": "A_TRAITER", "priorite": false, "created_at": "2025-11-19T09:06:03.868Z", "updated_at": "2025-11-19T09:06:03.868Z", "description": "Photo non validée - 1741001425854x887580059148477400", "comment": "", "timestamp": "2025-11-19T09:06:03.868Z", "severity": "normal", "signalement_type": "photo_issue", "photos": [
+    {
+    "url": "https://eb0bcaf95c312d7fe9372017cb5f1835.cdn.bubble.io/f1763543162099x846377803594350600/File.jpg", "timestamp": "2025-11-19T09:06:03.868Z", "photo_id": "1741294366975x453020593946361860", "etape_id": "1741294366975x453020593946361860", "validated": false, "retake_count": 0, "source": "photo_taken"
+    }, {
+    "url": "photo-photo_1763543166990_gcic69", "timestamp": "2025-11-19T09:06:06.990Z", "photo_id": "photo_1763543166990_gcic69", "etape_id": "1741294366975x453020593946361860", "validated": false, "retake_count": 0, "source": "photo_taken"
+    }
+    ]
+    }, {
+    "signalement_id": "signalement-photo-1741294374343x958998812992471000", "etape_id": "1741294374343x958998812992471000", "room_id": "1741001425854x887580059148477400", "titre": "Photo non validée - 1741001425854x887580059148477400", "commentaire": "", "img_url": "https://eb0bcaf95c312d7fe9372017cb5f1835.cdn.bubble.io/f1763543169170x321090099000609800/File.jpg", "img_base64": "https://eb0bcaf95c312d7fe9372017cb5f1835.cdn.bubble.io/f1763543169170x321090099000609800/File.jpg", "flow_type": "checkin", "origine": "CLIENT", "status": "A_TRAITER", "priorite": false, "created_at": "2025-11-19T09:06:11.001Z", "updated_at": "2025-11-19T09:06:11.001Z", "description": "Photo non validée - 1741001425854x887580059148477400", "comment": "", "timestamp": "2025-11-19T09:06:11.001Z", "severity": "normal", "signalement_type": "photo_issue", "photos": [
+    {
+    "url": "https://eb0bcaf95c312d7fe9372017cb5f1835.cdn.bubble.io/f1763543169170x321090099000609800/File.jpg", "timestamp": "2025-11-19T09:06:11.001Z", "photo_id": "1741294374343x958998812992471000", "etape_id": "1741294374343x958998812992471000", "validated": false, "retake_count": 0, "source": "photo_taken"
+    }, {
+    "url": "photo-photo_1763543167208_kejf0c", "timestamp": "2025-11-19T09:06:07.208Z", "photo_id": "photo_1763543167208_kejf0c", "etape_id": "1741294374343x958998812992471000", "validated": false, "retake_count": 0, "source": "photo_taken"
+    }
+    ]
+    }, {
+    "signalement_id": "signalement-photo-1741294378953x225316363206918140", "etape_id": "1741294378953x225316363206918140", "room_id": "1741001425854x887580059148477400", "titre": "Photo non validée - 1741001425854x887580059148477400", "commentaire": "", "img_url": "https://eb0bcaf95c312d7fe9372017cb5f1835.cdn.bubble.io/f1763543168842x454236762332922200/File.jpg", "img_base64": "https://eb0bcaf95c312d7fe9372017cb5f1835.cdn.bubble.io/f1763543168842x454236762332922200/File.jpg", "flow_type": "checkin", "origine": "CLIENT", "status": "A_TRAITER", "priorite": false, "created_at": "2025-11-19T09:06:10.664Z", "updated_at": "2025-11-19T09:06:10.664Z", "description": "Photo non validée - 1741001425854x887580059148477400", "comment": "", "timestamp": "2025-11-19T09:06:10.664Z", "severity": "normal", "signalement_type": "photo_issue", "photos": [
+    {
+    "url": "https://eb0bcaf95c312d7fe9372017cb5f1835.cdn.bubble.io/f1763543168842x454236762332922200/File.jpg", "timestamp": "2025-11-19T09:06:10.664Z", "photo_id": "1741294378953x225316363206918140", "etape_id": "1741294378953x225316363206918140", "validated": false, "retake_count": 0, "source": "photo_taken"
+    }, {
+    "url": "photo-photo_1763543167405_pbyfhu", "timestamp": "2025-11-19T09:06:07.405Z", "photo_id": "photo_1763543167405_pbyfhu", "etape_id": "1741294378953x225316363206918140", "validated": false, "retake_count": 0, "source": "photo_taken"
+    }
+    ]
+    }, {
+    "signalement_id": "signalement-photo-1741294391242x588942727433420800", "etape_id": "1741294391242x588942727433420800", "room_id": "1741001425854x887580059148477400", "titre": "Photo non validée - 1741001425854x887580059148477400", "commentaire": "", "img_url": "https://eb0bcaf95c312d7fe9372017cb5f1835.cdn.bubble.io/f1763543171782x292389495864537660/File.jpg", "img_base64": "https://eb0bcaf95c312d7fe9372017cb5f1835.cdn.bubble.io/f1763543171782x292389495864537660/File.jpg", "flow_type": "checkin", "origine": "CLIENT", "status": "A_TRAITER", "priorite": false, "created_at": "2025-11-19T09:06:13.365Z", "updated_at": "2025-11-19T09:06:13.365Z", "description": "Photo non validée - 1741001425854x887580059148477400", "comment": "", "timestamp": "2025-11-19T09:06:13.365Z", "severity": "normal", "signalement_type": "photo_issue", "photos": [
+    {
+    "url": "https://eb0bcaf95c312d7fe9372017cb5f1835.cdn.bubble.io/f1763543171782x292389495864537660/File.jpg", "timestamp": "2025-11-19T09:06:13.365Z", "photo_id": "1741294391242x588942727433420800", "etape_id": "1741294391242x588942727433420800", "validated": false, "retake_count": 0, "source": "photo_taken"
+    }, {
+    "url": "photo-photo_1763543167863_oi83al", "timestamp": "2025-11-19T09:06:07.863Z", "photo_id": "photo_1763543167863_oi83al", "etape_id": "1741294391242x588942727433420800", "validated": false, "retake_count": 0, "source": "photo_taken"
+    }
+    ]
+    }, {
+    "signalement_id": "signalement-photo-photo_1763543167629_i8gcaa", "etape_id": "1741294387352x300400935436812300", "room_id": "1741001425854x887580059148477400", "titre": "Photo non validée - Salle de Bain & Toilettes", "commentaire": "", "img_url": "photo-photo_1763543167629_i8gcaa", "img_base64": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD...[TRONQUÉ 902307 cara...[BASE64 TRUNCATED 7 chars]", "flow_type": "checkout", "origine": "CLIENT", "status": "A_TRAITER", "priorite": false, "created_at": "2025-11-19T09:06:07.629Z", "updated_at": "2025-11-19T09:06:07.629Z", "description": "Photo non validée - Salle de Bain & Toilettes", "comment": "", "timestamp": "2025-11-19T09:06:07.629Z", "severity": "normal", "signalement_type": "photo_issue", "photos": [
+    {
+    "url": "photo-photo_1763543167629_i8gcaa", "timestamp": "2025-11-19T09:06:07.629Z", "photo_id": "photo_1763543167629_i8gcaa", "etape_id": "1741294387352x300400935436812300", "validated": false, "retake_count": 0, "source": "photo_taken"
+    }, {
+    "url": "https://eb0bcaf95c312d7fe9372017cb5f1835.cdn.bubble.io/f1763543171663x780615330126262100/File.jpg", "timestamp": "2025-11-19T09:06:13.973Z", "photo_id": "1741294387352x300400935436812300", "etape_id": "1741294387352x300400935436812300", "validated": false, "retake_count": 0, "source": "photo_taken"
+    }
+    ]
+    }, {
+    "signalement_id": "signalement-1763543105311xkp52bcb", "etape_id": null, "room_id": "1741001425891x904067357111238100", "titre": "Signalement", "commentaire": "", "img_url": null, "img_base64": null, "flow_type": "checkin", "origine": "CLIENT", "status": "open", "priorite": false, "created_at": "2025-11-19T09:58:41.863Z", "updated_at": "2025-11-19T09:58:41.863Z", "description": "Signalement", "comment": "", "timestamp": "2025-11-19T09:58:41.863Z", "severity": "normal", "signalement_type": "direct"
+    }, {
+    "signalement_id": "signalement-photo-1741001687883x194924697443106800", "etape_id": "1741001687883x194924697443106800", "room_id": "1741001425891x904067357111238100", "titre": "Photo non validée - 1741001425891x904067357111238100", "commentaire": "", "img_url": "https://eb0bcaf95c312d7fe9372017cb5f1835.cdn.bubble.io/f1763543177886x412482460028241100/File.jpg", "img_base64": "https://eb0bcaf95c312d7fe9372017cb5f1835.cdn.bubble.io/f1763543177886x412482460028241100/File.jpg", "flow_type": "checkin", "origine": "CLIENT", "status": "A_TRAITER", "priorite": false, "created_at": "2025-11-19T09:06:19.059Z", "updated_at": "2025-11-19T09:06:19.059Z", "description": "Photo non validée - 1741001425891x904067357111238100", "comment": "", "timestamp": "2025-11-19T09:06:19.059Z", "severity": "normal", "signalement_type": "photo_issue", "photos": [
+    {
+    "url": "https://eb0bcaf95c312d7fe9372017cb5f1835.cdn.bubble.io/f1763543177886x412482460028241100/File.jpg", "timestamp": "2025-11-19T09:06:19.059Z", "photo_id": "1741001687883x194924697443106800", "etape_id": "1741001687883x194924697443106800", "validated": false, "retake_count": 0, "source": "photo_taken"
+    }, {
+    "url": "photo-photo_1763543176564_lx87s0", "timestamp": "2025-11-19T09:06:16.564Z", "photo_id": "photo_1763543176564_lx87s0", "etape_id": "1741001687883x194924697443106800", "validated": false, "retake_count": 0, "source": "photo_taken"
+    }
+    ]
+    }, {
+    "signalement_id": "signalement-photo-photo_1763543176829_zgkvkj", "etape_id": "1741001695248x447049659768897540", "room_id": "1741001425891x904067357111238100", "titre": "Photo non validée - Salon", "commentaire": "", "img_url": "photo-photo_1763543176829_zgkvkj", "img_base64": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD...[TRONQUÉ 903835 cara...[BASE64 TRUNCATED 7 chars]", "flow_type": "checkout", "origine": "CLIENT", "status": "A_TRAITER", "priorite": false, "created_at": "2025-11-19T09:06:16.829Z", "updated_at": "2025-11-19T09:06:16.829Z", "description": "Photo non validée - Salon", "comment": "", "timestamp": "2025-11-19T09:06:16.829Z", "severity": "normal", "signalement_type": "photo_issue", "photos": [
+    {
+    "url": "photo-photo_1763543176829_zgkvkj", "timestamp": "2025-11-19T09:06:16.829Z", "photo_id": "photo_1763543176829_zgkvkj", "etape_id": "1741001695248x447049659768897540", "validated": false, "retake_count": 0, "source": "photo_taken"
+    }, {
+    "url": "https://eb0bcaf95c312d7fe9372017cb5f1835.cdn.bubble.io/f1763543178337x222749276598252600/File.jpg", "timestamp": "2025-11-19T09:06:19.987Z", "photo_id": "1741001695248x447049659768897540", "etape_id": "1741001695248x447049659768897540", "validated": false, "retake_count": 0, "source": "photo_taken"
+    }
+    ]
+    }, {
+    "signalement_id": "signalement-photo-photo_1763543177034_78v5kv", "etape_id": "1741294406295x638187935795773400", "room_id": "1741001425891x904067357111238100", "titre": "Photo non validée - Salon", "commentaire": "", "img_url": "photo-photo_1763543177034_78v5kv", "img_base64": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD...[TRONQUÉ 903987 cara...[BASE64 TRUNCATED 7 chars]", "flow_type": "checkout", "origine": "CLIENT", "status": "A_TRAITER", "priorite": false, "created_at": "2025-11-19T09:06:17.034Z", "updated_at": "2025-11-19T09:06:17.034Z", "description": "Photo non validée - Salon", "comment": "", "timestamp": "2025-11-19T09:06:17.034Z", "severity": "normal", "signalement_type": "photo_issue", "photos": [
+    {
+    "url": "photo-photo_1763543177034_78v5kv", "timestamp": "2025-11-19T09:06:17.034Z", "photo_id": "photo_1763543177034_78v5kv", "etape_id": "1741294406295x638187935795773400", "validated": false, "retake_count": 0, "source": "photo_taken"
+    }, {
+    "url": "https://eb0bcaf95c312d7fe9372017cb5f1835.cdn.bubble.io/f1763543178670x619652704554811600/File.jpg", "timestamp": "2025-11-19T09:06:20.501Z", "photo_id": "1741294406295x638187935795773400", "etape_id": "1741294406295x638187935795773400", "validated": false, "retake_count": 0, "source": "photo_taken"
+    }
+    ]
+    }, {
+    "signalement_id": "1763543105311xkp52bcb", "etape_id": null, "room_id": "1741001425891x904067357111238100", "titre": "OLALA", "commentaire": "OLALA", "img_url": null, "img_base64": null, "flow_type": "checkin", "origine": "CLIENT", "status": "A_TRAITER", "priorite": false, "created_at": "2025-11-19T09:05:05.311Z", "updated_at": "2025-11-19T09:58:41.863Z"
+    }, {
+    "signalement_id": "1763543119845x0y6h6a1", "etape_id": null, "room_id": "1741001425783x310296444441631900", "titre": "mais quoi", "commentaire": "mais quoi", "img_url": "blob:http://localhost:8082/dcabae4f-a872-437c-afc8-90dc9e03497c", "img_base64": "iVBORw0KGgoAAAANSUhEUgAABAAAAAQACAYAAAB/HSuDAAAABG...[TRONQUÉ 91036 caractères]", "flow_type": "checkout", "origine": "CLIENT", "status": "A_TRAITER", "priorite": false, "created_at": "2025-11-19T09:05:19.845Z", "updated_at": "2025-11-19T09:58:41.863Z"
+    }
+    ], "exit_questions": [
+    {
+    "question_id": "1741001426322x917742778465823200", "question_content": "🌡️ Les radiateurs sont-ils bien éteints ?", "question_type": "boolean", "checked": false, "text_response": null, "has_image": false, "image_base64": null, "image_url": null, "image_photo_id": null, "timestamp": "2025-11-19T09:06:20.662Z", "updated_at": "2025-11-19T09:06:20.662Z"
+    }, {
+    "question_id": "1741001426334x931251365561652400", "question_content": "💡 Toutes les lumières et appareils électroniques inutiles ont-ils été éteints ?", "question_type": "boolean", "checked": true, "text_response": null, "has_image": false, "image_base64": null, "image_url": null, "image_photo_id": null, "timestamp": "2025-11-19T09:06:21.123Z", "updated_at": "2025-11-19T09:06:21.123Z"
+    }, {
+    "question_id": "1741001426343x536913209496892500", "question_content": "🔑 Le logement est-il bien sécurisé (portes et fenêtres fermées) après votre passage ?", "question_type": "boolean", "checked": true, "text_response": null, "has_image": false, "image_base64": null, "image_url": null, "image_photo_id": null, "timestamp": "2025-11-19T09:06:21.471Z", "updated_at": "2025-11-19T09:06:21.471Z"
+    }, {
+    "question_id": "1741001426371x166833878258034530", "question_content": "🧴 Les stocks de consommables (eau, thé, café, papier toilette) et les les produits d’entretien (éponge, liquide vaisselle, sacs-poubelle, etc.) sont-ils suffisants pour les prochains voyageurs ? ", "question_type": "boolean", "checked": false, "text_response": null, "has_image": false, "image_base64": null, "image_url": null, "image_photo_id": null, "timestamp": "2025-11-19T09:06:21.987Z", "updated_at": "2025-11-19T09:06:21.987Z"
+    }, {
+    "question_id": "1741001426383x935302039042922200", "question_content": "🔍 Avez-vous constaté des dégradations ou anomalies non signalées ? ", "question_type": "boolean", "checked": true, "text_response": null, "has_image": false, "image_base64": null, "image_url": null, "image_photo_id": null, "timestamp": "2025-11-19T09:06:23.140Z", "updated_at": "2025-11-19T09:06:23.140Z"
+    }, {
+    "question_id": "1741001426395x217236573829415300", "question_content": "🔄 Certains équipements nécessitent-ils un remplacement ou une réparation ?", "question_type": "boolean", "checked": true, "text_response": null, "has_image": false, "image_base64": null, "image_url": null, "image_photo_id": null, "timestamp": "2025-11-19T09:06:23.532Z", "updated_at": "2025-11-19T09:06:23.532Z"
+    }, {
+    "question_id": "1741001426405x577386593907245000", "question_content": "✍️ Si vous avez remarqué un problème ou souhaitez ajouter un commentaire, merci de le préciser ici.", "question_type": "text", "checked": null, "text_response": "koi", "has_image": true, "image_base64": "iVBORw0KGgoAAAANSUhEUgAABAAAAAQACAYAAAB/HSuDAAAABG...[TRONQUÉ 91036 caractères]", "image_url": "blob:http://localhost:8082/02922ac0-0368-42e0-b3e7-aa983e65da07", "image_photo_id": "photo_1763543187291_7gk0t9", "timestamp": "2025-11-19T09:06:24.899Z", "updated_at": "2025-11-19T09:06:27.291Z"
+    }
+    ], "taches": {}, "progression": {}, "stats": {
+    "total_pieces": 4, "total_photos": 21, "total_signalements": 25, "total_exit_questions": 7, "completion_rate": 100
+    }, "timestamps": {
+    "session_start": "2025-11-19T09:58:41.864Z", "snapshot_created": "2025-11-19T09:58:41.864Z", "checkin_completed": "2025-11-19T09:05:09.404Z", "exit_questions_completed": null, "checkinStartHour": null, "checkinEndHour": "2025-11-19T09:05:09.404Z", "checkoutStartHour": null, "checkoutEndHour": null
+    }
+    }

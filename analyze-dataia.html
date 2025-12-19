@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analyse DataIA - Endpoint rapportfulldata</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        h1 {
+            color: #333;
+            border-bottom: 3px solid #4CAF50;
+            padding-bottom: 10px;
+        }
+        .input-section {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        input {
+            width: 70%;
+            padding: 10px;
+            font-size: 14px;
+            border: 2px solid #ddd;
+            border-radius: 4px;
+        }
+        button {
+            padding: 10px 20px;
+            background: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            margin-left: 10px;
+        }
+        button:hover {
+            background: #45a049;
+        }
+        .result-section {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .status {
+            padding: 10px;
+            border-radius: 4px;
+            margin-bottom: 15px;
+        }
+        .status.success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .status.error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        .status.warning {
+            background: #fff3cd;
+            color: #856404;
+            border: 1px solid #ffeaa7;
+        }
+        pre {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 4px;
+            overflow-x: auto;
+            border: 1px solid #dee2e6;
+        }
+        .info-box {
+            background: #e7f3ff;
+            padding: 15px;
+            border-left: 4px solid #2196F3;
+            margin-bottom: 15px;
+        }
+        .section-title {
+            font-weight: bold;
+            color: #333;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 20px;
+        }
+        .loading.active {
+            display: block;
+        }
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #4CAF50;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <h1>🔍 Analyse du champ DataIA - Endpoint rapportfulldata</h1>
+    
+    <div class="input-section">
+        <label for="rapportId"><strong>ID du Rapport:</strong></label><br><br>
+        <input type="text" id="rapportId" placeholder="Ex: 1759313126688x380289228559613950" value="1759313126688x380289228559613950">
+        <button onclick="analyzeDataIA()">Analyser</button>
+    </div>
+
+    <div class="loading" id="loading">
+        <div class="spinner"></div>
+        <p>Chargement des données...</p>
+    </div>
+
+    <div id="results"></div>
+
+    <script>
+        async function analyzeDataIA() {
+            const rapportId = document.getElementById('rapportId').value.trim();
+            const resultsDiv = document.getElementById('results');
+            const loadingDiv = document.getElementById('loading');
+            
+            if (!rapportId) {
+                resultsDiv.innerHTML = '<div class="status error">❌ Veuillez entrer un ID de rapport</div>';
+                return;
+            }
+
+            // Afficher le loading
+            loadingDiv.classList.add('active');
+            resultsDiv.innerHTML = '';
+
+            try {
+                const url = `https://checkeasy-57905.bubbleapps.io/version-test/api/1.1/wf/rapportfulldata?rapport=${rapportId}`;
+                
+                const response = await fetch(url);
+                let text = await response.text();
+
+                // Nettoyer le JSON (même logique que fullDataService.ts)
+                const originalLength = text.length;
+                text = text.replace(/[\x00-\x1F\x7F]/g, '');
+                
+                // Corriger le JSON malformé pour dataia
+                const needsDataiaFix = text.match(/\],"dataia"\s*:\s*\}$/);
+                if (needsDataiaFix) {
+                    text = text.replace(/\],"dataia"\s*:\s*\}$/, '], "dataia" : {} }');
+                }
+
+                let html = '<div class="result-section">';
+                
+                // Informations sur l'URL
+                html += `<div class="info-box">
+                    <strong>📡 URL:</strong> ${url}<br>
+                    <strong>📊 Taille réponse:</strong> ${originalLength} caractères<br>
+                    <strong>🔧 Correction JSON appliquée:</strong> ${needsDataiaFix ? 'Oui (dataia malformé)' : 'Non'}
+                </div>`;
+
+                try {
+                    const data = JSON.parse(text);
+                    
+                    // Vérifier la présence de dataia
+                    const hasDataia = 'dataia' in data;
+                    const dataiaValue = data.dataia;
+                    const dataiaType = typeof dataiaValue;
+                    const dataiaIsNull = dataiaValue === null;
+                    const dataiaIsEmpty = dataiaValue && Object.keys(dataiaValue).length === 0;
+                    const dataiaKeys = dataiaValue && typeof dataiaValue === 'object' ? Object.keys(dataiaValue) : [];
+
+                    // Statut
+                    if (!hasDataia) {
+                        html += '<div class="status error">❌ Le champ "dataia" n\'existe pas dans la réponse</div>';
+                    } else if (dataiaIsNull) {
+                        html += '<div class="status warning">⚠️ Le champ "dataia" est null</div>';
+                    } else if (dataiaIsEmpty) {
+                        html += '<div class="status warning">⚠️ Le champ "dataia" est vide ({})</div>';
+                    } else {
+                        html += '<div class="status success">✅ Le champ "dataia" contient des données !</div>';
+                    }
+
+                    // Informations sur dataia
+                    html += '<div class="section-title">📋 Informations sur dataia:</div>';
+                    html += `<pre>Type: ${dataiaType}
+Est null: ${dataiaIsNull}
+Est vide: ${dataiaIsEmpty}
+Nombre de clés: ${dataiaKeys.length}
+Clés: ${JSON.stringify(dataiaKeys, null, 2)}</pre>`;
+
+                    // Contenu de dataia
+                    html += '<div class="section-title">📦 Contenu de dataia:</div>';
+                    html += `<pre>${JSON.stringify(dataiaValue, null, 2)}</pre>`;
+
+                    // Autres informations du rapport
+                    html += '<div class="section-title">ℹ️ Informations du rapport:</div>';
+                    html += `<pre>Rapport ID: ${data.rapportID || 'N/A'}
+Nombre de pièces: ${data.piece?.length || 0}
+Nombre d'étapes: ${data.etaperesponse?.length || 0}
+Nombre de questions exit: ${data.exitQuestion?.length || 0}</pre>`;
+
+                } catch (parseError) {
+                    html += `<div class="status error">❌ Erreur de parsing JSON: ${parseError.message}</div>`;
+                    html += '<div class="section-title">📄 Texte brut (100 derniers caractères):</div>';
+                    html += `<pre>${text.substring(text.length - 100)}</pre>`;
+                }
+
+                html += '</div>';
+                resultsDiv.innerHTML = html;
+
+            } catch (error) {
+                resultsDiv.innerHTML = `<div class="status error">❌ Erreur: ${error.message}</div>`;
+            } finally {
+                loadingDiv.classList.remove('active');
+            }
+        }
+
+        // Analyser automatiquement au chargement
+        window.addEventListener('load', () => {
+            analyzeDataIA();
+        });
+    </script>
+</body>
+</html>
+

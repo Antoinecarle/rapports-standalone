@@ -1,0 +1,221 @@
+{
+  "description": "Données manquantes dans le fichier data.json actuel",
+  "missingData": {
+    "reportMetadata": {
+      "dateDebut": {
+        "current": "",
+        "expected": "30/07/2025",
+        "description": "Date de début du séjour (format: JJ/MM/AAAA)"
+      },
+      "dateFin": {
+        "current": "",
+        "expected": "07/08/2025",
+        "description": "Date de fin du séjour (format: JJ/MM/AAAA)"
+      }
+    },
+    "syntheseSection": {
+      "email": {
+        "current": "",
+        "expected": "voyageur@example.com",
+        "description": "Email du voyageur"
+      },
+      "telephone": {
+        "current": "",
+        "expected": "+33 6 12 34 56 78",
+        "description": "Numéro de téléphone du voyageur"
+      },
+      "dateDebut": {
+        "current": "",
+        "expected": "30/07/2025",
+        "description": "Date de début du séjour"
+      },
+      "dateFin": {
+        "current": "",
+        "expected": "07/08/2025",
+        "description": "Date de fin du séjour"
+      },
+      "heureCheckin": {
+        "current": "",
+        "expected": "14:00",
+        "description": "Heure de début du check-in"
+      },
+      "heureCheckout": {
+        "current": "",
+        "expected": "10:00",
+        "description": "Heure de début du check-out"
+      },
+      "heureCheckinFin": {
+        "current": "",
+        "expected": "14:30",
+        "description": "Heure de fin du check-in"
+      },
+      "heureCheckoutFin": {
+        "current": "",
+        "expected": "10:45",
+        "description": "Heure de fin du check-out"
+      }
+    },
+    "detailParPieceSection": {
+      "photosReference": {
+        "current": "[] (tableau vide pour toutes les pièces)",
+        "expected": [
+          "https://example.com/photos/salon-ref-1.jpg",
+          "https://example.com/photos/salon-ref-2.jpg"
+        ],
+        "description": "Photos de référence de la pièce (état initial attendu)"
+      },
+      "dateHeureValidation": {
+        "current": "'' (chaîne vide pour certaines validations)",
+        "expected": "2025-08-07T09:35:00",
+        "description": "Date et heure de validation (format ISO: AAAA-MM-JJTHH:MM:SS)"
+      }
+    },
+    "checkFinalSection": {
+      "current": "[] (tableau complètement vide)",
+      "expected": [
+        {
+          "id": "1",
+          "text": "Le volet de la terrasse a bien été fermé",
+          "completed": true,
+          "icon": "shield"
+        },
+        {
+          "id": "2",
+          "text": "Tous vos effets personnels ont été récupérés",
+          "completed": true,
+          "icon": "home"
+        },
+        {
+          "id": "3",
+          "text": "Les poubelles ont été vidées",
+          "completed": true,
+          "icon": "trash"
+        },
+        {
+          "id": "4",
+          "text": "Les lumières et appareils inutiles sont éteints",
+          "completed": true,
+          "icon": "lightbulb"
+        },
+        {
+          "id": "5",
+          "text": "Les radiateurs et la climatisation sont éteints",
+          "completed": true,
+          "icon": "shield"
+        },
+        {
+          "id": "6",
+          "text": "Les fenêtres et volets sont bien fermés",
+          "completed": true,
+          "icon": "home"
+        },
+        {
+          "id": "7",
+          "text": "Le logement est bien fermé à clé",
+          "completed": true,
+          "icon": "lock"
+        },
+        {
+          "id": "8",
+          "text": "Les clés ont été déposées à l'endroit prévu",
+          "completed": true,
+          "icon": "key",
+          "photo": "https://example.com/photos/cles-deposees.jpg"
+        },
+        {
+          "id": "9",
+          "text": "Aucune anomalie ou dégradation n'a été constatée",
+          "completed": true,
+          "icon": "shield"
+        }
+      ],
+      "description": "Liste des vérifications finales avant le départ du voyageur"
+    }
+  },
+  "summary": {
+    "totalMissingFields": 12,
+    "criticalMissing": [
+      "checkFinalSection (complètement vide)",
+      "photosReference (vide pour toutes les pièces)",
+      "Dates de séjour (dateDebut, dateFin)",
+      "Heures de check-in/check-out",
+      "Informations voyageur (email, téléphone)"
+    ],
+    "optionalMissing": [
+      "Dates de validation (certaines sont vides mais optionnelles)"
+    ]
+  },
+  "recommendations": {
+    "priority1_critical": {
+      "field": "checkFinalSection",
+      "action": "Ajouter les items du check final pour permettre la validation complète du départ",
+      "impact": "Haute - Section complète manquante dans l'interface"
+    },
+    "priority2_high": {
+      "field": "photosReference",
+      "action": "Ajouter les photos de référence pour chaque pièce",
+      "impact": "Haute - Empêche la comparaison visuelle avant/après"
+    },
+    "priority3_medium": {
+      "field": "Dates et heures de séjour",
+      "action": "Remplir dateDebut, dateFin, heureCheckin, heureCheckout, etc.",
+      "impact": "Moyenne - Informations importantes pour le contexte du rapport"
+    },
+    "priority4_low": {
+      "field": "Informations voyageur",
+      "action": "Ajouter email et téléphone du voyageur",
+      "impact": "Basse - Utile pour le contact mais non critique pour le rapport"
+    }
+  },
+  "exampleCompleteData": {
+    "description": "Exemple de données complètes pour une pièce",
+    "piece": {
+      "id": "1763202619181x155860523169392130",
+      "nom": "Salon",
+      "pieceIcon": "🛋️",
+      "note": 4,
+      "resume": "Le salon est en bon état général avec quelques éléments à surveiller.",
+      "photosReference": [
+        "https://example.com/photos/salon-ref-1.jpg",
+        "https://example.com/photos/salon-ref-2.jpg",
+        "https://example.com/photos/salon-ref-3.jpg"
+      ],
+      "checkEntree": {
+        "estConforme": true,
+        "dateHeureValidation": "2025-07-30T14:30:00",
+        "photosReprises": []
+      },
+      "checkSortie": {
+        "estValide": true,
+        "dateHeureValidation": "2025-08-07T10:45:00",
+        "photosSortie": [
+          "https://eb0bcaf95c312d7fe9372017cb5f1835.cdn.bubble.io/f1763484233113x250058998956977470/File.jpeg",
+          "https://eb0bcaf95c312d7fe9372017cb5f1835.cdn.bubble.io/f1763484178181x639668628522130300/File.jpg"
+        ],
+        "photosNonConformes": []
+      },
+      "tachesValidees": [
+        {
+          "nom": "👕 N'oubliez rien dans les placards",
+          "estApprouve": true,
+          "dateHeureValidation": "2025-08-07T10:40:00",
+          "commentaire": "Placards vérifiés et vides"
+        }
+      ],
+      "problemes": [],
+      "consignesIA": []
+    }
+  },
+  "iconOptions": {
+    "description": "Icônes disponibles pour le checkFinalSection",
+    "icons": [
+      "shield",
+      "home",
+      "trash",
+      "lightbulb",
+      "lock",
+      "key"
+    ]
+  }
+}
+
