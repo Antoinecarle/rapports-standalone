@@ -600,8 +600,22 @@ export class DataFusionService {
       const signalements = signalementsByRoom.get(aiPiece.id) || [];
       const consignes = consignesByPiece.get(aiPiece.id) || [];
 
+      // Récupérer le nom de la pièce depuis Bubble (fullData.piece)
+      let pieceName = aiPiece.nom; // Fallback sur le nom IA
+      const pieceFromBubble = fullData.piece?.find(p => p.pieceid === aiPiece.id);
+      if (pieceFromBubble?.nom) {
+        pieceName = pieceFromBubble.nom;
+        console.log(`[DataFusionService] 📝 Nom de pièce remplacé par Bubble: ${pieceName} pour ${aiPiece.id}`);
+      }
+
+      // Créer une copie de aiPiece avec le nom mis à jour
+      const aiPieceWithBubbleName = {
+        ...aiPiece,
+        nom: pieceName
+      };
+
       piecesWithRawData.set(aiPiece.id, {
-        aiData: aiPiece,
+        aiData: aiPieceWithBubbleName,
         rawPiece: rawPiece || null,
         etapes: rawPiece?.etapes || [],
         signalements: signalements,
@@ -629,9 +643,22 @@ export class DataFusionService {
       checkoutEndHour: formatBubbleDateToTime(fullData.checkoutendtime) || rawData.timestamps?.checkoutEndHour
     };
 
+    // Mettre à jour detailParPieceSection avec les noms de Bubble
+    const detailParPieceSectionWithBubbleNames = aiData.detailParPieceSection.map(piece => {
+      const pieceFromBubble = fullData.piece?.find(p => p.pieceid === piece.id);
+      if (pieceFromBubble?.nom) {
+        return {
+          ...piece,
+          nom: pieceFromBubble.nom
+        };
+      }
+      return piece;
+    });
+
     // Retourner les données fusionnées avec reportMetadata et timestamps mis à jour
     return {
       ...aiData,
+      detailParPieceSection: detailParPieceSectionWithBubbleNames,
       reportMetadata: {
         ...aiData.reportMetadata,
         typeParcours,
