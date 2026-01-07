@@ -359,10 +359,11 @@ export function mapToPiecesDetails(data: FusedRapportData) {
         photo_reference_url: etape.referencephoto || undefined
       }));
     } else {
-      // Cas 2 : Enrichir les tâches existantes avec les photos de fulldata.etaperesponse
+      // Cas 2 : Enrichir les tâches existantes avec les photos et consignes de fulldata.etaperesponse
       tachesAvecPhotos = (piece.tachesValidees || []).map(tache => {
         let photoUrl: string | undefined = undefined;
         let photoReferenceUrl: string | undefined = undefined;
+        let consigneDescription: string | null | undefined = tache.commentaire; // Garder le commentaire existant par défaut
 
         // Chercher d'abord dans fulldata.etaperesponse
         // Matcher par nom de tâche car les etapeId ne correspondent pas entre data.json et fulldata
@@ -379,6 +380,10 @@ export function mapToPiecesDetails(data: FusedRapportData) {
             // Photo de référence (referencephoto)
             if (etapeFromFullData.referencephoto) {
               photoReferenceUrl = etapeFromFullData.referencephoto;
+            }
+            // Description/consigne de la tâche (si pas déjà de commentaire)
+            if (!tache.commentaire && etapeFromFullData.consigne) {
+              consigneDescription = etapeFromFullData.consigne;
             }
           }
         }
@@ -410,6 +415,7 @@ export function mapToPiecesDetails(data: FusedRapportData) {
 
         return {
           ...tache,
+          commentaire: consigneDescription,
           photo_url: photoUrl,
           photo_reference_url: photoReferenceUrl
         };
