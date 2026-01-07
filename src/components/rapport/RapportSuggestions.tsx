@@ -30,23 +30,23 @@ export default function RapportSuggestions({
       icon: "text-muted-foreground"
     };
   };
-  return <Card className="p-8 bg-card border shadow-sm">
-    <div className="flex items-center gap-3 mb-6 pb-4 border-b border-border/50">
+  return <Card className="p-4 md:p-6 lg:p-8 bg-card border shadow-sm">
+    <div className="flex items-center gap-2 md:gap-3 mb-4 md:mb-6 pb-3 md:pb-4 border-b border-border/50">
 
-      <h3 className="text-lg font-semibold text-foreground">Suggestions IA</h3>
+      <h3 className="text-base md:text-lg font-semibold text-foreground">Suggestions IA</h3>
     </div>
 
     <div className="space-y-2">
       {suggestions.map((suggestion, index) => {
         const styles = getPrioriteStyles(suggestion.priorite);
-        return <div key={index} className={`p-3 rounded-lg transition-all duration-200 ${styles.card}`}>
-          <div className="flex items-start gap-3">
+        return <div key={index} className={`p-2.5 md:p-3 rounded-lg transition-all duration-200 ${styles.card}`}>
+          <div className="flex items-start gap-2 md:gap-3">
             <div className={`flex-shrink-0 mt-0.5 ${styles.icon}`}>
               {getPrioriteIcon(suggestion.priorite)}
             </div>
 
             <div className="flex-1 min-w-0">
-              <h4 className="font-medium text-sm mb-1 text-foreground whitespace-pre-wrap break-words">
+              <h4 className="font-medium text-xs md:text-sm mb-1 text-foreground whitespace-pre-wrap break-words">
                 {suggestion.titre}
               </h4>
               <p className="text-xs text-muted-foreground leading-relaxed whitespace-pre-wrap break-words">
@@ -55,7 +55,7 @@ export default function RapportSuggestions({
             </div>
 
             <div className="flex-shrink-0">
-              <span className={`text-xs px-2 py-1 rounded-md font-normal whitespace-nowrap ${styles.badge}`}>
+              <span className={`text-xs px-1.5 md:px-2 py-0.5 md:py-1 rounded-md font-normal whitespace-nowrap ${styles.badge}`}>
                 {suggestion.priorite === "haute" ? "Urgent" : suggestion.priorite === "moyenne" ? "Important" : "À prévoir"}
               </span>
             </div>
@@ -64,13 +64,13 @@ export default function RapportSuggestions({
       })}
     </div>
 
-    {suggestions.length === 0 && <div className="text-center py-12">
-      <div className="relative inline-block mb-4">
+    {suggestions.length === 0 && <div className="text-center py-8 md:py-12">
+      <div className="relative inline-block mb-3 md:mb-4">
         <div className="absolute inset-0 bg-primary/10 blur-2xl rounded-full" />
-        <Sparkles className="relative h-16 w-16 text-primary/40 mx-auto" />
+        <Sparkles className="relative h-12 md:h-16 w-12 md:w-16 text-primary/40 mx-auto" />
       </div>
-      <p className="text-foreground font-medium">Aucune suggestion pour le moment</p>
-      <p className="text-sm text-muted-foreground mt-2">
+      <p className="text-sm md:text-base text-foreground font-medium">Aucune suggestion pour le moment</p>
+      <p className="text-xs md:text-sm text-muted-foreground mt-2">
         L&apos;IA analysera les prochains rapports pour vous proposer des améliorations
       </p>
     </div>}

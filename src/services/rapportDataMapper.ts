@@ -158,6 +158,8 @@ export function mapToRapportSynthese(data: FusedRapportData) {
     agentType: rawData.agent.type_label,
     // Type de parcours
     typeParcours: data.reportMetadata.typeParcours,
+    // Type d'état des lieux
+    etatLieuxMoment: data.reportMetadata.etatLieuxMoment,
     // Timestamps du parcours (formatés en HH:mm)
     checkinStartHour,
     checkinEndHour,
@@ -284,32 +286,37 @@ export function mapToPiecesDetails(data: FusedRapportData) {
     }
 
     // Extraire les photos d'entrée (checkin)
-    // Priorité 1 : Utiliser fulldata.photoPieceinitiales si disponible
+    // Ne pas extraire de photos d'entrée pour les rapports "Sortie uniquement"
     let photosEntreeCapturees: string[] = [];
-    if (data.fullData?.photoPieceinitiales) {
-      // Trouver les photos initiales pour cette pièce
-      const photosInitiales = data.fullData.photoPieceinitiales.find(
-        photo => photo.pieceid === piece.id
-      );
-      if (photosInitiales?.photourl) {
-        photosEntreeCapturees = photosInitiales.photourl
-          .filter(url => url && url.trim() !== '')
-          .map(url => {
-            // Ajouter https: si l'URL commence par //
-            if (url.startsWith('//')) {
-              return `https:${url}`;
-            }
-            return url;
-          });
-      }
-    }
+    const estSortieUniquement = data.reportMetadata.etatLieuxMoment === 'sortie';
 
-    // Fallback : utiliser mydata.json si fulldata n'a pas de photos d'entrée pour cette pièce
-    if (photosEntreeCapturees.length === 0) {
-      photosEntreeCapturees = photos
-        .filter(photo => photo.etape_type === 'checkin')
-        .map(photo => photo.photo_url || photo.photo_base64)
-        .filter(url => url && url.trim() !== '');
+    if (!estSortieUniquement) {
+      // Priorité 1 : Utiliser fulldata.photoPieceinitiales si disponible
+      if (data.fullData?.photoPieceinitiales) {
+        // Trouver les photos initiales pour cette pièce
+        const photosInitiales = data.fullData.photoPieceinitiales.find(
+          photo => photo.pieceid === piece.id
+        );
+        if (photosInitiales?.photourl) {
+          photosEntreeCapturees = photosInitiales.photourl
+            .filter(url => url && url.trim() !== '')
+            .map(url => {
+              // Ajouter https: si l'URL commence par //
+              if (url.startsWith('//')) {
+                return `https:${url}`;
+              }
+              return url;
+            });
+        }
+      }
+
+      // Fallback : utiliser mydata.json si fulldata n'a pas de photos d'entrée pour cette pièce
+      if (photosEntreeCapturees.length === 0) {
+        photosEntreeCapturees = photos
+          .filter(photo => photo.etape_type === 'checkin')
+          .map(photo => photo.photo_url || photo.photo_base64)
+          .filter(url => url && url.trim() !== '');
+      }
     }
 
     // Créer un mapping des tâches avec leurs photos
@@ -418,7 +425,8 @@ export function mapToPiecesDetails(data: FusedRapportData) {
         severite: probleme.severite,
         detectionIA: probleme.detectionIA,
         consignesIA: probleme.consignesIA || [],
-        estFaux: probleme.estFaux || false
+        estFaux: probleme.estFaux || false,
+        etapeId: probleme.etapeId // Préserver l'etapeId pour lier aux photos de vérification
       })),
       consignesIA: piece.consignesIA || [],
       consignesIABubble: consignesIABubble, // Nouvelles consignes depuis Bubble

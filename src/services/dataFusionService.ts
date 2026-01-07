@@ -148,6 +148,9 @@ export class DataFusionService {
     const dateStr = now.toISOString().split('T')[0];
     const timeStr = now.toTimeString().split(' ')[0];
 
+    // Déterminer si c'est un parcours "sortie uniquement"
+    const isSortieUniquement = fullData.rapportStep === 'checkOutOnly';
+
     return {
       webhook_version: '1.0',
       schema: 'default',
@@ -191,8 +194,9 @@ export class DataFusionService {
           snapshot_created: dateStr,
           checkin_completed: dateStr,
           exit_questions_completed: dateStr,
-          checkinStartHour: timeStr,
-          checkinEndHour: timeStr,
+          // Ne pas définir les timestamps de checkin pour les parcours "sortie uniquement"
+          checkinStartHour: isSortieUniquement ? null : timeStr,
+          checkinEndHour: isSortieUniquement ? null : timeStr,
           checkoutStartHour: timeStr,
           checkoutEndHour: timeStr
         }
@@ -204,8 +208,9 @@ export class DataFusionService {
         snapshot_created: dateStr,
         checkin_completed: dateStr,
         exit_questions_completed: dateStr,
-        checkinStartHour: timeStr,
-        checkinEndHour: timeStr,
+        // Ne pas définir les timestamps de checkin pour les parcours "sortie uniquement"
+        checkinStartHour: isSortieUniquement ? null : timeStr,
+        checkinEndHour: isSortieUniquement ? null : timeStr,
         checkoutStartHour: timeStr,
         checkoutEndHour: timeStr
       }
@@ -635,10 +640,17 @@ export class DataFusionService {
     // Mapper les timestamps depuis fullData (format Bubble) vers rawData.timestamps (format HH:mm)
     // Les timestamps de fullData sont au format "Nov 26, 2025 11:22 am"
     // On les convertit en format HH:mm pour l'affichage
+    // Pour les parcours "sortie uniquement", ne pas utiliser les timestamps de checkin
+    const isSortieUniquement = etatLieuxMoment === 'sortie';
     const updatedTimestamps = {
       ...rawData.timestamps,
-      checkinStartHour: formatBubbleDateToTime(fullData.checkinstarttime) || rawData.timestamps?.checkinStartHour,
-      checkinEndHour: formatBubbleDateToTime(fullData.checkinendtime) || rawData.timestamps?.checkinEndHour,
+      // Ne mapper les timestamps de checkin que si ce n'est PAS un parcours "sortie uniquement"
+      checkinStartHour: !isSortieUniquement
+        ? (formatBubbleDateToTime(fullData.checkinstarttime) || rawData.timestamps?.checkinStartHour)
+        : null,
+      checkinEndHour: !isSortieUniquement
+        ? (formatBubbleDateToTime(fullData.checkinendtime) || rawData.timestamps?.checkinEndHour)
+        : null,
       checkoutStartHour: formatBubbleDateToTime(fullData.checkoutstarttime) || rawData.timestamps?.checkoutStartHour,
       checkoutEndHour: formatBubbleDateToTime(fullData.checkoutendtime) || rawData.timestamps?.checkoutEndHour
     };

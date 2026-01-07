@@ -1,12 +1,16 @@
 import RapportDetail from '@/components/RapportDetail'
 import { Toaster } from "@/components/ui/toaster"
 import { useRapportData } from '@/hooks/useRapportData'
+import { useWeglot } from '@/hooks/useWeglot'
 import { Loader2, AlertCircle } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 
 function App() {
   // Charger les données réelles depuis data.json
   const { data, isLoading, isError, error, reload } = useRapportData()
+
+  // Initialize Weglot for translation
+  useWeglot()
 
   // État de chargement
   if (isLoading) {

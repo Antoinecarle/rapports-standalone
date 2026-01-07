@@ -343,12 +343,12 @@ export default function RemarquesGenerales({
     </div>
 
     {/* B. Bannière Alerte */}
-    {(data.alerts.wrong_room || data.alerts.image_quality) && <Alert className="border-warning/30 bg-warning/10">
-      <AlertCircle className="h-5 w-5 text-warning" />
+    {(data.alerts.wrong_room || data.alerts.image_quality) && <Alert className="border-[#f5e6d3] bg-[#fef8f0]">
+      <AlertCircle className="h-5 w-5 text-[#d97706]" />
       <AlertDescription>
         <div className="space-y-2">
-          <strong className="text-warning block">Problèmes d'analyse photos   </strong>
-          <ul className="space-y-1 text-sm">
+          <strong className="text-[#d97706] block">Problèmes d'analyse photos   </strong>
+          <ul className="space-y-1 text-sm text-[#92400e]">
             {data.alerts.wrong_room && <li>• Photos non conformes : {data.alerts.wrong_room_rooms?.join(", ")}</li>}
             {data.alerts.image_quality && <li>• Qualité insuffisante : {data.alerts.image_quality_rooms?.join(", ")}</li>}
           </ul>
@@ -367,17 +367,17 @@ export default function RemarquesGenerales({
           // Extraire le type de fait (avant les ":")
           const typeFait = highlight.titre.split(':')[0].trim();
 
-          return <div key={index} className="flex items-start gap-3 p-3 rounded-lg bg-muted/30 hover:bg-muted/50 cursor-pointer transition-colors" onClick={() => {
+          return <div key={index} className="flex items-start gap-2 md:gap-3 p-2.5 md:p-3 rounded-lg bg-muted/30 hover:bg-muted/50 cursor-pointer transition-colors" onClick={() => {
             if (highlight.pieceName && onRoomClick) {
               onRoomClick(highlight.pieceName);
             }
           }}>
-            <div className={`flex items-center justify-center ${getSeveriteBadgeStyle(highlight.severite)} rounded-full p-1.5 mt-0.5`}>
+            <div className={`flex items-center justify-center ${getSeveriteBadgeStyle(highlight.severite)} rounded-full p-1 md:p-1.5 mt-0.5 shrink-0`}>
               {getSeveriteIcon(highlight.severite)}
             </div>
             <div className="flex-1 min-w-0">
               {/* Type de fait signalé */}
-              <div className="flex items-center gap-2 mb-1">
+              <div className="flex flex-wrap items-center gap-1.5 md:gap-2 mb-1">
                 <p className="text-xs font-semibold text-muted-foreground">
                   {typeFait}
                 </p>
@@ -386,20 +386,20 @@ export default function RemarquesGenerales({
                 </Badge>
               </div>
               {/* Description complète du problème */}
-              <p className="font-medium text-sm whitespace-pre-wrap break-words">{highlight.text}</p>
+              <p className="font-medium text-xs md:text-sm whitespace-pre-wrap break-words">{highlight.text}</p>
               <p className="text-xs text-muted-foreground mt-1">— {highlight.pieceName}</p>
             </div>
-            <ChevronRight className="h-4 w-4 text-muted-foreground shrink-0 mt-0.5" />
+            <ChevronRight className="h-4 w-4 text-muted-foreground shrink-0 mt-0.5 hidden sm:block" />
           </div>
         })}
       </div>
     </Card>
 
     {/* E. Signalements utilisateurs */}
-    {data.user_reports.length > 0 && <Card className="p-6">
-      <h3 className="font-semibold mb-4">Signalements utilisateurs :      </h3>
-      <div className="space-y-4">
-        {data.user_reports.map((report, index) => <div key={index} className="p-4 rounded-lg bg-muted/30 space-y-3">
+    {data.user_reports.length > 0 && <Card className="p-4 md:p-6">
+      <h3 className="font-semibold mb-3 md:mb-4 text-sm md:text-base">Signalements utilisateurs :      </h3>
+      <div className="space-y-3 md:space-y-4">
+        {data.user_reports.map((report, index) => <div key={index} className="p-3 md:p-4 rounded-lg bg-muted/30 space-y-2 md:space-y-3">
           {/* En-tête avec type et statut */}
           <div className="flex items-center justify-between gap-4">
             <div className="flex items-center gap-3 flex-1">
@@ -437,7 +437,7 @@ export default function RemarquesGenerales({
             <img
               src={report.img_url.startsWith('//') ? `https:${report.img_url}` : report.img_url}
               alt="Photo du signalement"
-              className="rounded-lg max-w-xs max-h-48 object-cover border border-border"
+              className="rounded-lg w-full sm:max-w-xs max-h-48 sm:max-h-64 object-cover border border-border"
             />
           </div>}
 

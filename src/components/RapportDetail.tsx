@@ -53,22 +53,22 @@ export default function RapportDetail({
   return <div className="min-h-screen bg-background">
     <div className="max-w-7xl mx-auto">
       {/* En-tête */}
-      <div className="sticky top-0 bg-background border-b p-4 flex items-center justify-between z-10 shadow-sm">
-        <div className="flex items-center gap-3">
-          <h1 className="text-xl font-bold">Rapport Check Easy</h1>
-          <div className="flex items-center gap-2">
-            <span className="text-sm text-muted-foreground">•</span>
-            <span className="text-sm font-semibold text-foreground">
+      <div className="sticky top-0 bg-background border-b p-3 md:p-4 flex items-center justify-between z-10 shadow-sm">
+        <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3">
+          <h1 className="text-lg md:text-xl font-bold">Rapport Check Easy</h1>
+          <div className="flex items-center gap-2 text-xs sm:text-sm">
+            <span className="hidden sm:inline text-muted-foreground">•</span>
+            <span className="font-semibold text-foreground">
               {rapport.typeParcours === "voyageur" ? "Voyageur" : "Ménage"}
             </span>
-            <span className="text-xs text-muted-foreground">
+            <span className="text-muted-foreground">
               ({rapport.etatLieuxMoment === "arrivee-sortie" ? "Arrivée + Sortie" : "Sortie uniquement"})
             </span>
           </div>
         </div>
       </div>
 
-      <div id="rapport-content" className="p-8 space-y-12">
+      <div id="rapport-content" className="p-4 md:p-6 lg:p-8 space-y-8 md:space-y-12">
         {/* Synthèse - En haut */}
         <RapportSynthese rapport={synthese} />
 

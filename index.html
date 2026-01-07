@@ -5,26 +5,8 @@
     <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Rapports - Check Easy</title>
-    <!-- Weglot Translation (iframe mode) - Placed at end of head as recommended by Weglot support -->
+    <!-- Weglot script is loaded - initialization happens in React after content renders -->
     <script type="text/javascript" src="https://cdn.weglot.com/weglot.min.js"></script>
-    <script>
-      (function() {
-        var urlParams = new URLSearchParams(window.location.search);
-        var lang = urlParams.get('lang') || 'fr';
-
-        Weglot.initialize({
-          api_key: 'wg_594771a5b0a8318b805497f9f42ce2c87',
-          hide_switcher: true
-        });
-
-        // Switch to the requested language after initialization
-        if (lang !== 'fr') {
-          Weglot.on('initialized', function() {
-            Weglot.switchTo(lang);
-          });
-        }
-      })();
-    </script>
   </head>
   <body>
     <div id="root"></div>
