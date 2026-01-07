@@ -880,6 +880,112 @@ export default function RapportPieceDetail({
         </Card>
       </CardContent>}
 
+      {/* Signalements utilisateurs - Section séparée */}
+      {localSignalements && localSignalements.length > 0 && (
+        <CardContent className="pt-3.5">
+          <Card className="bg-card">
+            <CardContent className="p-4">
+              <h5 className="text-sm font-medium text-foreground mb-3 flex items-center gap-2">
+                <AlertTriangle className="w-4 h-4 text-orange-500" />
+                Signalements utilisateurs
+              </h5>
+              <div className="space-y-3">
+                {localSignalements.map((signalement: any, index: number) => (
+                  <div
+                    key={signalement.signalement_id || index}
+                    className="p-4 rounded-lg border border-orange-200 bg-orange-50 dark:bg-orange-950/20 dark:border-orange-900"
+                  >
+                    <div className="flex items-start justify-between gap-3">
+                      <div className="flex-1">
+                        {/* Type et statut */}
+                        <div className="flex items-center gap-2 mb-2">
+                          {signalement.typeText && (
+                            <Badge variant="outline" className="text-xs">
+                              {signalement.typeText}
+                            </Badge>
+                          )}
+                          {signalement.status && (
+                            <Badge
+                              variant={signalement.status === 'À traiter' ? 'destructive' : 'secondary'}
+                              className="text-xs"
+                            >
+                              {signalement.status}
+                            </Badge>
+                          )}
+                        </div>
+
+                        {/* Description */}
+                        <p className="text-sm font-medium text-foreground mb-2 whitespace-pre-wrap break-words">
+                          {signalement.description || signalement.commentaire}
+                        </p>
+
+                        {/* Commentaire de traitement */}
+                        {signalement.comment && signalement.comment.trim() !== '' && (
+                          <div className="mb-2 p-2 bg-muted/50 rounded border border-border">
+                            <p className="text-xs font-medium text-muted-foreground mb-1">Commentaire de traitement :</p>
+                            <p className="text-xs text-foreground whitespace-pre-wrap break-words">{signalement.comment}</p>
+                          </div>
+                        )}
+
+                        {/* Informations du signaleur */}
+                        {signalement.signaleur && (
+                          <div className="flex items-center gap-2 text-xs text-muted-foreground mt-2">
+                            <span>Signalé par: {signalement.signaleur.prenom} {signalement.signaleur.nom}</span>
+                            {signalement.signaleur.phone && (
+                              <>
+                                <span>•</span>
+                                <span>{signalement.signaleur.phone}</span>
+                              </>
+                            )}
+                            {isValidDate(signalement.created_at) && (
+                              <>
+                                <span>•</span>
+                                <span>{new Date(signalement.created_at).toLocaleDateString('fr-FR')}</span>
+                              </>
+                            )}
+                          </div>
+                        )}
+                      </div>
+
+                      {/* Photo du signalement */}
+                      <div className="flex items-start gap-2">
+                        {signalement.img_url && (
+                          <div className="flex-shrink-0">
+                            <img
+                              src={signalement.img_url}
+                              alt="Photo du signalement"
+                              className="w-24 h-24 sm:w-20 sm:h-20 object-cover rounded cursor-pointer hover:opacity-80 transition-opacity"
+                              onClick={() => onPhotoClick(signalement.img_url)}
+                            />
+                          </div>
+                        )}
+
+                        {/* Menu dropdown pour actions */}
+                        {signalement.status === 'À traiter' && (
+                          <DropdownMenu>
+                            <DropdownMenuTrigger asChild>
+                              <Button variant="ghost" size="sm" className="h-8 w-8 p-0">
+                                <MoreVertical className="h-4 w-4" />
+                              </Button>
+                            </DropdownMenuTrigger>
+                            <DropdownMenuContent align="end" className="w-48">
+                              <DropdownMenuItem onClick={() => handleMarquerSignalementTraite(signalement.signalement_id)}>
+                                <CheckCircle className="h-4 w-4 mr-2 text-success" />
+                                Marquer comme traité
+                              </DropdownMenuItem>
+                            </DropdownMenuContent>
+                          </DropdownMenu>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
+        </CardContent>
+      )}
+
       {/* Consignes pour l'IA - Section toujours visible */}
       <CardContent className="pt-3.5">
         <Card className="bg-card">
@@ -1046,112 +1152,6 @@ export default function RapportPieceDetail({
           </CardContent>
         </Card>
       </CardContent>
-
-      {/* Signalements utilisateurs - Section séparée */}
-      {localSignalements && localSignalements.length > 0 && (
-        <CardContent className="pt-3.5">
-          <Card className="bg-card">
-            <CardContent className="p-4">
-              <h5 className="text-sm font-medium text-foreground mb-3 flex items-center gap-2">
-                <AlertTriangle className="w-4 h-4 text-orange-500" />
-                Signalements utilisateurs
-              </h5>
-              <div className="space-y-3">
-                {localSignalements.map((signalement: any, index: number) => (
-                  <div
-                    key={signalement.signalement_id || index}
-                    className="p-4 rounded-lg border border-orange-200 bg-orange-50 dark:bg-orange-950/20 dark:border-orange-900"
-                  >
-                    <div className="flex items-start justify-between gap-3">
-                      <div className="flex-1">
-                        {/* Type et statut */}
-                        <div className="flex items-center gap-2 mb-2">
-                          {signalement.typeText && (
-                            <Badge variant="outline" className="text-xs">
-                              {signalement.typeText}
-                            </Badge>
-                          )}
-                          {signalement.status && (
-                            <Badge
-                              variant={signalement.status === 'À traiter' ? 'destructive' : 'secondary'}
-                              className="text-xs"
-                            >
-                              {signalement.status}
-                            </Badge>
-                          )}
-                        </div>
-
-                        {/* Description */}
-                        <p className="text-sm font-medium text-foreground mb-2 whitespace-pre-wrap break-words">
-                          {signalement.description || signalement.commentaire}
-                        </p>
-
-                        {/* Commentaire de traitement */}
-                        {signalement.comment && signalement.comment.trim() !== '' && (
-                          <div className="mb-2 p-2 bg-muted/50 rounded border border-border">
-                            <p className="text-xs font-medium text-muted-foreground mb-1">Commentaire de traitement :</p>
-                            <p className="text-xs text-foreground whitespace-pre-wrap break-words">{signalement.comment}</p>
-                          </div>
-                        )}
-
-                        {/* Informations du signaleur */}
-                        {signalement.signaleur && (
-                          <div className="flex items-center gap-2 text-xs text-muted-foreground mt-2">
-                            <span>Signalé par: {signalement.signaleur.prenom} {signalement.signaleur.nom}</span>
-                            {signalement.signaleur.phone && (
-                              <>
-                                <span>•</span>
-                                <span>{signalement.signaleur.phone}</span>
-                              </>
-                            )}
-                            {isValidDate(signalement.created_at) && (
-                              <>
-                                <span>•</span>
-                                <span>{new Date(signalement.created_at).toLocaleDateString('fr-FR')}</span>
-                              </>
-                            )}
-                          </div>
-                        )}
-                      </div>
-
-                      {/* Photo du signalement */}
-                      <div className="flex items-start gap-2">
-                        {signalement.img_url && (
-                          <div className="flex-shrink-0">
-                            <img
-                              src={signalement.img_url}
-                              alt="Photo du signalement"
-                              className="w-24 h-24 sm:w-20 sm:h-20 object-cover rounded cursor-pointer hover:opacity-80 transition-opacity"
-                              onClick={() => onPhotoClick(signalement.img_url)}
-                            />
-                          </div>
-                        )}
-
-                        {/* Menu dropdown pour actions */}
-                        {signalement.status === 'À traiter' && (
-                          <DropdownMenu>
-                            <DropdownMenuTrigger asChild>
-                              <Button variant="ghost" size="sm" className="h-8 w-8 p-0">
-                                <MoreVertical className="h-4 w-4" />
-                              </Button>
-                            </DropdownMenuTrigger>
-                            <DropdownMenuContent align="end" className="w-48">
-                              <DropdownMenuItem onClick={() => handleMarquerSignalementTraite(signalement.signalement_id)}>
-                                <CheckCircle className="h-4 w-4 mr-2 text-success" />
-                                Marquer comme traité
-                              </DropdownMenuItem>
-                            </DropdownMenuContent>
-                          </DropdownMenu>
-                        )}
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </CardContent>
-          </Card>
-        </CardContent>
-      )}
     </Card>
 
     {/* Dialog Créer un signalement */}

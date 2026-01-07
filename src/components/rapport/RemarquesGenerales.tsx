@@ -437,7 +437,7 @@ export default function RemarquesGenerales({
             <img
               src={report.img_url.startsWith('//') ? `https:${report.img_url}` : report.img_url}
               alt="Photo du signalement"
-              className="rounded-lg w-full sm:max-w-xs max-h-48 sm:max-h-64 object-cover border border-border"
+              className="w-24 h-24 sm:w-20 sm:h-20 object-cover rounded cursor-pointer hover:opacity-80 transition-opacity border border-border"
             />
           </div>}
 

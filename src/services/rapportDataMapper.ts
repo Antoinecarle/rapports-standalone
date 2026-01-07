@@ -199,7 +199,41 @@ export function mapToRemarquesGenerales(data: FusedRapportData) {
       OS_signalementStatut: s.status
     }));
 
-  remarques.user_reports = [...remarques.user_reports, ...userSignalements];
+  // Ajouter les réponses "Non" et commentaires du check final
+  const checkFinalSignalements: typeof userSignalements = [];
+  if (data.fullData?.exitQuestion && data.fullData.exitQuestion.length > 0) {
+    data.fullData.exitQuestion.forEach((question) => {
+      // Vérifier si c'est une réponse "Non" ou s'il y a un commentaire
+      const isNonResponse = question.questionType === 'boolean' && question.responseBoolean === 'non';
+      const hasComment = question.responseText && question.responseText.trim() !== '';
+
+      if (isNonResponse || hasComment) {
+        // Construire le texte du signalement
+        let text = '';
+        if (isNonResponse) {
+          text = `Réponse "Non" : ${question.question}`;
+        }
+        if (hasComment) {
+          text = text ? `${text}\nCommentaire : ${question.responseText}` : `${question.question}\nCommentaire : ${question.responseText}`;
+        }
+
+        checkFinalSignalements.push({
+          text,
+          status: 'confirmé' as const,
+          room: '',
+          roomName: 'Check final',
+          typeText: 'Check final',
+          img_url: question.imageresponseurl || null,
+          signaleur: undefined,
+          created_at: undefined,
+          updated_at: undefined,
+          OS_signalementStatut: 'À traiter'
+        });
+      }
+    });
+  }
+
+  remarques.user_reports = [...remarques.user_reports, ...userSignalements, ...checkFinalSignalements];
 
   // Générer les highlights à partir des problèmes de toutes les pièces
   // Collecter tous les problèmes avec leur pièce associée
@@ -286,37 +320,23 @@ export function mapToPiecesDetails(data: FusedRapportData) {
     }
 
     // Extraire les photos d'entrée (checkin)
-    // Ne pas extraire de photos d'entrée pour les rapports "Sortie uniquement"
+    // RÈGLES :
+    // - Rapports ménage : Ne JAMAIS afficher de photos d'entrée (il n'y en a pas)
+    // - Rapports voyageur : Afficher UNIQUEMENT les photos prises par le voyageur lors du check d'entrée
+    //   (depuis mydata.checkin.pieces[].etapes[] avec etape_type === "checkin")
+    // - Ne PAS utiliser photoPieceinitiales (ce sont les photos de référence, pas les photos d'entrée)
     let photosEntreeCapturees: string[] = [];
     const estSortieUniquement = data.reportMetadata.etatLieuxMoment === 'sortie';
+    const estRapportMenage = data.reportMetadata.typeParcours === 'menage';
 
-    if (!estSortieUniquement) {
-      // Priorité 1 : Utiliser fulldata.photoPieceinitiales si disponible
-      if (data.fullData?.photoPieceinitiales) {
-        // Trouver les photos initiales pour cette pièce
-        const photosInitiales = data.fullData.photoPieceinitiales.find(
-          photo => photo.pieceid === piece.id
-        );
-        if (photosInitiales?.photourl) {
-          photosEntreeCapturees = photosInitiales.photourl
-            .filter(url => url && url.trim() !== '')
-            .map(url => {
-              // Ajouter https: si l'URL commence par //
-              if (url.startsWith('//')) {
-                return `https:${url}`;
-              }
-              return url;
-            });
-        }
-      }
-
-      // Fallback : utiliser mydata.json si fulldata n'a pas de photos d'entrée pour cette pièce
-      if (photosEntreeCapturees.length === 0) {
-        photosEntreeCapturees = photos
-          .filter(photo => photo.etape_type === 'checkin')
-          .map(photo => photo.photo_url || photo.photo_base64)
-          .filter(url => url && url.trim() !== '');
-      }
+    // Ne pas extraire de photos d'entrée pour les rapports ménage ou "Sortie uniquement"
+    if (!estSortieUniquement && !estRapportMenage) {
+      // Utiliser uniquement les photos de mydata.json (checkin)
+      // Ce sont les vraies photos prises par le voyageur lors de son check d'entrée
+      photosEntreeCapturees = photos
+        .filter(photo => photo.etape_type === 'checkin')
+        .map(photo => photo.photo_url || photo.photo_base64)
+        .filter(url => url && url.trim() !== '');
     }
 
     // Créer un mapping des tâches avec leurs photos
