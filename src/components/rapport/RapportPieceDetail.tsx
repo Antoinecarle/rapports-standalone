@@ -186,21 +186,62 @@ export default function RapportPieceDetail({
 
   // Fonction helper pour récupérer la photo associée à un problème
   const getProblemePhoto = (probleme: { etapeId?: string; titre: string; description: string }): string | null => {
-    console.log('[getProblemePhoto] Recherche photo pour problème:', probleme.description);
+    console.log('[getProblemePhoto] Recherche photo pour problème:', probleme.description, '| etapeId:', probleme.etapeId || 'AUCUN');
 
-    // Stratégie 1 : Si le problème a un etapeId, chercher la photo de cette étape
-    if (probleme.etapeId && piece.rawData?.etapes) {
-      const etape = piece.rawData.etapes.find(e => e.etape_id === probleme.etapeId);
-      if (etape) {
-        const photoEtape = etape.photo_url || etape.photo_base64;
-        if (photoEtape) {
-          console.log('[getProblemePhoto] ✅ Photo trouvée via etapeId');
-          return photoEtape;
+    // Stratégie 1 : Si le problème a un etapeId, chercher la tâche correspondante dans tachesValidees
+    // Les etapeId de dataia correspondent aux etapeId des tâches (pas aux etapeid de fulldata)
+    if (probleme.etapeId) {
+      console.log('[getProblemePhoto] 🔍 Recherche par etapeId:', probleme.etapeId);
+      console.log('[getProblemePhoto] 📋 Tâches disponibles:', piece.tachesValidees.map(t => ({ nom: t.nom, etapeId: t.etapeId, hasPhoto: !!t.photo_url })));
+
+      const tacheParEtapeId = piece.tachesValidees.find(tache => tache.etapeId === probleme.etapeId);
+      if (tacheParEtapeId?.photo_url) {
+        console.log('[getProblemePhoto] ✅ Photo trouvée via etapeId dans tachesValidees:', tacheParEtapeId.nom);
+        return tacheParEtapeId.photo_url;
+      } else {
+        console.log('[getProblemePhoto] ⚠️ Tâche trouvée mais sans photo ou tâche non trouvée');
+      }
+
+      // Fallback : chercher aussi dans rawData.etapes si disponible
+      if (piece.rawData?.etapes) {
+        const etape = piece.rawData.etapes.find(e => e.etape_id === probleme.etapeId);
+        if (etape) {
+          const photoEtape = etape.photo_url || etape.photo_base64;
+          if (photoEtape) {
+            console.log('[getProblemePhoto] ✅ Photo trouvée via etapeId dans rawData.etapes');
+            return photoEtape;
+          }
         }
       }
     }
 
-    // Stratégie 2 : Chercher la tâche dont le commentaire contient exactement ce problème
+    // Stratégie 2 : Si le problème commence par [ÉTAPE], extraire le nom de la tâche et chercher par nom
+    if (probleme.description.startsWith('[ÉTAPE]')) {
+      // Le format typique est "[ÉTAPE] description du problème liée à la tâche"
+      // Chercher une tâche dont le nom correspond à des mots-clés de la description
+      const descSansPrefix = probleme.description.replace('[ÉTAPE]', '').trim().toLowerCase();
+
+      // Chercher par mots-clés significatifs
+      const motsCles = descSansPrefix
+        .replace(/[^\w\sàâäéèêëïîôùûüÿæœç]/g, ' ')
+        .split(/\s+/)
+        .filter(mot => mot.length > 4);
+
+      const tacheParMotsCles = piece.tachesValidees
+        .filter(tache => tache.photo_url)
+        .find(tache => {
+          const tacheNomLower = tache.nom.toLowerCase();
+          // Chercher si au moins un mot-clé significatif est présent dans le nom de la tâche
+          return motsCles.some(mot => tacheNomLower.includes(mot));
+        });
+
+      if (tacheParMotsCles?.photo_url) {
+        console.log('[getProblemePhoto] ✅ Photo trouvée via mots-clés [ÉTAPE]:', tacheParMotsCles.nom);
+        return tacheParMotsCles.photo_url;
+      }
+    }
+
+    // Stratégie 3 : Chercher la tâche dont le commentaire contient exactement ce problème
     // Les commentaires des tâches contiennent les problèmes détectés par l'IA
     const tacheAvecProbleme = piece.tachesValidees.find(tache => {
       if (!tache.commentaire || !tache.photo_url) return false;
@@ -224,9 +265,9 @@ export default function RapportPieceDetail({
       return tacheAvecProbleme.photo_url;
     }
 
-    // Stratégie 3 : Fallback - chercher par mots-clés dans le nom de la tâche
+    // Stratégie 4 : Fallback - chercher par mots-clés dans le nom de la tâche
     const problemeText = `${probleme.titre} ${probleme.description}`.toLowerCase();
-    const motsCourants = ['le', 'la', 'les', 'un', 'une', 'des', 'de', 'du', 'et', 'ou', 'à', 'au', 'aux', 'pour', 'sur', 'dans', 'avec', 'sans', 'sont', 'pas', 'être', 'avoir'];
+    const motsCourants = ['le', 'la', 'les', 'un', 'une', 'des', 'de', 'du', 'et', 'ou', 'à', 'au', 'aux', 'pour', 'sur', 'dans', 'avec', 'sans', 'sont', 'pas', 'être', 'avoir', 'étape', 'photo', 'zone', 'non', 'conforme'];
     const motsProbleme = problemeText
       .replace(/[^\w\sàâäéèêëïîôùûüÿæœç]/g, ' ')
       .split(/\s+/)
