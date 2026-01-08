@@ -220,20 +220,35 @@ export default function RapportPieceDetail({
       // Le format typique est "[ÉTAPE] description du problème liée à la tâche"
       // Chercher une tâche dont le nom correspond à des mots-clés de la description
       const descSansPrefix = probleme.description.replace('[ÉTAPE]', '').trim().toLowerCase();
+      console.log('[getProblemePhoto] 🔍 Recherche [ÉTAPE] avec description:', descSansPrefix);
 
-      // Chercher par mots-clés significatifs
+      // Mots à ignorer pour le matching
+      const motsAIgnorer = ['photo', 'non', 'conforme', 'zone', 'différente', 'entre', 'visible', 'malgré', 'consigne', 'après', 'intervention', 'alors', 'doivent', 'être', 'disponibles', 'rapport', 'etat', 'initial', 'manquante', 'manquant'];
+
+      // Chercher par mots-clés significatifs (mots de plus de 3 caractères, pas dans la liste à ignorer)
       const motsCles = descSansPrefix
         .replace(/[^\w\sàâäéèêëïîôùûüÿæœç]/g, ' ')
         .split(/\s+/)
-        .filter(mot => mot.length > 4);
+        .filter(mot => mot.length > 3 && !motsAIgnorer.includes(mot));
 
-      const tacheParMotsCles = piece.tachesValidees
+      console.log('[getProblemePhoto] 🔑 Mots-clés extraits:', motsCles);
+
+      // Calculer un score pour chaque tâche
+      const tachesAvecScore = piece.tachesValidees
         .filter(tache => tache.photo_url)
-        .find(tache => {
-          const tacheNomLower = tache.nom.toLowerCase();
-          // Chercher si au moins un mot-clé significatif est présent dans le nom de la tâche
-          return motsCles.some(mot => tacheNomLower.includes(mot));
-        });
+        .map(tache => {
+          const tacheNomLower = tache.nom.toLowerCase().replace(/[\u{1F300}-\u{1F9FF}]/gu, '').trim();
+          const motsCommuns = motsCles.filter(mot => tacheNomLower.includes(mot));
+          return { tache, score: motsCommuns.length, motsCommuns };
+        })
+        .filter(item => item.score > 0)
+        .sort((a, b) => b.score - a.score);
+
+      if (tachesAvecScore.length > 0) {
+        console.log('[getProblemePhoto] 📊 Meilleur match [ÉTAPE]:', tachesAvecScore[0].tache.nom, 'score:', tachesAvecScore[0].score, 'mots:', tachesAvecScore[0].motsCommuns);
+      }
+
+      const tacheParMotsCles = tachesAvecScore.length > 0 ? tachesAvecScore[0].tache : null;
 
       if (tacheParMotsCles?.photo_url) {
         console.log('[getProblemePhoto] ✅ Photo trouvée via mots-clés [ÉTAPE]:', tacheParMotsCles.nom);
