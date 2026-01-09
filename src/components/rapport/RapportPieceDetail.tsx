@@ -184,126 +184,185 @@ export default function RapportPieceDetail({
     );
   };
 
-  // Fonction helper pour récupérer la photo associée à un problème
-  const getProblemePhoto = (probleme: { etapeId?: string; titre: string; description: string }): string | null => {
-    console.log('[getProblemePhoto] Recherche photo pour problème:', probleme.description, '| etapeId:', probleme.etapeId || 'AUCUN');
+  // Dictionnaire de correspondances sémantiques : objet mentionné → mots-clés de tâches liées
+  const correspondancesSemantiques: Record<string, string[]> = {
+    // Objets de chambre
+    'lit': ['lit', 'draps', 'couette', 'oreiller', 'plaid', 'coussin', 'chambre'],
+    'oreiller': ['lit', 'oreiller', 'coussin', 'chambre'],
+    'plaid': ['lit', 'plaid', 'couette', 'canapé', 'chambre'],
+    'coussin': ['lit', 'coussin', 'canapé', 'chambre', 'salon'],
+    'lampe': ['lampe', 'chevet', 'table', 'chambre'],
+    'chevet': ['chevet', 'table', 'lampe', 'chambre'],
+    'armoire': ['armoire', 'placard', 'rangement', 'chambre'],
+    'chaise': ['chaise', 'bureau', 'table', 'chambre', 'salon'],
+    'télécommande': ['télé', 'television', 'télécommande', 'salon', 'chambre'],
+    'serviette': ['serviette', 'linge', 'bain', 'salle', 'lavabo'],
+    // Objets de cuisine
+    'capsule': ['café', 'capsule', 'machine', 'nespresso', 'cuisine'],
+    'café': ['café', 'capsule', 'machine', 'nespresso', 'cuisine'],
+    'machine': ['machine', 'café', 'capsule', 'lave', 'cuisine'],
+    'bouilloire': ['bouilloire', 'détartrage', 'cuisine'],
+    'frigo': ['frigo', 'réfrigérateur', 'cuisine'],
+    'four': ['four', 'cuisine'],
+    'bol': ['bol', 'vaisselle', 'étagère', 'cuisine'],
+    'cadre': ['cadre', 'photo', 'étagère', 'décoration'],
+    // Objets de salle de bain
+    'lavabo': ['lavabo', 'robinet', 'salle', 'bain'],
+    'douche': ['douche', 'paroi', 'barre', 'salle', 'bain'],
+    'baignoire': ['baignoire', 'bain', 'salle'],
+    'toilette': ['toilette', 'wc', 'cuvette', 'abattant'],
+    'miroir': ['miroir', 'salle', 'bain', 'entrée'],
+    // Objets de salon
+    'canapé': ['canapé', 'salon', 'coussin', 'plaid'],
+    'table': ['table', 'basse', 'manger', 'salon', 'cuisine'],
+  };
 
-    // Stratégie 1 : Si le problème a un etapeId, chercher la tâche correspondante dans tachesValidees
-    // Les etapeId de dataia correspondent aux etapeId des tâches (pas aux etapeid de fulldata)
-    if (probleme.etapeId) {
-      console.log('[getProblemePhoto] 🔍 Recherche par etapeId:', probleme.etapeId);
-      console.log('[getProblemePhoto] 📋 Tâches disponibles:', piece.tachesValidees.map(t => ({ nom: t.nom, etapeId: t.etapeId, hasPhoto: !!t.photo_url })));
+  // Fonction pour extraire les mots-clés pertinents d'un texte
+  const extraireMotsCles = (texte: string): string[] => {
+    const motsAIgnorer = [
+      'photo', 'non', 'conforme', 'zone', 'différente', 'entre', 'visible', 'malgré',
+      'consigne', 'après', 'intervention', 'alors', 'doivent', 'être', 'disponibles',
+      'rapport', 'etat', 'état', 'initial', 'manquante', 'manquant', 'manquants',
+      'étape', 'sortie', 'entrée', 'référence', 'vérifie', 'vérifier', 'permet',
+      'permettant', 'éléments', 'sans', 'avec', 'pour', 'dans', 'sur', 'sous',
+      'plus', 'moins', 'trop', 'peu', 'bien', 'mal', 'bon', 'mauvais',
+      'photos', 'invalides', 'montrent', 'fixé', 'près', 'tuyaux', 'clairement',
+      'pièce', 'logement', 'identifier', 'ajouté', 'ajoutée', 'absente', 'absent',
+      'présent', 'présente', 'initialement', 'déplacé', 'déplacée'
+    ];
 
-      const tacheParEtapeId = piece.tachesValidees.find(tache => tache.etapeId === probleme.etapeId);
-      if (tacheParEtapeId?.photo_url) {
-        console.log('[getProblemePhoto] ✅ Photo trouvée via etapeId dans tachesValidees:', tacheParEtapeId.nom);
-        return tacheParEtapeId.photo_url;
-      } else {
-        console.log('[getProblemePhoto] ⚠️ Tâche trouvée mais sans photo ou tâche non trouvée');
+    return texte
+      .toLowerCase()
+      .replace(/[\u{1F300}-\u{1F9FF}]/gu, ' ') // Supprimer les emojis
+      .replace(/[^\w\sàâäéèêëïîôùûüÿæœç-]/g, ' ') // Garder les lettres et tirets
+      .split(/\s+/)
+      .filter(mot => mot.length > 2 && !motsAIgnorer.includes(mot));
+  };
+
+  // Fonction pour calculer le score de correspondance sémantique
+  const calculerScoreSemantique = (motsClesProbleme: string[], nomTache: string): number => {
+    const tacheNomLower = nomTache.toLowerCase().replace(/[\u{1F300}-\u{1F9FF}]/gu, ' ').trim();
+    let score = 0;
+    const motsMatchs: string[] = [];
+
+    for (const mot of motsClesProbleme) {
+      // Match direct
+      if (tacheNomLower.includes(mot)) {
+        score += 3; // Score élevé pour match direct
+        motsMatchs.push(mot);
+        continue;
       }
 
-      // Fallback : chercher aussi dans rawData.etapes si disponible
+      // Match via synonymes/correspondances sémantiques
+      const correspondances = correspondancesSemantiques[mot];
+      if (correspondances) {
+        for (const corr of correspondances) {
+          if (tacheNomLower.includes(corr)) {
+            score += 2; // Score moyen pour correspondance sémantique
+            motsMatchs.push(`${mot}→${corr}`);
+            break;
+          }
+        }
+      }
+
+      // Match partiel (début de mot)
+      const motsNomTache = tacheNomLower.split(/\s+/);
+      for (const motTache of motsNomTache) {
+        if (motTache.startsWith(mot) || mot.startsWith(motTache)) {
+          score += 1; // Score faible pour match partiel
+          motsMatchs.push(`~${mot}`);
+          break;
+        }
+      }
+    }
+
+    return score;
+  };
+
+  // Fonction helper pour récupérer la photo associée à un problème
+  const getProblemePhoto = (probleme: { etapeId?: string; titre: string; description: string }): string | null => {
+    // Stratégie 1 : Si le problème a un etapeId, chercher la tâche correspondante
+    if (probleme.etapeId) {
+      const tacheParEtapeId = piece.tachesValidees.find(tache => tache.etapeId === probleme.etapeId);
+      if (tacheParEtapeId?.photo_url) {
+        return tacheParEtapeId.photo_url;
+      }
+
+      // Fallback : chercher dans rawData.etapes
       if (piece.rawData?.etapes) {
         const etape = piece.rawData.etapes.find(e => e.etape_id === probleme.etapeId);
         if (etape) {
           const photoEtape = etape.photo_url || etape.photo_base64;
-          if (photoEtape) {
-            console.log('[getProblemePhoto] ✅ Photo trouvée via etapeId dans rawData.etapes');
-            return photoEtape;
+          if (photoEtape) return photoEtape;
+        }
+      }
+    }
+
+    // Stratégie 2 : Matching sémantique avancé
+    const texteComplet = `${probleme.titre} ${probleme.description}`;
+    const motsClesProbleme = extraireMotsCles(texteComplet);
+
+    if (motsClesProbleme.length > 0) {
+      const tachesAvecScore = piece.tachesValidees
+        .filter(tache => tache.photo_url)
+        .map(tache => {
+          const score = calculerScoreSemantique(motsClesProbleme, tache.nom);
+          // Bonus si le commentaire de la tâche correspond aussi
+          let bonusCommentaire = 0;
+          if (tache.commentaire) {
+            const motsClesCommentaire = extraireMotsCles(tache.commentaire);
+            const motsCommuns = motsClesProbleme.filter(m => motsClesCommentaire.includes(m));
+            bonusCommentaire = motsCommuns.length * 2;
+          }
+          return { tache, score: score + bonusCommentaire };
+        })
+        .filter(item => item.score > 0)
+        .sort((a, b) => b.score - a.score);
+
+      if (tachesAvecScore.length > 0 && tachesAvecScore[0].score >= 2) {
+        return tachesAvecScore[0].tache.photo_url!;
+      }
+    }
+
+    // Stratégie 3 : Pour les problèmes [ÉTAPE], chercher des mots-clés spécifiques
+    if (probleme.description.startsWith('[ÉTAPE]')) {
+      const descSansPrefix = probleme.description.replace('[ÉTAPE]', '').trim();
+
+      // Mapping explicite de certains problèmes connus
+      const mappingsExplicites: Record<string, string[]> = {
+        'plaid': ['lit', 'plaid', 'coussin', 'couette'],
+        'coussin': ['lit', 'coussin', 'plaid', 'canapé'],
+        'capsule': ['café', 'capsule', 'machine'],
+        'serviette': ['serviette', 'linge', 'lavabo', 'sèche'],
+        'draps': ['lit', 'draps', 'refaire'],
+      };
+
+      for (const [motCle, termes] of Object.entries(mappingsExplicites)) {
+        if (descSansPrefix.toLowerCase().includes(motCle)) {
+          const tacheMatch = piece.tachesValidees.find(tache => {
+            if (!tache.photo_url) return false;
+            const nomLower = tache.nom.toLowerCase();
+            return termes.some(terme => nomLower.includes(terme));
+          });
+          if (tacheMatch?.photo_url) {
+            return tacheMatch.photo_url;
           }
         }
       }
     }
 
-    // Stratégie 2 : Si le problème commence par [ÉTAPE], extraire le nom de la tâche et chercher par nom
-    if (probleme.description.startsWith('[ÉTAPE]')) {
-      // Le format typique est "[ÉTAPE] description du problème liée à la tâche"
-      // Chercher une tâche dont le nom correspond à des mots-clés de la description
-      const descSansPrefix = probleme.description.replace('[ÉTAPE]', '').trim().toLowerCase();
-      console.log('[getProblemePhoto] 🔍 Recherche [ÉTAPE] avec description:', descSansPrefix);
-
-      // Mots à ignorer pour le matching
-      const motsAIgnorer = ['photo', 'non', 'conforme', 'zone', 'différente', 'entre', 'visible', 'malgré', 'consigne', 'après', 'intervention', 'alors', 'doivent', 'être', 'disponibles', 'rapport', 'etat', 'initial', 'manquante', 'manquant'];
-
-      // Chercher par mots-clés significatifs (mots de plus de 3 caractères, pas dans la liste à ignorer)
-      const motsCles = descSansPrefix
-        .replace(/[^\w\sàâäéèêëïîôùûüÿæœç]/g, ' ')
-        .split(/\s+/)
-        .filter(mot => mot.length > 3 && !motsAIgnorer.includes(mot));
-
-      console.log('[getProblemePhoto] 🔑 Mots-clés extraits:', motsCles);
-
-      // Calculer un score pour chaque tâche
-      const tachesAvecScore = piece.tachesValidees
-        .filter(tache => tache.photo_url)
-        .map(tache => {
-          const tacheNomLower = tache.nom.toLowerCase().replace(/[\u{1F300}-\u{1F9FF}]/gu, '').trim();
-          const motsCommuns = motsCles.filter(mot => tacheNomLower.includes(mot));
-          return { tache, score: motsCommuns.length, motsCommuns };
-        })
-        .filter(item => item.score > 0)
-        .sort((a, b) => b.score - a.score);
-
-      if (tachesAvecScore.length > 0) {
-        console.log('[getProblemePhoto] 📊 Meilleur match [ÉTAPE]:', tachesAvecScore[0].tache.nom, 'score:', tachesAvecScore[0].score, 'mots:', tachesAvecScore[0].motsCommuns);
-      }
-
-      const tacheParMotsCles = tachesAvecScore.length > 0 ? tachesAvecScore[0].tache : null;
-
-      if (tacheParMotsCles?.photo_url) {
-        console.log('[getProblemePhoto] ✅ Photo trouvée via mots-clés [ÉTAPE]:', tacheParMotsCles.nom);
-        return tacheParMotsCles.photo_url;
+    // Stratégie 4 : Fallback - utiliser la première photo de sortie disponible
+    // pour les problèmes qui n'ont pas de tâche correspondante
+    const photosSortie = piece.checkSortie?.photosSortie || [];
+    if (photosSortie.length > 0) {
+      const premierePhoto = photosSortie[0];
+      if (typeof premierePhoto === 'string' && premierePhoto) {
+        return premierePhoto;
+      } else if (typeof premierePhoto === 'object' && premierePhoto?.url) {
+        return premierePhoto.url;
       }
     }
 
-    // Stratégie 3 : Chercher la tâche dont le commentaire contient exactement ce problème
-    // Les commentaires des tâches contiennent les problèmes détectés par l'IA
-    const tacheAvecProbleme = piece.tachesValidees.find(tache => {
-      if (!tache.commentaire || !tache.photo_url) return false;
-
-      // Vérifier si le commentaire de la tâche contient la description du problème
-      const commentaireLower = tache.commentaire.toLowerCase();
-      const descriptionLower = probleme.description.toLowerCase();
-
-      // Match exact ou partiel (au moins 50% des mots)
-      const motsDescription = descriptionLower.split(/\s+/).filter(m => m.length > 3);
-      const motsCommuns = motsDescription.filter(mot => commentaireLower.includes(mot));
-      const tauxMatch = motsCommuns.length / motsDescription.length;
-
-      console.log(`[getProblemePhoto] Tâche "${tache.nom}" - taux match: ${(tauxMatch * 100).toFixed(0)}%`);
-
-      return tauxMatch > 0.5; // Au moins 50% des mots en commun
-    });
-
-    if (tacheAvecProbleme?.photo_url) {
-      console.log('[getProblemePhoto] ✅ Photo trouvée via commentaire de tâche:', tacheAvecProbleme.nom);
-      return tacheAvecProbleme.photo_url;
-    }
-
-    // Stratégie 4 : Fallback - chercher par mots-clés dans le nom de la tâche
-    const problemeText = `${probleme.titre} ${probleme.description}`.toLowerCase();
-    const motsCourants = ['le', 'la', 'les', 'un', 'une', 'des', 'de', 'du', 'et', 'ou', 'à', 'au', 'aux', 'pour', 'sur', 'dans', 'avec', 'sans', 'sont', 'pas', 'être', 'avoir', 'étape', 'photo', 'zone', 'non', 'conforme'];
-    const motsProbleme = problemeText
-      .replace(/[^\w\sàâäéèêëïîôùûüÿæœç]/g, ' ')
-      .split(/\s+/)
-      .filter(mot => mot.length > 3 && !motsCourants.includes(mot));
-
-    const tachesAvecScore = piece.tachesValidees
-      .filter(tache => tache.photo_url)
-      .map(tache => {
-        const tacheNom = tache.nom.toLowerCase().replace(/[\u{1F300}-\u{1F9FF}]/gu, '').trim();
-        const motsCommuns = motsProbleme.filter(mot => tacheNom.includes(mot));
-        return { tache, score: motsCommuns.length };
-      })
-      .filter(item => item.score > 0)
-      .sort((a, b) => b.score - a.score);
-
-    if (tachesAvecScore.length > 0) {
-      console.log('[getProblemePhoto] ✅ Photo trouvée via mots-clés:', tachesAvecScore[0].tache.nom);
-      return tachesAvecScore[0].tache.photo_url!;
-    }
-
-    console.log('[getProblemePhoto] ❌ Aucune photo trouvée');
     return null;
   };
 
