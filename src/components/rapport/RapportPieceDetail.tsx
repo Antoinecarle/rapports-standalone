@@ -326,19 +326,21 @@ export default function RapportPieceDetail({
 
     // Stratégie 3 : Pour les problèmes [ÉTAPE], chercher des mots-clés spécifiques
     if (probleme.description.startsWith('[ÉTAPE]')) {
-      const descSansPrefix = probleme.description.replace('[ÉTAPE]', '').trim();
+      const descSansPrefix = probleme.description.replace('[ÉTAPE]', '').trim().toLowerCase();
 
       // Mapping explicite de certains problèmes connus
       const mappingsExplicites: Record<string, string[]> = {
-        'plaid': ['lit', 'plaid', 'coussin', 'couette'],
-        'coussin': ['lit', 'coussin', 'plaid', 'canapé'],
+        'plaid': ['lit', 'plaid', 'coussin', 'couette', 'refaire', 'draps'],
+        'coussin': ['lit', 'coussin', 'plaid', 'canapé', 'refaire'],
         'capsule': ['café', 'capsule', 'machine'],
         'serviette': ['serviette', 'linge', 'lavabo', 'sèche'],
         'draps': ['lit', 'draps', 'refaire'],
+        'lit refait': ['lit', 'refaire', 'draps'],
+        'décoratif': ['lit', 'coussin', 'plaid', 'refaire'],
       };
 
       for (const [motCle, termes] of Object.entries(mappingsExplicites)) {
-        if (descSansPrefix.toLowerCase().includes(motCle)) {
+        if (descSansPrefix.includes(motCle)) {
           const tacheMatch = piece.tachesValidees.find(tache => {
             if (!tache.photo_url) return false;
             const nomLower = tache.nom.toLowerCase();
@@ -351,8 +353,30 @@ export default function RapportPieceDetail({
       }
     }
 
-    // Stratégie 4 : Fallback - utiliser la première photo de sortie disponible
-    // pour les problèmes qui n'ont pas de tâche correspondante
+    // Stratégie 4 : Chercher la première tâche avec photo qui a un nom lié au type de problème
+    const typeProbleme = probleme.titre.toLowerCase();
+    const prioriteParType: Record<string, string[]> = {
+      'objets manquants': ['ranger', 'refaire', 'placer', 'poser', 'lit', 'table'],
+      'objets ajoutés': ['ranger', 'nettoyer', 'lit', 'table', 'sol'],
+      'agencement': ['ranger', 'refaire', 'lit', 'placer'],
+      'qualité image': ['nettoyer', 'vérifier'],
+      'mauvaise pièce': [],
+    };
+
+    for (const [type, termes] of Object.entries(prioriteParType)) {
+      if (typeProbleme.includes(type) && termes.length > 0) {
+        const tacheMatch = piece.tachesValidees.find(tache => {
+          if (!tache.photo_url) return false;
+          const nomLower = tache.nom.toLowerCase();
+          return termes.some(terme => nomLower.includes(terme));
+        });
+        if (tacheMatch?.photo_url) {
+          return tacheMatch.photo_url;
+        }
+      }
+    }
+
+    // Stratégie 5 : Fallback - utiliser la première photo de sortie disponible
     const photosSortie = piece.checkSortie?.photosSortie || [];
     if (photosSortie.length > 0) {
       const premierePhoto = photosSortie[0];
@@ -361,6 +385,12 @@ export default function RapportPieceDetail({
       } else if (typeof premierePhoto === 'object' && premierePhoto?.url) {
         return premierePhoto.url;
       }
+    }
+
+    // Stratégie 6 : Fallback ultime - première tâche avec photo
+    const premiereTacheAvecPhoto = piece.tachesValidees.find(t => t.photo_url);
+    if (premiereTacheAvecPhoto?.photo_url) {
+      return premiereTacheAvecPhoto.photo_url;
     }
 
     return null;
