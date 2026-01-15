@@ -185,13 +185,8 @@ export default function RapportPieceDetail({
   };
 
   // Fonction helper pour vérifier si une tâche est réellement validée
-  // Une tâche est validée si elle est approuvée ET qu'elle n'a pas de problèmes ET que le commentaire ne contient pas "[Tâche non validée]"
+  // Une tâche est validée si elle est approuvée ET qu'elle n'a pas de problèmes détectés par l'IA
   const isTacheValidee = (tache: TacheValidation): boolean => {
-    // Si le commentaire contient "[Tâche non validée]", la tâche n'est pas validée
-    if (tache.commentaire && tache.commentaire.includes("[Tâche non validée]")) {
-      return false;
-    }
-    // Sinon, vérifier si elle est approuvée et sans problèmes
     return tache.estApprouve && !tacheHasProblems(tache);
   };
 
