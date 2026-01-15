@@ -973,7 +973,8 @@ export default function RapportPieceDetail({
       )}
 
       {/* Faits signalés par l'IA - Section toujours visible */}
-      {piece.problemes.length > 0 && <CardContent className="border-t pt-3.5">
+      {/* Filtrer les problèmes pour exclure les commentaires de validation [ÉTAPE] */}
+      {piece.problemes.filter(p => !p.description.startsWith('[ÉTAPE]')).length > 0 && <CardContent className="border-t pt-3.5">
         <Card className="bg-card">
           <CardContent className="p-3 md:p-4">
             <h4 className="font-medium mb-2 md:mb-3 text-xs md:text-sm flex items-center gap-2">
@@ -981,7 +982,7 @@ export default function RapportPieceDetail({
               Faits signalés par l&apos;IA
             </h4>
             <div className="space-y-2">
-              {problemesTries.map((probleme, idx) => {
+              {problemesTries.filter(p => !p.description.startsWith('[ÉTAPE]')).map((probleme, idx) => {
                 // Trouver l'index original du problème pour les états (signalement, consigne, faux)
                 const originalIndex = piece.problemes.findIndex(p => p.id === probleme.id);
                 const estSignale = problemesAvecSignalement.includes(originalIndex);
