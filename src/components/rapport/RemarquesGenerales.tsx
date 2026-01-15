@@ -9,6 +9,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { useToast } from "@/hooks/use-toast";
 import { isValidDate } from "@/utils/dateUtils";
+import { endpointRapportFormService } from "@/services/endpointRapportFormService";
 interface RemarquesGeneralesData {
   scope: "logement";
   meta: {
@@ -54,6 +55,7 @@ interface RemarquesGeneralesData {
     room: string;
     roomName?: string; // Nom de la pièce résolu depuis l'ID
     // Données enrichies depuis l'API Bubble
+    signalementId?: string; // ID unique du signalement pour l'API
     typeText?: string;
     img_url?: string | null;
     signaleur?: {
@@ -93,6 +95,7 @@ interface RemarquesGeneralesData {
 interface RemarquesGeneralesProps {
   data: RemarquesGeneralesData;
   onRoomClick: (roomId: string) => void;
+  onPhotoClick?: (photoUrl: string) => void;
 }
 
 // Mock data selon vos spécifications
@@ -239,7 +242,8 @@ const mockData: RemarquesGeneralesData = {
 };
 export default function RemarquesGenerales({
   data = mockData,
-  onRoomClick
+  onRoomClick,
+  onPhotoClick
 }: RemarquesGeneralesProps) {
   const {
     toast
@@ -247,7 +251,16 @@ export default function RemarquesGenerales({
   const [filtreActif, setFiltreActif] = useState<string>("tous");
   const [recherche, setRecherche] = useState("");
   const [chipActif, setChipActif] = useState<string | null>(null);
-  const [statutsTraitement, setStatutsTraitement] = useState<Record<number, "À traiter" | "Résolu">>(Object.fromEntries(data.user_reports.map((_, index) => [index, "À traiter"])));
+  const [statutsTraitement, setStatutsTraitement] = useState<Record<number, "À traiter" | "Résolu">>(
+    Object.fromEntries(data.user_reports.map((report, index) => {
+      // Initialiser le statut depuis OS_signalementStatut si disponible
+      const statut = report.OS_signalementStatut;
+      // "Traité" ou "Résolu" dans l'API correspond à "Résolu" dans l'UI
+      const mappedStatut: "À traiter" | "Résolu" =
+        statut === "Traité" || statut === "Résolu" ? "Résolu" : "À traiter";
+      return [index, mappedStatut];
+    }))
+  );
 
   // Filtrage des pièces
   const piecesFiltrees = data.rooms.filter(room => {
@@ -279,15 +292,50 @@ export default function RemarquesGenerales({
         return status;
     }
   };
-  const handleStatutChange = (index: number, newStatut: "À traiter" | "Résolu") => {
+  const handleStatutChange = async (index: number, newStatut: "À traiter" | "Résolu") => {
+    const signalement = data.user_reports[index];
+
+    // Vérifier si le signalement a un ID
+    if (!signalement?.signalementId) {
+      toast({
+        title: "Erreur",
+        description: "Impossible de mettre à jour le statut : ID du signalement manquant.",
+        variant: "destructive"
+      });
+      return;
+    }
+
+    // Mettre à jour l'état local immédiatement pour une UI réactive
+    const previousStatut = statutsTraitement[index];
     setStatutsTraitement(prev => ({
       ...prev,
       [index]: newStatut
     }));
-    toast({
-      title: "Statut mis à jour",
-      description: `Le signalement a été marqué comme "${newStatut}".`
-    });
+
+    try {
+      // Appeler l'API uniquement si le statut passe à "Résolu"
+      if (newStatut === "Résolu") {
+        await endpointRapportFormService.markSignalementTraite(signalement.signalementId);
+      }
+
+      toast({
+        title: "Statut mis à jour",
+        description: `Le signalement a été marqué comme "${newStatut}".`
+      });
+    } catch (error) {
+      // En cas d'erreur, revenir au statut précédent
+      setStatutsTraitement(prev => ({
+        ...prev,
+        [index]: previousStatut
+      }));
+
+      console.error('[RemarquesGenerales] Erreur lors de la mise à jour du statut:', error);
+      toast({
+        title: "Erreur",
+        description: "Impossible de mettre à jour le statut. Veuillez réessayer.",
+        variant: "destructive"
+      });
+    }
   };
 
   // Fonctions helper pour la sévérité
@@ -438,6 +486,7 @@ export default function RemarquesGenerales({
               src={report.img_url.startsWith('//') ? `https:${report.img_url}` : report.img_url}
               alt="Photo du signalement"
               className="w-24 h-24 sm:w-20 sm:h-20 object-cover rounded cursor-pointer hover:opacity-80 transition-opacity border border-border"
+              onClick={() => onPhotoClick?.(report.img_url.startsWith('//') ? `https:${report.img_url}` : report.img_url)}
             />
           </div>}
 

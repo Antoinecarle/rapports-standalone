@@ -184,6 +184,49 @@ export default function RapportPieceDetail({
     );
   };
 
+  // Fonction helper pour vérifier si une tâche est réellement validée
+  // Une tâche est validée si elle est approuvée ET qu'elle n'a pas de problèmes ET que le commentaire ne contient pas "[Tâche non validée]"
+  const isTacheValidee = (tache: TacheValidation): boolean => {
+    // Si le commentaire contient "[Tâche non validée]", la tâche n'est pas validée
+    if (tache.commentaire && tache.commentaire.includes("[Tâche non validée]")) {
+      return false;
+    }
+    // Sinon, vérifier si elle est approuvée et sans problèmes
+    return tache.estApprouve && !tacheHasProblems(tache);
+  };
+
+  // Compter le nombre de signalements de type "Tâche non validée" pour cette pièce
+  const tachesNonValideesFromSignalements = useMemo(() => {
+    return localSignalements.filter(sig =>
+      sig.typeText === "Tâche non validée"
+    );
+  }, [localSignalements]);
+
+  // Créer une liste combinée de toutes les tâches (validées + non validées depuis signalements)
+  const toutesLesTaches = useMemo(() => {
+    // Convertir les tâches validées en format unifié
+    const tachesFromValidees = piece.tachesValidees.map(tache => ({
+      type: 'tache' as const,
+      data: tache,
+      isValidated: isTacheValidee(tache)
+    }));
+
+    // Convertir les signalements "Tâche non validée" en format unifié
+    const tachesFromSignalements = tachesNonValideesFromSignalements.map(sig => ({
+      type: 'signalement' as const,
+      data: sig,
+      isValidated: false
+    }));
+
+    return [...tachesFromValidees, ...tachesFromSignalements];
+  }, [piece.tachesValidees, tachesNonValideesFromSignalements]);
+
+  // Calculer le nombre total de tâches
+  const totalTaches = toutesLesTaches.length;
+
+  // Calculer le nombre de tâches réellement validées
+  const tachesValidees = toutesLesTaches.filter(t => t.isValidated).length;
+
   // Dictionnaire de correspondances sémantiques : objet mentionné → mots-clés de tâches liées
   const correspondancesSemantiques: Record<string, string[]> = {
     // Objets de chambre
@@ -668,8 +711,8 @@ export default function RapportPieceDetail({
                     {renderStars(piece.note)}
                   </div>
 
-                  {piece.tachesValidees.filter(t => !t.estApprouve || tacheHasProblems(t)).length > 0 && <Badge variant="secondary" className="text-xs shrink-0">
-                    {piece.tachesValidees.filter(t => !t.estApprouve || tacheHasProblems(t)).length} tâche{piece.tachesValidees.filter(t => !t.estApprouve || tacheHasProblems(t)).length > 1 ? 's' : ''} non réalisée{piece.tachesValidees.filter(t => !t.estApprouve || tacheHasProblems(t)).length > 1 ? 's' : ''}
+                  {piece.tachesValidees.filter(t => !isTacheValidee(t)).length > 0 && <Badge variant="secondary" className="text-xs shrink-0">
+                    {piece.tachesValidees.filter(t => !isTacheValidee(t)).length} tâche{piece.tachesValidees.filter(t => !isTacheValidee(t)).length > 1 ? 's' : ''} non réalisée{piece.tachesValidees.filter(t => !isTacheValidee(t)).length > 1 ? 's' : ''}
                   </Badge>}
 
                   {piece.problemes.length > 0 && <Badge variant="default" className="text-xs bg-primary text-primary-foreground shrink-0">
@@ -696,48 +739,67 @@ export default function RapportPieceDetail({
                 <AccordionItem value="taches" className="border-none">
                   <AccordionTrigger className="py-2 hover:no-underline">
                     <span className="text-sm font-medium">
-                      Tâches réalisées : {piece.tachesValidees.filter(t => t.estApprouve && !tacheHasProblems(t)).length}/{piece.tachesValidees.length}
+                      Tâches réalisées : {tachesValidees}/{totalTaches}
                     </span>
                   </AccordionTrigger>
                   <AccordionContent>
                     <div className="space-y-2 pt-2">
-                      {piece.tachesValidees.map((tache, index) => {
-                        // Une tâche est considérée comme validée SI elle est approuvée ET qu'il n'y a pas de problème détecté par l'IA
-                        const isValidated = tache.estApprouve && !tacheHasProblems(tache);
+                      {toutesLesTaches.map((item, index) => {
+                        const isValidated = item.isValidated;
 
-                        return <div key={index} className={`flex items-start gap-2 p-2 rounded-lg border ${isValidated ? 'bg-green-50 border-green-200 dark:bg-green-950/20 dark:border-green-900' : 'bg-red-50 border-red-200 dark:bg-red-950/20 dark:border-red-900'}`}>
+                        // Extraire les informations selon le type
+                        let nom = '';
+                        let commentaire = '';
+                        let photoUrl = null;
+                        let photoReferenceUrl = null;
+
+                        if (item.type === 'tache') {
+                          nom = item.data.nom;
+                          commentaire = item.data.commentaire || '';
+                          photoUrl = item.data.photo_url;
+                          photoReferenceUrl = item.data.photo_reference_url;
+                        } else {
+                          // C'est un signalement "Tâche non validée"
+                          // Extraire le nom de la tâche depuis la description
+                          const match = item.data.description?.match(/\[Tâche non validée\]\s*(.+?)(?:\s+Raison:|$)/);
+                          nom = match ? match[1].trim() : item.data.description || 'Tâche non validée';
+                          commentaire = item.data.description || '';
+                          photoUrl = item.data.photo;
+                        }
+
+                        return <div key={`${item.type}-${index}`} className={`flex items-start gap-2 p-2 rounded-lg border ${isValidated ? 'bg-green-50 border-green-200 dark:bg-green-950/20 dark:border-green-900' : 'bg-red-50 border-red-200 dark:bg-red-950/20 dark:border-red-900'}`}>
                           {isValidated ? <CheckCircle className="h-4 w-4 text-green-600 flex-shrink-0 mt-0.5" /> : <XCircle className="h-4 w-4 text-red-600 flex-shrink-0 mt-0.5" />}
                           <div className="flex-1 min-w-0">
-                            <p className="text-xs font-medium">{tache.nom}</p>
-                            {tache.commentaire && <p className="text-xs text-muted-foreground mt-1">{tache.commentaire}</p>}
+                            <p className="text-xs font-medium">{nom}</p>
+                            {commentaire && <p className="text-xs text-muted-foreground mt-1">{commentaire}</p>}
 
                             {/* Photos de la tâche si disponibles */}
-                            {(tache.photo_reference_url || tache.photo_url) && (
+                            {(photoReferenceUrl || photoUrl) && (
                               <div className="mt-2 flex gap-2">
                                 {/* Photo de référence */}
-                                {tache.photo_reference_url && (
+                                {photoReferenceUrl && (
                                   <div className="flex flex-col gap-1">
                                     <span className="text-xs text-muted-foreground">Référence</span>
                                     <img
-                                      src={tache.photo_reference_url}
-                                      alt={`Photo de référence: ${tache.nom}`}
+                                      src={photoReferenceUrl}
+                                      alt={`Photo de référence: ${nom}`}
                                       className="w-24 h-24 sm:w-32 sm:h-32 object-cover rounded-lg cursor-pointer hover:opacity-80 transition-opacity border-2 border-blue-300"
-                                      onClick={() => onPhotoClick(tache.photo_reference_url!)}
+                                      onClick={() => onPhotoClick(photoReferenceUrl)}
                                     />
                                   </div>
                                 )}
 
                                 {/* Photo de vérification */}
-                                {tache.photo_url && (
+                                {photoUrl && (
                                   <div className="flex flex-col gap-1">
                                     <span className="text-xs text-muted-foreground">Prise</span>
                                     <img
-                                      src={tache.photo_url}
-                                      alt={`Photo de vérification: ${tache.nom}`}
+                                      src={photoUrl}
+                                      alt={`Photo de vérification: ${nom}`}
                                       className={`w-24 h-24 sm:w-32 sm:h-32 object-cover rounded-lg cursor-pointer hover:opacity-80 transition-opacity border-2 ${
-                                        tacheHasProblems(tache) ? 'border-red-500' : 'border-green-300'
+                                        item.type === 'tache' && tacheHasProblems(item.data) ? 'border-red-500' : 'border-green-300'
                                       }`}
-                                      onClick={() => onPhotoClick(tache.photo_url!)}
+                                      onClick={() => onPhotoClick(photoUrl)}
                                     />
                                   </div>
                                 )}
@@ -745,13 +807,13 @@ export default function RapportPieceDetail({
                             )}
 
                             {/* Message d'alerte si problème détecté par l'IA */}
-                            {tacheHasProblems(tache) && (
+                            {item.type === 'tache' && tacheHasProblems(item.data) && (
                               <div className="mt-2 p-2 bg-red-50 border border-red-200 rounded-lg dark:bg-red-950/20 dark:border-red-900">
                                 <div className="flex items-start gap-2">
                                   <AlertTriangle className="h-4 w-4 text-red-600 flex-shrink-0 mt-0.5" />
                                   <div className="flex-1">
                                     {piece.problemes
-                                      .filter(p => p.etapeId === tache.etapeId && p.detectionIA && !p.estFaux)
+                                      .filter(p => p.etapeId === item.data.etapeId && p.detectionIA && !p.estFaux)
                                       .map((probleme, idx) => (
                                         <p key={idx} className="text-xs text-red-700 dark:text-red-400">
                                           {probleme.description}

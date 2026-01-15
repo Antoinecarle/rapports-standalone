@@ -73,7 +73,7 @@ export default function RapportDetail({
         <RapportSynthese rapport={synthese} />
 
         {/* Remarques générales */}
-        <RemarquesGenerales data={remarquesGenerales} onRoomClick={handleRoomClick} />
+        <RemarquesGenerales data={remarquesGenerales} onRoomClick={handleRoomClick} onPhotoClick={handlePhotoClick} />
 
         {/* Détail par pièce */}
         <div className="space-y-6">
@@ -103,8 +103,8 @@ export default function RapportDetail({
 
     {/* Modal pour afficher les photos en grand */}
     {selectedPhoto && <div className="fixed inset-0 bg-black/80 flex items-center justify-center p-4 z-[60]" onClick={() => setSelectedPhoto(null)}>
-      <div className="max-w-4xl max-h-[90vh]">
-        <img src={selectedPhoto} alt="Photo en grand" className="w-full h-full object-contain rounded-lg" />
+      <div className="relative max-w-[90vw] max-h-[90vh] w-full h-full flex items-center justify-center">
+        <img src={selectedPhoto} alt="Photo en grand" className="max-w-full max-h-full object-contain rounded-lg" />
       </div>
       <Button variant="ghost" size="sm" className="absolute top-4 right-4 text-white hover:bg-white/20" onClick={() => setSelectedPhoto(null)}>
         <X className="h-5 w-5" />

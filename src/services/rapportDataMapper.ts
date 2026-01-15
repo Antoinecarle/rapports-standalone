@@ -191,6 +191,7 @@ export function mapToRemarquesGenerales(data: FusedRapportData) {
       room: s.room_id,
       roomName: pieceIdToName.get(s.room_id) || s.room_id, // Résoudre le nom de la pièce
       // Données enrichies depuis l'API Bubble
+      signalementId: s.signalement_id, // ID unique du signalement pour l'API
       typeText: s.typeText,
       img_url: s.img_url,
       signaleur: s.signaleur,
