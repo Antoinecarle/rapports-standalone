@@ -3,9 +3,17 @@
  * Ces types représentent la structure des données brutes du backend
  */
 
+export interface GlobalScore {
+  score: number;
+  label: string;
+  description: string;
+  score_explanation?: string;  // 🆕 Explication en langage naturel de la note
+}
+
 export interface ReportMetadata {
   id: string;
   logement: string;
+  logementName?: string;  // 🆕 Nom du logement
   dateDebut: string;
   dateFin: string;
   statut: "Terminé" | "Expiré" | "En cours";
@@ -16,6 +24,7 @@ export interface ReportMetadata {
   etat: number;
   dateGeneration: string;
   heureGeneration: string;
+  global_score?: GlobalScore;  // 🆕 Score global avec explication
 }
 
 export interface SousNotes {

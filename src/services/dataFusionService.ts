@@ -676,6 +676,10 @@ export class DataFusionService {
       return piece;
     });
 
+    // Extraire le global_score depuis dataia si disponible
+    const globalScore = fullData.dataia?.analysis_enrichment?.global_score;
+    console.log('[DataFusionService] 🎯 global_score extrait:', globalScore);
+
     // Retourner les données fusionnées avec reportMetadata et timestamps mis à jour
     return {
       ...aiData,
@@ -683,7 +687,9 @@ export class DataFusionService {
       reportMetadata: {
         ...aiData.reportMetadata,
         typeParcours,
-        etatLieuxMoment
+        etatLieuxMoment,
+        logementName: fullData.logementName,  // 🆕 Nom du logement
+        global_score: globalScore  // 🆕 Score global avec explication
       },
       rawData: {
         agent: rawData.agent,
