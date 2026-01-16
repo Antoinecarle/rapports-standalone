@@ -25,6 +25,7 @@ interface RapportSyntheseProps {
       propreteAgencement: string[];
       signalements: string[];
     };
+    scoreExplanation?: string; // 🆕 Explication de la note globale
     // Timestamps du parcours
     checkinStartHour?: string;
     checkinEndHour?: string;
@@ -34,6 +35,8 @@ interface RapportSyntheseProps {
     typeParcours?: "voyageur" | "menage";
     // Type d'état des lieux
     etatLieuxMoment?: "sortie" | "arriveeSortie";
+    // Explication de la note globale
+    scoreExplanation?: string;
   };
 }
 export default function RapportSynthese({
@@ -170,6 +173,13 @@ export default function RapportSynthese({
           ))}
         </div>
         <span className="text-xl md:text-2xl font-bold">{rapport.noteGenerale}/5</span>
+
+        {/* Explication de la note globale */}
+        {rapport.scoreExplanation && (
+          <p className="text-sm text-muted-foreground text-center mt-2 max-w-2xl">
+            {rapport.scoreExplanation}
+          </p>
+        )}
       </div>
 
       {rapport.sousNotes && rapport.noteGenerale > 3.4 && <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4">

@@ -128,16 +128,25 @@ export function mapToRapportSynthese(data: FusedRapportData) {
       })
       : '');
 
-  // Gérer l'adresse du logement avec fallback sur fullData
-  const logement = syntheseSection.logement &&
-    syntheseSection.logement !== "Adresse non renseignée" &&
-    syntheseSection.logement.trim() !== ""
-    ? syntheseSection.logement
-    : (data.fullData?.logementName && data.fullData.logementName.trim() !== ""
-      ? data.fullData.logementName
-      : "Logement non renseigné");
+  // Utiliser le nom du logement en priorité, sinon fallback sur l'adresse
+  // Priorité : reportMetadata.logementName > syntheseSection.logementName > fullData.logementName > syntheseSection.logement (adresse)
+  const logement = data.reportMetadata?.logementName && data.reportMetadata.logementName.trim() !== ""
+    ? data.reportMetadata.logementName  // 1. Priorité au nom depuis reportMetadata
+    : (syntheseSection.logementName && syntheseSection.logementName.trim() !== ""
+      ? syntheseSection.logementName  // 2. Fallback sur syntheseSection
+      : (data.fullData?.logementName && data.fullData.logementName.trim() !== ""
+        ? data.fullData.logementName  // 3. Fallback sur fullData
+        : (syntheseSection.logement &&
+          syntheseSection.logement !== "Adresse non renseignée" &&
+          syntheseSection.logement.trim() !== ""
+          ? syntheseSection.logement  // 4. Fallback sur l'adresse
+          : "Logement non renseigné")));
 
-
+  // Extraire l'explication du score depuis reportMetadata.global_score.score_explanation
+  console.log('[RapportDataMapper] 🔍 DEBUG reportMetadata:', data.reportMetadata);
+  console.log('[RapportDataMapper] 🔍 DEBUG global_score:', data.reportMetadata?.global_score);
+  const scoreExplanation = data.reportMetadata?.global_score?.score_explanation;
+  console.log('[RapportDataMapper] 🔍 DEBUG scoreExplanation:', scoreExplanation);
 
   return {
     logement,
@@ -152,6 +161,7 @@ export function mapToRapportSynthese(data: FusedRapportData) {
     sousNotes: syntheseSection.sousNotes,
     statut: syntheseSection.statut,
     remarquesGenerales: syntheseSection.remarquesGenerales,
+    scoreExplanation,  // 🆕 Explication de la note globale
     // Informations supplémentaires de l'agent
     agentFullName: `${rawData.agent.firstname} ${rawData.agent.lastname}`,
     agentPhone: rawData.agent.phone,

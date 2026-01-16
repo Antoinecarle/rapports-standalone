@@ -45,9 +45,20 @@ export interface Piece {
   nom: string;
 }
 
+export interface GlobalScore {
+  score: number;  // Note globale (1-5)
+  label: string;  // EXCELLENT, TRÈS BON, BON, etc.
+  description: string;  // Détails techniques du calcul
+  score_explanation?: string;  // 🆕 Explication en langage naturel
+}
+
+export interface AnalysisEnrichment {
+  global_score: GlobalScore;
+}
+
 export interface DataIA {
   // Structure des données d'analyse IA depuis Bubble.io
-  // À compléter selon la structure réelle une fois qu'elle sera définie
+  analysis_enrichment?: AnalysisEnrichment;
   [key: string]: any;
 }
 
@@ -123,6 +134,11 @@ class FullDataService {
 
       // Parser le JSON nettoyé
       const data = JSON.parse(cleanedText);
+
+      // 🔍 DEBUG: Logger le champ dataia
+      console.log('[FullDataService] 🔍 DEBUG dataia brut:', data.dataia);
+      console.log('[FullDataService] 🔍 DEBUG dataia type:', typeof data.dataia);
+      console.log('[FullDataService] 🔍 DEBUG dataia keys:', data.dataia ? Object.keys(data.dataia) : 'N/A');
 
       // Restaurer la première valeur de logementName si elle a été écrasée
       if (firstLogementName && (!data.logementName || data.logementName.trim() === '')) {

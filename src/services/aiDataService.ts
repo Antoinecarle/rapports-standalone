@@ -41,6 +41,8 @@ class AiDataService {
 
       console.log(`[AiDataService] Données d'analyse IA chargées avec succès`);
       console.log(`[AiDataService] Rapport: ${data.reportMetadata?.id || 'ID non disponible'}`);
+      console.log('[AiDataService] 📦 PAYLOAD COMPLET reçu de l\'API rapportdataia:', JSON.stringify(data, null, 2));
+
 
       return data;
     } catch (error) {

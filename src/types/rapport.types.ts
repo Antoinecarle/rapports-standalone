@@ -33,7 +33,8 @@ export interface RemarquesGenerales {
 }
 
 export interface SyntheseSection {
-  logement: string;
+  logement: string;  // Adresse du logement
+  logementName?: string;  // 🆕 Nom du logement (prioritaire sur l'adresse)
   voyageur: string;
   email: string;
   telephone: string;
@@ -47,6 +48,7 @@ export interface SyntheseSection {
   sousNotes: SousNotes;
   statut: string;
   remarquesGenerales: RemarquesGenerales;
+  scoreExplanation?: string;  // 🆕 Explication de la note globale
 }
 
 export interface IssuesSummary {
