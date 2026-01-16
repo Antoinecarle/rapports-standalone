@@ -142,11 +142,14 @@ export function mapToRapportSynthese(data: FusedRapportData) {
           ? syntheseSection.logement  // 4. Fallback sur l'adresse
           : "Logement non renseigné")));
 
-  // Extraire l'explication du score depuis reportMetadata.global_score.score_explanation
-  console.log('[RapportDataMapper] 🔍 DEBUG reportMetadata:', data.reportMetadata);
-  console.log('[RapportDataMapper] 🔍 DEBUG global_score:', data.reportMetadata?.global_score);
-  const scoreExplanation = data.reportMetadata?.global_score?.score_explanation;
-  console.log('[RapportDataMapper] 🔍 DEBUG scoreExplanation:', scoreExplanation);
+  // Extraire l'explication du score depuis :
+  // 1. syntheseSection.scoreExplanation (priorité - envoyé par le webhook individual-report)
+  // 2. reportMetadata.global_score.score_explanation (fallback)
+  console.log('[RapportDataMapper] 🔍 DEBUG syntheseSection.scoreExplanation:', syntheseSection.scoreExplanation);
+  console.log('[RapportDataMapper] 🔍 DEBUG reportMetadata.global_score:', data.reportMetadata?.global_score);
+  const scoreExplanation = syntheseSection.scoreExplanation
+    || data.reportMetadata?.global_score?.score_explanation;
+  console.log('[RapportDataMapper] 🔍 DEBUG scoreExplanation final:', scoreExplanation);
 
   return {
     logement,
