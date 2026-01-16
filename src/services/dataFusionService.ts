@@ -613,10 +613,19 @@ export class DataFusionService {
         console.log(`[DataFusionService] 📝 Nom de pièce remplacé par Bubble: ${pieceName} pour ${aiPiece.id}`);
       }
 
-      // Créer une copie de aiPiece avec le nom mis à jour
+      // Récupérer les photos de référence depuis fullData.photoPieceinitiales
+      let photosReference = aiPiece.photosReference || [];
+      const photosInitialesForPiece = fullData.photoPieceinitiales?.find(p => p.pieceid === aiPiece.id);
+      if (photosInitialesForPiece?.photourl && photosInitialesForPiece.photourl.length > 0) {
+        photosReference = photosInitialesForPiece.photourl.filter(url => url && url.trim() !== '');
+        console.log(`[DataFusionService] 📸 ${photosReference.length} photo(s) de référence trouvée(s) pour ${pieceName}`);
+      }
+
+      // Créer une copie de aiPiece avec le nom et les photos de référence mis à jour
       const aiPieceWithBubbleName = {
         ...aiPiece,
-        nom: pieceName
+        nom: pieceName,
+        photosReference: photosReference
       };
 
       piecesWithRawData.set(aiPiece.id, {

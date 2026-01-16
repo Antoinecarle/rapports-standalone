@@ -142,6 +142,7 @@ export interface Probleme {
   consignesIA?: string[];
   estFaux?: boolean;
   etapeId?: string; // ID de l'étape associée au problème (pour lier aux photos de vérification)
+  photoUrl?: string; // URL de la photo associée au problème (fournie par le backend)
 }
 
 export interface CheckEntree {

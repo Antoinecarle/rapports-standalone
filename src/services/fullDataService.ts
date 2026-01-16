@@ -154,8 +154,29 @@ class FullDataService {
 
       console.log('[FullDataService] Données complètes chargées avec succès');
       console.log(`- Photos checkout: ${data.photoPiececheckout?.length || 0}`);
+      console.log(`- Photos initiales (référence): ${data.photoPieceinitiales?.length || 0}`);
       console.log(`- Étapes validées: ${data.etaperesponse?.length || 0}`);
       console.log(`- Questions de sortie: ${data.exitQuestion?.length || 0}`);
+
+      // Log détaillé des photos initiales pour debug
+      if (data.photoPieceinitiales && data.photoPieceinitiales.length > 0) {
+        console.log('[FullDataService] Détail des photos initiales:');
+        data.photoPieceinitiales.forEach((photoSet: PhotoPieceInitiale) => {
+          console.log(`  - Pièce ${photoSet.nom || photoSet.pieceid}: ${photoSet.photourl?.length || 0} photo(s)`);
+        });
+      }
+
+      // Log détaillé des photos de sortie pour debug
+      if (data.photoPiececheckout && data.photoPiececheckout.length > 0) {
+        const photosByPiece = new Map<string, number>();
+        data.photoPiececheckout.forEach((photo: PhotoPieceCheckout) => {
+          photosByPiece.set(photo.pieceid, (photosByPiece.get(photo.pieceid) || 0) + 1);
+        });
+        console.log('[FullDataService] Détail des photos de sortie par pièce:');
+        photosByPiece.forEach((count, pieceId) => {
+          console.log(`  - Pièce ${pieceId}: ${count} photo(s)`);
+        });
+      }
 
       return data;
     } catch (error) {

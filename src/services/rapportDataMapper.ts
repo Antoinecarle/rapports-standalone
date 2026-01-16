@@ -310,6 +310,8 @@ export function mapToPiecesDetails(data: FusedRapportData) {
           datephoto: photo.datephoto
         }))
         .filter(photoObj => photoObj.url && photoObj.url.trim() !== '');
+
+      console.log(`[RapportDataMapper] Photos de sortie pour ${piece.nom} (${piece.id}):`, photosSortieCapturees.length);
     }
 
     // Fallback : utiliser mydata.json si fulldata n'a pas de photos pour cette pièce
@@ -422,6 +424,9 @@ export function mapToPiecesDetails(data: FusedRapportData) {
         };
       });
     }
+
+    console.log(`[RapportDataMapper] Photos de référence pour ${piece.nom}:`, piece.photosReference?.length || 0);
+    console.log(`[RapportDataMapper] Photos d'entrée pour ${piece.nom}:`, photosEntreeCapturees.length);
 
     return {
       id: piece.id,

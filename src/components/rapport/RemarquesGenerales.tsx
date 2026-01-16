@@ -407,11 +407,11 @@ export default function RemarquesGenerales({
     {/* C. Compteurs agrégés */}
 
 
-    {/* D. Faits saillants - Filtrer les highlights pour exclure les commentaires de validation [ÉTAPE] */}
-    {data.highlights.filter(h => !h.text.startsWith('[ÉTAPE]')).length > 0 && <Card className="p-6">
+    {/* D. Faits saillants */}
+    <Card className="p-6">
       <h3 className="font-semibold mb-4">Faits important analysés par l'IA      </h3>
       <div className="space-y-3">
-        {data.highlights.filter(h => !h.text.startsWith('[ÉTAPE]')).map((highlight, index) => {
+        {data.highlights.map((highlight, index) => {
           // Extraire le type de fait (avant les ":")
           const typeFait = highlight.titre.split(':')[0].trim();
 
@@ -441,7 +441,7 @@ export default function RemarquesGenerales({
           </div>
         })}
       </div>
-    </Card>}
+    </Card>
 
     {/* E. Signalements utilisateurs */}
     {data.user_reports.length > 0 && <Card className="p-4 md:p-6">

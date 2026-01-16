@@ -177,16 +177,33 @@ export default function RapportPieceDetail({
     if (!tache.etapeId) return false;
 
     // Vérifier si l'etapeId de la tâche correspond à un problème détecté par l'IA
-    return piece.problemes.some(probleme =>
-      probleme.etapeId === tache.etapeId &&
-      probleme.detectionIA &&
-      !probleme.estFaux // Ignorer les faux positifs
-    );
+    return piece.problemes.some(probleme => {
+      // Ignorer les faux positifs
+      if (probleme.estFaux) return false;
+
+      // Vérifier si c'est lié à cette tâche
+      if (probleme.etapeId !== tache.etapeId || !probleme.detectionIA) return false;
+
+      // Si le problème commence par [ÉTAPE]
+      if (probleme.description.startsWith('[ÉTAPE]')) {
+        // Ignorer seulement si c'est de sévérité "faible" (ce sont des confirmations)
+        // Garder si c'est "moyenne" ou "elevee" (ce sont de vrais problèmes)
+        return probleme.severite === 'moyenne' || probleme.severite === 'elevee';
+      }
+
+      // Tous les autres problèmes comptent
+      return true;
+    });
   };
 
   // Fonction helper pour vérifier si une tâche est réellement validée
-  // Une tâche est validée si elle est approuvée ET qu'elle n'a pas de problèmes détectés par l'IA
+  // Une tâche est validée si elle est approuvée ET qu'elle n'a pas de problèmes ET que le commentaire ne contient pas "[Tâche non validée]"
   const isTacheValidee = (tache: TacheValidation): boolean => {
+    // Si le commentaire contient "[Tâche non validée]", la tâche n'est pas validée
+    if (tache.commentaire && tache.commentaire.includes("[Tâche non validée]")) {
+      return false;
+    }
+    // Sinon, vérifier si elle est approuvée et sans problèmes
     return tache.estApprouve && !tacheHasProblems(tache);
   };
 
@@ -222,103 +239,16 @@ export default function RapportPieceDetail({
   // Calculer le nombre de tâches réellement validées
   const tachesValidees = toutesLesTaches.filter(t => t.isValidated).length;
 
-  // Dictionnaire de correspondances sémantiques : objet mentionné → mots-clés de tâches liées
-  const correspondancesSemantiques: Record<string, string[]> = {
-    // Objets de chambre
-    'lit': ['lit', 'draps', 'couette', 'oreiller', 'plaid', 'coussin', 'chambre'],
-    'oreiller': ['lit', 'oreiller', 'coussin', 'chambre'],
-    'plaid': ['lit', 'plaid', 'couette', 'canapé', 'chambre'],
-    'coussin': ['lit', 'coussin', 'canapé', 'chambre', 'salon'],
-    'lampe': ['lampe', 'chevet', 'table', 'chambre'],
-    'chevet': ['chevet', 'table', 'lampe', 'chambre'],
-    'armoire': ['armoire', 'placard', 'rangement', 'chambre'],
-    'chaise': ['chaise', 'bureau', 'table', 'chambre', 'salon'],
-    'télécommande': ['télé', 'television', 'télécommande', 'salon', 'chambre'],
-    'serviette': ['serviette', 'linge', 'bain', 'salle', 'lavabo'],
-    // Objets de cuisine
-    'capsule': ['café', 'capsule', 'machine', 'nespresso', 'cuisine'],
-    'café': ['café', 'capsule', 'machine', 'nespresso', 'cuisine'],
-    'machine': ['machine', 'café', 'capsule', 'lave', 'cuisine'],
-    'bouilloire': ['bouilloire', 'détartrage', 'cuisine'],
-    'frigo': ['frigo', 'réfrigérateur', 'cuisine'],
-    'four': ['four', 'cuisine'],
-    'bol': ['bol', 'vaisselle', 'étagère', 'cuisine'],
-    'cadre': ['cadre', 'photo', 'étagère', 'décoration'],
-    // Objets de salle de bain
-    'lavabo': ['lavabo', 'robinet', 'salle', 'bain'],
-    'douche': ['douche', 'paroi', 'barre', 'salle', 'bain'],
-    'baignoire': ['baignoire', 'bain', 'salle'],
-    'toilette': ['toilette', 'wc', 'cuvette', 'abattant'],
-    'miroir': ['miroir', 'salle', 'bain', 'entrée'],
-    // Objets de salon
-    'canapé': ['canapé', 'salon', 'coussin', 'plaid'],
-    'table': ['table', 'basse', 'manger', 'salon', 'cuisine'],
-  };
 
-  // Fonction pour extraire les mots-clés pertinents d'un texte
-  const extraireMotsCles = (texte: string): string[] => {
-    const motsAIgnorer = [
-      'photo', 'non', 'conforme', 'zone', 'différente', 'entre', 'visible', 'malgré',
-      'consigne', 'après', 'intervention', 'alors', 'doivent', 'être', 'disponibles',
-      'rapport', 'etat', 'état', 'initial', 'manquante', 'manquant', 'manquants',
-      'étape', 'sortie', 'entrée', 'référence', 'vérifie', 'vérifier', 'permet',
-      'permettant', 'éléments', 'sans', 'avec', 'pour', 'dans', 'sur', 'sous',
-      'plus', 'moins', 'trop', 'peu', 'bien', 'mal', 'bon', 'mauvais',
-      'photos', 'invalides', 'montrent', 'fixé', 'près', 'tuyaux', 'clairement',
-      'pièce', 'logement', 'identifier', 'ajouté', 'ajoutée', 'absente', 'absent',
-      'présent', 'présente', 'initialement', 'déplacé', 'déplacée'
-    ];
-
-    return texte
-      .toLowerCase()
-      .replace(/[\u{1F300}-\u{1F9FF}]/gu, ' ') // Supprimer les emojis
-      .replace(/[^\w\sàâäéèêëïîôùûüÿæœç-]/g, ' ') // Garder les lettres et tirets
-      .split(/\s+/)
-      .filter(mot => mot.length > 2 && !motsAIgnorer.includes(mot));
-  };
-
-  // Fonction pour calculer le score de correspondance sémantique
-  const calculerScoreSemantique = (motsClesProbleme: string[], nomTache: string): number => {
-    const tacheNomLower = nomTache.toLowerCase().replace(/[\u{1F300}-\u{1F9FF}]/gu, ' ').trim();
-    let score = 0;
-    const motsMatchs: string[] = [];
-
-    for (const mot of motsClesProbleme) {
-      // Match direct
-      if (tacheNomLower.includes(mot)) {
-        score += 3; // Score élevé pour match direct
-        motsMatchs.push(mot);
-        continue;
-      }
-
-      // Match via synonymes/correspondances sémantiques
-      const correspondances = correspondancesSemantiques[mot];
-      if (correspondances) {
-        for (const corr of correspondances) {
-          if (tacheNomLower.includes(corr)) {
-            score += 2; // Score moyen pour correspondance sémantique
-            motsMatchs.push(`${mot}→${corr}`);
-            break;
-          }
-        }
-      }
-
-      // Match partiel (début de mot)
-      const motsNomTache = tacheNomLower.split(/\s+/);
-      for (const motTache of motsNomTache) {
-        if (motTache.startsWith(mot) || mot.startsWith(motTache)) {
-          score += 1; // Score faible pour match partiel
-          motsMatchs.push(`~${mot}`);
-          break;
-        }
-      }
-    }
-
-    return score;
-  };
 
   // Fonction helper pour récupérer la photo associée à un problème
-  const getProblemePhoto = (probleme: { etapeId?: string; titre: string; description: string }): string | null => {
+  const getProblemePhoto = (probleme: { etapeId?: string; titre: string; description: string; photoUrl?: string }): string | null => {
+    // Priorité 1 : Utiliser photoUrl fourni par le backend (nouvelle API)
+    if (probleme.photoUrl) {
+      return probleme.photoUrl;
+    }
+
+    // Fallback : Logique existante pour compatibilité avec anciennes données
     // Stratégie 1 : Si le problème a un etapeId, chercher la tâche correspondante
     if (probleme.etapeId) {
       const tacheParEtapeId = piece.tachesValidees.find(tache => tache.etapeId === probleme.etapeId);
@@ -336,85 +266,7 @@ export default function RapportPieceDetail({
       }
     }
 
-    // Stratégie 2 : Matching sémantique avancé
-    const texteComplet = `${probleme.titre} ${probleme.description}`;
-    const motsClesProbleme = extraireMotsCles(texteComplet);
-
-    if (motsClesProbleme.length > 0) {
-      const tachesAvecScore = piece.tachesValidees
-        .filter(tache => tache.photo_url)
-        .map(tache => {
-          const score = calculerScoreSemantique(motsClesProbleme, tache.nom);
-          // Bonus si le commentaire de la tâche correspond aussi
-          let bonusCommentaire = 0;
-          if (tache.commentaire) {
-            const motsClesCommentaire = extraireMotsCles(tache.commentaire);
-            const motsCommuns = motsClesProbleme.filter(m => motsClesCommentaire.includes(m));
-            bonusCommentaire = motsCommuns.length * 2;
-          }
-          return { tache, score: score + bonusCommentaire };
-        })
-        .filter(item => item.score > 0)
-        .sort((a, b) => b.score - a.score);
-
-      if (tachesAvecScore.length > 0 && tachesAvecScore[0].score >= 2) {
-        return tachesAvecScore[0].tache.photo_url!;
-      }
-    }
-
-    // Stratégie 3 : Pour les problèmes [ÉTAPE], chercher des mots-clés spécifiques
-    if (probleme.description.startsWith('[ÉTAPE]')) {
-      const descSansPrefix = probleme.description.replace('[ÉTAPE]', '').trim().toLowerCase();
-
-      // Mapping explicite de certains problèmes connus
-      const mappingsExplicites: Record<string, string[]> = {
-        'plaid': ['lit', 'plaid', 'coussin', 'couette', 'refaire', 'draps'],
-        'coussin': ['lit', 'coussin', 'plaid', 'canapé', 'refaire'],
-        'capsule': ['café', 'capsule', 'machine'],
-        'serviette': ['serviette', 'linge', 'lavabo', 'sèche'],
-        'draps': ['lit', 'draps', 'refaire'],
-        'lit refait': ['lit', 'refaire', 'draps'],
-        'décoratif': ['lit', 'coussin', 'plaid', 'refaire'],
-      };
-
-      for (const [motCle, termes] of Object.entries(mappingsExplicites)) {
-        if (descSansPrefix.includes(motCle)) {
-          const tacheMatch = piece.tachesValidees.find(tache => {
-            if (!tache.photo_url) return false;
-            const nomLower = tache.nom.toLowerCase();
-            return termes.some(terme => nomLower.includes(terme));
-          });
-          if (tacheMatch?.photo_url) {
-            return tacheMatch.photo_url;
-          }
-        }
-      }
-    }
-
-    // Stratégie 4 : Chercher la première tâche avec photo qui a un nom lié au type de problème
-    const typeProbleme = probleme.titre.toLowerCase();
-    const prioriteParType: Record<string, string[]> = {
-      'objets manquants': ['ranger', 'refaire', 'placer', 'poser', 'lit', 'table'],
-      'objets ajoutés': ['ranger', 'nettoyer', 'lit', 'table', 'sol'],
-      'agencement': ['ranger', 'refaire', 'lit', 'placer'],
-      'qualité image': ['nettoyer', 'vérifier'],
-      'mauvaise pièce': [],
-    };
-
-    for (const [type, termes] of Object.entries(prioriteParType)) {
-      if (typeProbleme.includes(type) && termes.length > 0) {
-        const tacheMatch = piece.tachesValidees.find(tache => {
-          if (!tache.photo_url) return false;
-          const nomLower = tache.nom.toLowerCase();
-          return termes.some(terme => nomLower.includes(terme));
-        });
-        if (tacheMatch?.photo_url) {
-          return tacheMatch.photo_url;
-        }
-      }
-    }
-
-    // Stratégie 5 : Fallback - utiliser la première photo de sortie disponible
+    // Stratégie 2 : Fallback - utiliser la première photo de sortie disponible
     const photosSortie = piece.checkSortie?.photosSortie || [];
     if (photosSortie.length > 0) {
       const premierePhoto = photosSortie[0];
@@ -425,7 +277,7 @@ export default function RapportPieceDetail({
       }
     }
 
-    // Stratégie 6 : Fallback ultime - première tâche avec photo
+    // Stratégie 3 : Fallback ultime - première tâche avec photo
     const premiereTacheAvecPhoto = piece.tachesValidees.find(t => t.photo_url);
     if (premiereTacheAvecPhoto?.photo_url) {
       return premiereTacheAvecPhoto.photo_url;
@@ -434,13 +286,25 @@ export default function RapportPieceDetail({
     return null;
   };
 
+  // Filtrer et trier les problèmes à afficher
+  // On exclut les confirmations "[ÉTAPE] Étape validé" de sévérité faible
+  const problemesAffiches = useMemo(() => {
+    return piece.problemes.filter(probleme => {
+      // Exclure les confirmations "[ÉTAPE] Étape validé" de sévérité faible
+      if (probleme.description.startsWith('[ÉTAPE]') && probleme.severite === 'faible') {
+        return false;
+      }
+      return true;
+    });
+  }, [piece.problemes]);
+
   // Trier les problèmes par sévérité (élevée > moyenne > faible)
   const problemesTries = useMemo(() => {
     const severiteOrder = { elevee: 0, moyenne: 1, faible: 2 };
-    return [...piece.problemes].sort((a, b) => {
+    return [...problemesAffiches].sort((a, b) => {
       return severiteOrder[a.severite] - severiteOrder[b.severite];
     });
-  }, [piece.problemes]);
+  }, [problemesAffiches]);
 
   const handlePhotoClick = (photo: string) => {
     onPhotoClick(photo);
@@ -710,8 +574,8 @@ export default function RapportPieceDetail({
                     {piece.tachesValidees.filter(t => !isTacheValidee(t)).length} tâche{piece.tachesValidees.filter(t => !isTacheValidee(t)).length > 1 ? 's' : ''} non réalisée{piece.tachesValidees.filter(t => !isTacheValidee(t)).length > 1 ? 's' : ''}
                   </Badge>}
 
-                  {piece.problemes.length > 0 && <Badge variant="default" className="text-xs bg-primary text-primary-foreground shrink-0">
-                    {piece.problemes.length} fait{piece.problemes.length > 1 ? 's' : ''} signalé{piece.problemes.length > 1 ? 's' : ''} par l'IA
+                  {problemesAffiches.length > 0 && <Badge variant="default" className="text-xs bg-primary text-primary-foreground shrink-0">
+                    {problemesAffiches.length} fait{problemesAffiches.length > 1 ? 's' : ''} signalé{problemesAffiches.length > 1 ? 's' : ''} par l'IA
                   </Badge>}
                 </div>
               </div>
@@ -973,8 +837,7 @@ export default function RapportPieceDetail({
       )}
 
       {/* Faits signalés par l'IA - Section toujours visible */}
-      {/* Filtrer les problèmes pour exclure les commentaires de validation [ÉTAPE] */}
-      {piece.problemes.filter(p => !p.description.startsWith('[ÉTAPE]')).length > 0 && <CardContent className="border-t pt-3.5">
+      {problemesAffiches.length > 0 && <CardContent className="border-t pt-3.5">
         <Card className="bg-card">
           <CardContent className="p-3 md:p-4">
             <h4 className="font-medium mb-2 md:mb-3 text-xs md:text-sm flex items-center gap-2">
@@ -982,7 +845,7 @@ export default function RapportPieceDetail({
               Faits signalés par l&apos;IA
             </h4>
             <div className="space-y-2">
-              {problemesTries.filter(p => !p.description.startsWith('[ÉTAPE]')).map((probleme, idx) => {
+              {problemesTries.map((probleme, idx) => {
                 // Trouver l'index original du problème pour les états (signalement, consigne, faux)
                 const originalIndex = piece.problemes.findIndex(p => p.id === probleme.id);
                 const estSignale = problemesAvecSignalement.includes(originalIndex);
