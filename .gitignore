@@ -29,6 +29,9 @@ yarn-error.log*
 *.swo
 *~
 
+# Local History (VS Code extension)
+.history/
+
 # OS
 Thumbs.db
 

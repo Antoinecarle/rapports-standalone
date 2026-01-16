@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test - Score Explanation & Logement Name</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            background: white;
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            border-bottom: 3px solid #4CAF50;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #555;
+            margin-top: 30px;
+        }
+        .section {
+            margin: 20px 0;
+            padding: 20px;
+            background: #f9f9f9;
+            border-left: 4px solid #4CAF50;
+            border-radius: 4px;
+        }
+        .field {
+            margin: 10px 0;
+        }
+        .label {
+            font-weight: bold;
+            color: #666;
+            display: inline-block;
+            width: 200px;
+        }
+        .value {
+            color: #333;
+        }
+        .new-badge {
+            background: #4CAF50;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            margin-left: 10px;
+        }
+        .code {
+            background: #f4f4f4;
+            padding: 15px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            overflow-x: auto;
+            margin: 10px 0;
+        }
+        .stars {
+            color: #FFD700;
+            font-size: 24px;
+        }
+        .explanation {
+            background: #e8f5e9;
+            padding: 15px;
+            border-radius: 4px;
+            margin-top: 10px;
+            font-style: italic;
+            color: #2e7d32;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎯 Test - Intégration logement_name & score_explanation</h1>
+        
+        <div class="section">
+            <h2>📦 Données du payload API (rapportfulldata)</h2>
+            <div class="code">
+{
+  "rapportID": "1763564845575x702792386204432800",
+  "logementName": "Appartement Marais - 2 chambres", <span style="color: #4CAF50;">← NOUVEAU</span>
+  "logementAdress": "128 Bd Auguste Blanqui, 75013 Paris, France",
+  "dataia": {
+    "analysis_enrichment": {
+      "global_score": {
+        "score": 4.5,
+        "label": "TRÈS BON",
+        "description": "Score calculé algorithmiquement...",
+        "score_explanation": "Très bon état global. Sur 5 pièces analysées, nous avons relevé 2 problèmes modérés dans la cuisine (évier taché) et la salle de bain (joints noircis), ainsi qu'1 détail mineur dans le salon (coussin déplacé). La note reflète l'importance relative des pièces : cuisine et salle de bain comptent davantage dans le calcul final." <span style="color: #4CAF50;">← NOUVEAU</span>
+      }
+    }
+  }
+}
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>🖥️ Affichage dans le rapport</h2>
+            
+            <div class="field">
+                <span class="label">Logement :</span>
+                <span class="value">Appartement Marais - 2 chambres</span>
+                <span class="new-badge">NOUVEAU</span>
+            </div>
+            
+            <div class="field">
+                <span class="label">Note générale :</span>
+                <span class="stars">★★★★★</span>
+                <span class="value">4.5/5</span>
+            </div>
+            
+            <div class="explanation">
+                💬 <strong>Explication :</strong> Très bon état global. Sur 5 pièces analysées, nous avons relevé 2 problèmes modérés dans la cuisine (évier taché) et la salle de bain (joints noircis), ainsi qu'1 détail mineur dans le salon (coussin déplacé). La note reflète l'importance relative des pièces : cuisine et salle de bain comptent davantage dans le calcul final.
+                <span class="new-badge">NOUVEAU</span>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>✅ Comportement de fallback</h2>
+            
+            <h3>Cas 1 : logementName présent</h3>
+            <div class="field">
+                <span class="label">Affichage :</span>
+                <span class="value">"Appartement Marais - 2 chambres"</span>
+            </div>
+            
+            <h3>Cas 2 : logementName absent ou vide</h3>
+            <div class="field">
+                <span class="label">Affichage :</span>
+                <span class="value">"128 Bd Auguste Blanqui, 75013 Paris, France"</span>
+                <span style="color: #999; font-size: 12px;">(fallback sur l'adresse)</span>
+            </div>
+            
+            <h3>Cas 3 : score_explanation absent</h3>
+            <div class="field">
+                <span class="label">Affichage :</span>
+                <span class="value">Rien ne s'affiche (pas d'erreur)</span>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>🔧 Fichiers modifiés</h2>
+            <ul>
+                <li><code>src/services/fullDataService.ts</code> - Types GlobalScore, AnalysisEnrichment, DataIA</li>
+                <li><code>src/types/rapport.types.ts</code> - Ajout de scoreExplanation dans SyntheseSection</li>
+                <li><code>src/services/rapportDataMapper.ts</code> - Extraction de score_explanation</li>
+                <li><code>src/components/rapport/RapportSynthese.tsx</code> - Affichage de l'explication</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
+
