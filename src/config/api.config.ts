@@ -8,6 +8,7 @@ export type ApiVersion = 'test' | 'live';
 class ApiConfig {
   private static instance: ApiConfig;
   private version: ApiVersion = 'test'; // Version par défaut
+
   private baseUrl: string = 'https://checkeasy-57905.bubbleapps.io';
 
   private constructor() {
